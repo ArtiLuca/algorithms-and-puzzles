@@ -8,11 +8,11 @@ Our goal is to find the two numbers in the report that sum to **2020** and then 
 For the first part we can implement a two-pointer sum approach, which requires that the list of numbers be sorted in increasing order.
 We can work with a copy of the list, and then work with the sorted copy to implement the two-pointer sum technique.
 
-Using our sorted copy, we start with $i=0$ and $j=copy.size()-1$. 
-We then loop as long as $i < j$ and check if $sum = copy[i] + copy[j]$ is equal to our target. 
+Using our sorted copy, we start with `i=0` and `j=copy.size()-1`. 
+We then loop as long as `i < j` and check if `sum = copy[i] + copy[j]` is equal to our target. 
 If it is, we found the two required numbers so we multiply them to have Part 1's solution.
-If $sum < target$ then we increment $i$ as the sum is too small, otherwise we decrement $j$ as the sum was too large.
-If no solution was found, we simply return $-1$ to indicate this. 
+If `sum < target` then we increment `i` as the sum is too small, otherwise we decrement `j` as the sum was too large.
+If no solution was found, we simply return `-1` to indicate this. 
 
 ### Pseudocode
 
@@ -53,17 +53,17 @@ In Part 2 we are told that we are to find three numbers in the expense report th
 Since we are looking for a triplet that sums to **2020** we can use two approaches.
 
 In the first approach, we can extend the two-pointer sum approach used in Part 1 by working with a sorted copy of the list.
-We search by fixing the first element $report[k]$ and then applying our two-pointer sum logic by searching for the target sum
-$sum = target - report[k]$ within report[k+1...n-1]$. 
+We search by fixing the first element `report[k]` and then applying our two-pointer sum logic by searching for the target sum
+`sum = target - report[k]` within `report[k+1...n-1]`. 
 
-If we find $report[i] + report[j] = sum$ we then found our triplet, so we multiply these three together and have Part 2's solution.
-Otherwise, no triplet was found, so we return $-1$.
+If we find `report[i] + report[j] = sum` we then found our triplet, so we multiply these three together and have Part 2's solution.
+Otherwise, no triplet was found, so we return `-1`.
 
-Alternatively, we can use a hashing approach by fixing the first element $report[i]$ for the triplet.
+Alternatively, we can use a hashing approach by fixing the first element `report[i]` for the triplet.
 
-For each fixed element $report[i]$ we use a hash set to store the potential second elements and run another loop inside it from $i+1$ to $n-1$, checking if $target - report[i] - report[j]$ is present in the hash set.
+For each fixed element `report[i]` we use a hash set to store the potential second elements and run another loop inside it from `i+1` to `n-1`, checking if `target - report[i] - report[j]` is present in the hash set.
 If it is, then we found our triplet, se we multiply these three together and have Part 2's solution. 
-Otherwise, no triplet was found so we return $-1$.
+Otherwise, no triplet was found so we return `-1`.
 
 ### Pseudocode
 

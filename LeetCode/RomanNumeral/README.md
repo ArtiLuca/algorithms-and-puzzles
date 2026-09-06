@@ -44,7 +44,7 @@ romanNumeralToInteger(str)
     total = 0
     n = str.length()
 
-    for i=0 to n-1
+    for i=0 to n
         if (i+1 < n and (roman[str[i]] < roman[str[i+1]] ) )
             total = total - roman[str[i]]
         else

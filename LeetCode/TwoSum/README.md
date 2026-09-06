@@ -11,11 +11,11 @@ The two-pointer sum approach requires that the array of integers `nums` be sorte
 In particular, since the problem asks to return the indices of the two numbers found, we must store the original values and indexes in 
 an auxiliary structure, and then sort this in increasing order.
 
-For example, we can use $std::vector<std::pair<int,int>> aux$ to store the original $(value,index)$ pairs. 
-We then sort `aux` in increasing order and apply the two-pointer sum starting with $i=0$ and $j=nums.size()-1$ and checking if
-$aux[i].first + aux[j].first == target$ and return ${aux[i].second, aux[j].second}$ whenever we find the target sum.
+For example, we can use `std::vector<std::pair<int,int>> aux` to store the original $(value,index)$ pairs. 
+We then sort `aux` in increasing order and apply the two-pointer sum starting with `i=0` and `j=nums.size()-1` and checking if
+`aux[i].first + aux[j].first == target` and return `{aux[i].second, aux[j].second}` whenever we find the target sum.
 
-We increase index $i$ if the sum is too small and decrement index $j$ if the sum is too large. 
+We increase index `i` if the sum is too small and decrement index `j` if the sum is too large. 
 And in the case that no pair is found for the given target number, we simply return `{}`.
 
 ```cpp

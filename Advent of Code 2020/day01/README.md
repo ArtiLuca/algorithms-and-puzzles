@@ -95,6 +95,7 @@ solvePart2(target, report)
     return -1
 ```
 
+
 ```cpp
 // approach 2
 solvePart2(target, report)

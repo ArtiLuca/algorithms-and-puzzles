@@ -33,6 +33,7 @@ That is, if we treat the string containing the roman numeral from left to right:
  - if a number is strictly smaller than the number that follows it, then we substract its value (e.g. `IV = 5 - 1 = 4`).
 
 To make things easier we can create a map of roman numeral to integer value, such as `std::unordered_map<char,int> map;`.
+
 We can use this to then scan the string from left-to-right applying the rule from above to update a counter containing the integer value
 to be returned.
 
@@ -53,6 +54,8 @@ romanNumeralToInteger(str)
 ```
 
 ### Complexity
+
 The total **time complexity** is linear $\Theta(n)$ since the for loop runs $\Theta(n)$ times and accessing an element 
 stored in a `std::unordered_map` costs $\mathcal{O}(1)$. 
+
 The total **space complexity** is constant $\Theta(1)$ since the mapping structure holds a constant number of elements at any given moment (in this case 7). 

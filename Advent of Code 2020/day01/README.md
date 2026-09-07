@@ -13,7 +13,7 @@ We then loop as long as `i < j` and:
 
  - if `sum = copy[i] + copy[j]` is equal to our target, we found the two required numbers so we multiply them to have Part 1's solution.
  - if `sum < target` then we increment `i` as the sum is too small.
- - if 'sum > target' we decrement `j` as the sum is too large.
+ - if `sum > target` we decrement `j` as the sum is too large.
  - if no solution was found, we simply return `-1` to indicate this. 
 
 ### Pseudocode

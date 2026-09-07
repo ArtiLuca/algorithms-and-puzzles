@@ -68,6 +68,8 @@ Otherwise, no triplet was found so we return `-1`.
 
 ### Pseudocode
 
+#### Two-Pointer Approach
+
 ```cpp
 // approach 1
 long long solvePart2(int target, vector<int> report) {
@@ -99,6 +101,7 @@ long long solvePart2(int target, vector<int> report) {
 }
 ```
 
+#### Hash Set Approach
 
 ```cpp
 // approach 2

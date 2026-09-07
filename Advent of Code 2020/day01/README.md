@@ -17,26 +17,27 @@ If no solution was found, we simply return `-1` to indicate this.
 ### Pseudocode
 
 ```cpp
-solvePart1(target, report)
+long long solvePart1(int target, vector<int> report) {
     
-    copy = report
-    sort copy in increasing order
+    vector<int> copy = report;
+    sort(copy.begin(), copy.end());
     
-    i = 0
-    j = copy.size() - 1
+    int i = 0;
+    int j = copy.size() - 1;
 
-    while (i < j) 
+    while (i < j) {
+        long long sum = copy[i] + copy[j];
 
-        sum = copy[i] + copy[j]
         if (sum == target)
-            return copy[i] * copy[j]
+            return (long long) copy[i] * copy[j];
         else if (sum < target)
-            i++
+            i++;
         else 
-            j--
-
+            j--;
+    }
     // if target sum never reached
-    return -1
+    return -1;
+}
 ```                    
 
 ### Complexity
@@ -69,52 +70,58 @@ Otherwise, no triplet was found so we return `-1`.
 
 ```cpp
 // approach 1
-solvePart2(target, report)
+long long solvePart2(int target, vector<int> report) {
 
-    copy = report
-    sort copy in increasing order
+    vector<int> copy = report;
+    sort(copy.begin(), copy.end()); 
 
-    n = copy.size()
+    int n = copy.size();
 
-    for k = 0 to n-2
+    for (int k = 0; k < n-2; k++) {
         
-        i = k + 1
-        j = n - 1
+        int i = k + 1;
+        int j = n - 1;
 
-        sum = target - copy[k]
+        long long sum = target - copy[k];
 
-        while (i < j)
+        while (i < j) {
             if (copy[i] + copy[j] == sum)
-                return copy[i] * copy[j] * copy[k]
+                return (long long) copy[i] * copy[j] * copy[k];
             else if (copy[i] + copy[j] < sum) 
-                i++
+                i++;
             else 
-                j--      
+                j--;      
+        }
+    }
 
     // if no triplet found
-    return -1
+    return -1;
+}
 ```
 
 
 ```cpp
 // approach 2
-solvePart2(target, report)
+long long solvePart2(int target, vector<int> report) {
 
-    n = report.size()
+    int n = report.size();
 
-    for i=0 to n-2
-        unordered_set<int> st
+    for (int i=0; i < n-2; i++) {
+        unordered_set<int> st;
 
-        for j = i+1 to n-1
-            second = target - report[i] - report[j]
+        for (int j = i+1; j < n; j++) {
+            int second = target - report[i] - report[j];
 
-            if (st.find(second) != st.end())
-                return report[i] * second * report[j]
+            if (st.find(second) != st.end()) {
+                return (long long)report[i] * second * report[j]; 
+            }
 
-            st.insert(report[j])    
-
+            st.insert(report[j]);
+        }
+    }     
     // if no triplet was found
-    return -1
+    return -1;
+}
 ```   
 
 ### Complexity

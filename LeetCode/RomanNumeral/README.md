@@ -40,16 +40,16 @@ to be returned.
 Assuming `std::unordered_map<char,int> roman` contains our map of roman numeral -> integer value, we can operate as follows:
 
 ```cpp
-romanNumeralToInteger(str) 
-    total = 0
-    n = str.length()
+int romanNumeralToInteger(std::string str) 
+    int total = 0
+    int n = str.length()
 
-    for i=0 to n
-        if (i+1 < n and (roman[str[i]] < roman[str[i+1]] ) )
+    for (int i=0; i < n; i++) {
+        if (i+1 < n && (roman[str[i]] < roman[str[i+1]] ) )
             total = total - roman[str[i]]
         else
             total = total + roman[str[i]]
-
+    }
     return total            
 ```
 

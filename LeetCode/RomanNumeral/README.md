@@ -36,7 +36,14 @@ That is, if we treat the string containing the Roman numeral from left to right:
  - if a number is greater than or equal to the number that follows it, then we add its value (e.g., $VI = 5 + 1 = 6$).
  - if a number is strictly smaller than the number that follows it, then we subtract its value (e.g., $IV = 5 - 1 = 4$).
 
-To make things easier, we can create a map of roman numeral to integer values, such as `std::unordered_map<char,int> roman;`.
+To make things easier, we can create a map of roman numeral to integer values, such as `std::unordered_map<char,int> roman;`:
+
+```cpp
+unordered_map<char,int> romanNumeral = {
+  {'I', 1}, {'V', 5}, {'X', 10}, {'L', 50},
+  {'C', 100}, {'D', 500}, {'M', 1000}
+};
+```
 
 We can use this to then scan the string from left to right, applying the rule from above to update a counter containing the integer value
 to be returned.

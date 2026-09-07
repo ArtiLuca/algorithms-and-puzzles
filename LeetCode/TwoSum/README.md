@@ -14,12 +14,12 @@ In particular, since the problem asks to return the indices of the two numbers f
 an auxiliary structure, and then sort this in increasing order.
 
 For example, we can use `std::vector<std::pair<int,int>> aux` to store the original pairs of values and indices $(v,i)$. 
-We then sort `aux` in increasing order and apply the two-pointer sum starting with `i=0` and `j=nums.size()-1`. 
+We then sort `aux` in increasing order and apply the two-pointer sum starting with `i=0` and `j=nums.size()-1`.  
+
 We can then check at each step if `aux[i].first + aux[j].first == target`.
+If so, we return `{aux[i].second, aux[j].second}` since we found a pair that reached the target sum.  
 
-If so, we return `{aux[i].second, aux[j].second}` since we found a pair that reached the target sum.
 Otherwise, we increase index `i` if the sum is too small or decrement index `j` if the sum is too large. 
-
 In the case that no pair is found for the given target number, we simply return `{}`.
 
 #### Pseudocode
@@ -57,10 +57,10 @@ vector<int> twoSumA(vector<int>& nums, int target) {
 
 #### Complexity
 
-The sorting has a cost $\Theta(n \log n)$ and the while loop runs $\Theta(n)$ time.
-Therefore the total **time complexity** is $\Theta(n \log n)$.
+The sorting has a cost $\Theta(n \log n)$, and the while loop runs in $\Theta(n)$ time.
+Therefore, the total **time complexity** is $\Theta(n \log n)$.
 
-The total **space complexity** is $\Theta(n)$ since we work with a sorted auxiliary data structure that maintain the original values and indexes.
+The total **space complexity** is $\Theta(n)$ since we work with a sorted auxiliary data structure that maintains the original values and indexes.
 
 
 ### Idea 2: Using a hashing-based approach

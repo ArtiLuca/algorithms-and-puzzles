@@ -67,6 +67,7 @@ $$
 
 We then take the `reversedHalf` and update it by multiplying its previous value by `10` and adding the last extracted digit.
 We then update the original integer `x` by performing an integer division: `x = x / 10`.  
+
 This process continues as long as `x > reversedHalf`.  
 Once we have extracted the `reverseHalf` we can perform a final check based on if `x` was made up of an even or an odd number of digits: 
  

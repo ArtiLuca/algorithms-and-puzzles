@@ -46,7 +46,7 @@ int romanNumeralToInteger(std::string str)
     int n = str.length();
 
     for (int i=0; i < n; i++) {
-        if (i+1 < n && (roman[str[i]] < roman[str[i+1]] ) )
+        if (i+1 < n && (roman[str[i]] < roman[str[i+1]]))
             total = total - roman[str[i]];
         else
             total = total + roman[str[i]];

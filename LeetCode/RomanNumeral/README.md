@@ -26,18 +26,20 @@ There are six instances where subtraction is used:
 
 Given a roman numeral, convert it to an integer.
 
+## Solution
+
 In this problem it is important to notice the order of magnitude of the roman numerals, and the rule regarding the addition/subtraction.
 That is, if we treat the string containing the roman numeral from left to right:
 
- - if a number is greater than or equal to the number that follows it, then we add its value (e.g. `VI = 5 + 1 = 6`).
- - if a number is strictly smaller than the number that follows it, then we substract its value (e.g. `IV = 5 - 1 = 4`).
+ - if a number is greater than or equal to the number that follows it, then we add its value (e.g. $VI = 5 + 1 = 6$).
+ - if a number is strictly smaller than the number that follows it, then we substract its value (e.g. $IV = 5 - 1 = 4$).
 
 To make things easier we can create a map of roman numeral to integer value, such as `std::unordered_map<char,int> roman;`.
 
 We can use this to then scan the string from left-to-right applying the rule from above to update a counter containing the integer value
 to be returned.
 
-Assuming `std::unordered_map<char,int> roman` contains our map of roman numeral -> integer value, we can operate as follows:
+Assuming `std::unordered_map<char,int> roman` contains our map of $\text{roman numeral} \to \text{integer value}$ we can operate as follows:
 
 ```cpp
 int romanNumeralToInteger(std::string str)
@@ -46,15 +48,17 @@ int romanNumeralToInteger(std::string str)
     int n = str.length();
 
     for (int i=0; i < n; i++) {
+
         if (i+1 < n && (roman[str[i]] < roman[str[i+1]]))
             total = total - roman[str[i]];
         else
             total = total + roman[str[i]];
     }
+
     return total;            
 ```
 
-### Complexity
+#### Complexity
 
 The total **time complexity** is linear $\Theta(n)$ since the for loop runs $\Theta(n)$ times and accessing an element 
 stored in a `std::unordered_map` costs $\mathcal{O}(1)$. 

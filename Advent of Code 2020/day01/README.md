@@ -62,7 +62,8 @@ If we find `report[i] + report[j] = sum` we have found our triplet, so we multip
 Otherwise, no triplet was found, so we return `-1`.
 
 Alternatively, we can use a hashing approach by fixing the first element `report[i]` for the triplet.
-For each fixed element `report[i]` we use a hash set to store the potential second elements and run another loop inside it from `i+1` to `n-1`.
+For each fixed element `report[i]` we use a hash set to store the potential second elements and run another loop inside it from `i+1` to `n-1`.  
+
 At each iteration, we check if `target - report[i] - report[j]` is present in the hash set.
 If it is, then we found our triplet, so we multiply these three together and have Part 2's solution. 
 Otherwise, no triplet was found, so we return `-1`.

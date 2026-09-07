@@ -37,7 +37,11 @@ bool isPalindrome(int x) {
 #### Complexity
 If $n$ is the number of digits of `x`, converting an integer to a string takes linear time relative to the digit count. 
 We iterate over  
-$\Theta(\lfloor \frac{n}{2} \rfloor)$  
+
+$$
+\Theta(\lfloor \frac{n}{2} \rfloor)
+$$  
+
 so therefore the total **time complexity** is $\Theta(n)$.
 
 Since we allocate memory when converting the integer into a string, the total **space complexity** is also $\Theta(n)$.
@@ -89,8 +93,12 @@ bool isPalindrome(int x) {
 
 ### Complexity
 
-If $n$ is the number of digits of `x` we iterate  
-$\Theta(\lfloor \frac{n}{2} \rfloor)$  
+If $n$ is the number of digits of `x` we iterate
+
+$$
+\Theta(\lfloor \frac{n}{2} \rfloor)
+$$
+
 times, therefore the total **time complexity** remains linear $\Theta(n)$.
 
 Since all operations are done in-place, the total **space complexity** remains constant $\Theta(1)$.

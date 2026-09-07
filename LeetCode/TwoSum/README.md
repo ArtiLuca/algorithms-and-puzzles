@@ -4,8 +4,6 @@ You are given an array of integers `nums` and an integer `target`, return *i
 You may assume that each input would have ***exactly* one solution**, and you may not use the *same* element twice.
 You can return the answer in any order.
 
----
-
 ## Solution
 
 ### Idea 1: Using two-pointer sum approach

@@ -44,6 +44,7 @@ long long solvePart1(int target, vector<int> report) {
 
 ### Complexity
 The **time complexity** is given by the sorting time $\Theta(n \log n)$ plus the linear scan $\Theta(n)$, which is absorbed by the sorting time.
+
 The **space complexity** is $\Theta(n)$ since we work with a copy of the original list (expense report).
 
 ---

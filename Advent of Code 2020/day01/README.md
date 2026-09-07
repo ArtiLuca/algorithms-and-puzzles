@@ -58,7 +58,7 @@ Since we are looking for a triplet that sums to **2020**, we can use two approac
 In the first approach, we can extend the two-pointer sum approach used in Part 1 by working with a sorted copy of the list. 
 We search by fixing the first element `report[k]` and then applying our two-pointer sum logic by searching for the target sum 
 `sum = target - report[k]` within `report[k+1...n-1]`. 
-If we find `report[i] + report[j] = sum` we have found our triplet, so we multiply these three together and have Part 2's solution.  
+If we find `report[i] + report[j] = sum` we have found our triplet, so we multiply these three together and have Part 2's solution.
 Otherwise, no triplet was found, so we return `-1`.
 
 Alternatively, we can use a hashing approach by fixing the first element `report[i]` for the triplet.

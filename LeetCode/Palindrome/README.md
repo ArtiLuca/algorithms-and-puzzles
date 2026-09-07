@@ -36,7 +36,9 @@ bool isPalindrome(int x) {
 
 #### Complexity
 If $n$ is the number of digits of `x`, converting an integer to a string takes linear time relative to the digit count. 
-We iterate over $\Theta(\lfloor \frac{n}{2} \rfloor)$ so therefore the total **time complexity** is $\Theta(n)$.
+We iterate over  
+$\Theta(\lfloor \frac{n}{2} \rfloor)$  
+so therefore the total **time complexity** is $\Theta(n)$.
 
 Since we allocate memory when converting the integer into a string, the total **space complexity** is also $\Theta(n)$.
 
@@ -50,7 +52,7 @@ Some observations:
  - an integer `x` cannot be palindrome if it is a negative number.
  - an integer `x` cannot be palindrome if it ends with a *0*, unless the number `x` is *0* itself.
  
-For example, $-121$ is *not* a palindrome since $-121 \ne 12(-)1$; $100$ is *not* a palindrome since $100 \ne 001 = 1$. 
+For example, $-121$ is *not* a palindrome since $-121 \ne 12-1$; $100$ is *not* a palindrome since $100 \ne 001 = 1$. 
 
 We can solve the problem without converting to string by taking the reversed half of `x`.  
 That is, we use `reversedHalf = 0` and then keep stripping the right-most digits from `x` using the *modulo* operator:  
@@ -87,6 +89,8 @@ bool isPalindrome(int x) {
 
 ### Complexity
 
-If $n$ is the number of digits of `x` we iterate $\Theta(\lfloor \frac{n}{2} \rfloor)$ times, therefore the total **time complexity** remains linear $\Theta(n)$.
+If $n$ is the number of digits of `x` we iterate  
+$\Theta(\lfloor \frac{n}{2} \rfloor)$  
+times, therefore the total **time complexity** remains linear $\Theta(n)$.
 
 Since all operations are done in-place, the total **space complexity** remains constant $\Theta(1)$.

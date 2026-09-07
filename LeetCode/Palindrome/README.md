@@ -60,15 +60,20 @@ For example, $-121$ is *not* a palindrome since $-121 \ne 12-1$; $100$ is *not* 
 
 We can solve the problem without converting to string by taking the reversed half of `x`.  
 That is, we use `reversedHalf = 0` and then keep stripping the right-most digits from `x` using the *modulo* operator:  
-$digit = x \mod 10$.
+
+$$
+digit = x \mod 10
+$$
 
 We then take the `reversedHalf` and update it by multiplying its previous value by `10` and adding the last extracted digit.
 We then update the original integer `x` by performing an integer division: `x = x / 10`.  
 This process continues as long as `x > reversedHalf`.  
 Once we have extracted the `reverseHalf` we can perform a final check based on if `x` was made up of an even or an odd number of digits: 
  
- - if `x` has an even number of digits, then `x` is palindrome if `x == reversedHalf` (e.g. `1221` -> `12 == 12`).
- - if `x` has an odd number of digits, then `x` is a palindrome if `x == reversedHalf / 10` (e.g. `12321` -> `12` = `123 / 10 = 12`).
+ - if `x` has an even number of digits, then `x` is palindrome if $x == reversedHalf$
+ - example: 1221 is a palindrome since `12 == 12`.
+ - if `x` has an odd number of digits, then `x` is a palindrome if $x == reversedHalf / 10$
+ - example: 12321 is a palindrome since `12 = 12 = 123 / 10`.
 
 #### Pseudocode
 

@@ -8,7 +8,9 @@ Merge the two lists into one **sorted** list. The list should be made by splicin
 
 Return the *head of the merged linked list*.
 
+
 ![example image](merge_ex1.jpg)
+
 
 ## Solution
 

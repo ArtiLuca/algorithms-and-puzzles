@@ -5,7 +5,7 @@ In Part 1, we are given a database of passwords and told that the database is co
 Some passwords dont meet the corporate policy for when the passwords were set.
 We want to count the total number of valid passwords according to their corporate policy.
 
-Each line of the database contains a policy in the format `i-j' 'c' followed by the actual password `str`.
+Each line of the database contains a policy in the format `i-j' `c` followed by the actual password `str`.
 The policy `i-j c` states that the password `str` relative to that policy is valid only if the character `c` appears 
 in the password `str` at least `i` times and at the most `j` times. 
 

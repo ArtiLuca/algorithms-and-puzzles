@@ -123,7 +123,7 @@ we must check that the following condition evaluates to true:
 
 $$
 (psw[i-1] == c) 
-\text{XOR} 
+\text{ XOR } 
 (psw[j-1] == c)
 $$
 

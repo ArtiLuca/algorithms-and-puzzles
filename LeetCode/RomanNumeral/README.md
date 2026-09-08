@@ -53,7 +53,7 @@ Assuming `std::unordered_map<char,int> roman` contains our map of $\text{roman n
 #### Pseudocode
 
 ```cpp
-int romanNumeralToInteger(std::string str)
+int romanNumeralToInteger(std::string str) {
 
     int total = 0;
     int n = str.length();
@@ -66,7 +66,8 @@ int romanNumeralToInteger(std::string str)
             total = total + roman[str[i]];
     }
 
-    return total;            
+    return total;
+}
 ```
 
 #### Complexity

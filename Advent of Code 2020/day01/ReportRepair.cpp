@@ -5,6 +5,8 @@
 #include <unordered_set>
 #include <algorithm>
 
+// =============== PUZZLE INPUT ===============
+
 void ExpenseReport::readPuzzleInput() {
 
     std::ifstream file(puzzleInput);
@@ -18,6 +20,8 @@ void ExpenseReport::readPuzzleInput() {
     
     file.close();  
 }
+
+// =============== PART 1 ===============
 
 long long ExpenseReport::solvePart1(int target) const {
 
@@ -46,6 +50,7 @@ long long ExpenseReport::solvePart1(int target) const {
     return -1;
 }
 
+// =============== PART 2 ===============
 
 long long ExpenseReport::solvePart2_TwoPointer(int target) const{
 

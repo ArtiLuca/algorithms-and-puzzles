@@ -138,7 +138,7 @@ In both approaches, the **space complexity** is $\Theta(n)$ due to the copy of t
 Tested using
 
 ```text
-g++ -std=c++17 main.cpp ReportRepairs.cpp -o main.exe
+g++ -std=c++17 main.cpp ReportRepair.cpp -o main.exe
 ./main.exe
 ```
 

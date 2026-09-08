@@ -122,7 +122,9 @@ That is, for any given password `str` having policy character `c` and policy pos
 we must check that the following condition evaluates to true:
 
 $$
-psw[i-1] == 'c' \text{ XOR } psw[j-1] == 'c'
+(psw[i-1] == 'c') 
+\text{XOR} 
+(psw[j-1] == 'c')
 $$
 
 We can then use this new validation helper across all passwords to count the total number of valid passwords  

@@ -16,7 +16,7 @@ We then loop as long as `i < j` and:
  - if `sum > target` we decrement `j` as the sum is too large.
  - if no solution was found, we simply return `-1` to indicate this. 
 
-### Pseudocode
+#### Pseudocode
 
 ```cpp
 long long solvePart1(int target, vector<int> report) {
@@ -42,7 +42,7 @@ long long solvePart1(int target, vector<int> report) {
 }
 ```                    
 
-### Complexity
+#### Complexity
 The **time complexity** is given by the sorting time $\Theta(n \log n)$ plus the linear scan $\Theta(n)$, which is absorbed by the sorting time.
 
 The **space complexity** is $\Theta(n)$ since we work with a copy of the original list (expense report).
@@ -68,7 +68,7 @@ At each iteration, we check if `target - report[i] - report[j]` is present in th
 If it is, then we found our triplet, so we multiply these three together and have Part 2's solution. 
 Otherwise, no triplet was found, so we return `-1`.
 
-### Pseudocode
+#### Pseudocode
 
 #### Two-Pointer Approach
 
@@ -129,8 +129,16 @@ long long solvePart2(int target, vector<int> report) {
 }
 ```   
 
-### Complexity
+#### Complexity
 The **time complexity** for the sorting + two-pointer approach is given by the sorting time $\Theta(n \log n)$ as well as the nested loops, which result in the quadratic running time $\Theta(n^2)$. Since the nested loops *dominate* the running time, the total time complexity in both approaches is $\Theta(n^2)$.  
 
 In both approaches, the **space complexity** is $\Theta(n)$ due to the copy of the list used in the sorting + two-pointer approach, as well as the use of the set in the hashing-based approach. 
+
+### Build 
+Tested using
+
+```text
+g++ -std=c++17 main.cpp ReportRepairs.cpp -o main.exe
+./main.exe
+```
 

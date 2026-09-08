@@ -49,6 +49,7 @@ If one list ends before the other, then we simply append the rest of the remaini
 
 ```cpp
 ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+
     // if both lists are empty, return NULL
     if (!list1 && !list2) 
         return nullptr;
@@ -89,6 +90,7 @@ Once the loop ends (because one list has no elements remaining), we merge the re
 
 ```cpp
 ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+
     // create temporary node ("dummy")
     ListNode* temp = new ListNode(-1);
     ListNode* current = temp;

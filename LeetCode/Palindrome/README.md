@@ -74,8 +74,11 @@ This process continues as long as `x > reversedHalf`.
 Once we have extracted the `reverseHalf` we can perform a final check based on if `x` was made up of an even or an odd number of digits: 
  
  - if `x` has an even number of digits, then `x` is palindrome if $x == reversedHalf$
+ 
    (ex: 1221 is a palindrome since `12 == 12`).
+   
  - if `x` has an odd number of digits, then `x` is a palindrome if $x == reversedHalf / 10$
+
    (ex: 12321 is a palindrome since `12 = 12 = 123 / 10`).
 
 #### Pseudocode

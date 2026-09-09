@@ -17,6 +17,7 @@ In the image above, for example:
  - Input: $root = [4,2,7,1,3], val = 2$
  - Output: $[2,1,3]$
 
+   
    Example 2
  - Input: $root = [4,2,7,1,3], val = 5$
  - Output: $[]$

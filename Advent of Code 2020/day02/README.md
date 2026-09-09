@@ -36,7 +36,8 @@ We can scan the database and keep track of each password alongside its correspon
 We can use a helper struct `Password` to store the information of a single password, and use a vector to hold all the passwords read from input. 
 
 We can then perform validation for each password in linear time by either simply performing a linear search and counting the number of occurrences 
-of the password's corresponding policy character. Or we can use the inbuilt method `count(str.begin(),std.end(),c)` which also results in linear time.
+of the password's corresponding policy character.  
+Or we can use the inbuilt method `count(str.begin(),std.end(),c)` which also results in linear time.
 
 Since we are dealing with a relatively small list of passwords, we can perform this linear validation across all passwords without resulting in drastic time complexities.
 

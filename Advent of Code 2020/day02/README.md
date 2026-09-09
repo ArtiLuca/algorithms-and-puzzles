@@ -1,5 +1,7 @@
 # Advent of Code 2020 - Day 2: Password Philosophy
 
+[Day 2: Password Philosophy](https://adventofcode.com/2020/day/2)
+
 ## Part 1
 In Part 1, we are given a database of passwords and told that the database is corrupted. 
 Some passwords dont meet the corporate policy for when the passwords were set.

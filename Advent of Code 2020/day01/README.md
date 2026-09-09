@@ -1,5 +1,7 @@
 # Advent of Code 2020 - Day 1: Report Repair
 
+[Day 1: Report Repair](https://adventofcode.com/2020/day/1)
+
 ## Part 1
 In Part 1 we are given an expense report containing a list of integers.  
 Our goal is to find the two numbers in the report that sum to **2020** and then multiply the two numbers found to get Part 1's solution.

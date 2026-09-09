@@ -11,12 +11,12 @@ Example:
 ![binary_tree_tmp](tmp_tree.jpg)
 
 Example 1
-- Input: root = [3,9,20,null,null,15,7]
-- Output: 3
+- Input: root = $[3,9,20,null,null,15,7]$
+- Output: $3$
 
 Example 2:
-- Input: root = [1,null,2]
-- Output: 2
+- Input: root = $[1,null,2]$
+- Output: $2$
 
 ## Solution
 We are told that the number of nodes in the tree is in the range $\in [0, 10^{4}]$ and that $-100 \le \text{Node.val} \le 100$.

@@ -109,7 +109,7 @@ We are now told that the policy for a password `str` that is `i-j c` actually in
 must appear in the password `str`, where exactly one of the positions must contain the character `c` in order for the password to be valid.
 
 ## Idea
-By changing the meaning of the policies some previously non-valid passwords may now actually be valid.  
+By changing the meaning of the policies some previously non-valid passwords may now actually be valid (or the other way around).  
 
 Keeping into account the positions indicate *1-indexed* positions, we can implement a new boolean validation helper for the struct `Password`.
 

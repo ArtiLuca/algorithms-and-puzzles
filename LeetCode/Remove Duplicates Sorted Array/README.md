@@ -28,7 +28,7 @@ If all assertions pass, then your solution will be accepted.
 
 ## Solution
 
-We are told that $1 \le \text{ nums.length } \le 3 \cdot 10^4$, $-100 \le \text{ nums[i] } \le 100, and that `nums` is sorted in **non-decreasing** order.
+We are told that $1 \le \text{nums.length} \le 3 \times 10^{4}$, $-100 \le \text{nums[i]} \le 100, and that `nums` is sorted in **non-decreasing** order.
 
 We can use a *two-pointer* technique of sorts to scan the entire vector and overwrite any duplicate values found, while keeping  
 a counter `k` that indicates the number of distinct elements in the final vector.

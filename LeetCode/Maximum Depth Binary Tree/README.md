@@ -37,7 +37,7 @@ struct TreeNode {
 The *depth* of a binary tree is the number of nodes found going from the **root node** to any **leaf node**.  
 We want to find the **maximum depth**, meaning the longest path $\text{root} \to \text{leaf}$.
 
-We can do this using a *recursive* approach, assuming as the base case that, if `root == nullptr`, the safe choice is to return `0`.   
+We can do this using a *recursive* approach, assuming as the base case that if `root == nullptr`, the safe choice is to return `0`.   
 Otherwise, we recursively find the depth of the **left subtree** `leftHeight` and the depth of the **right subtree** `rightHeight`.  
 
 We then take the maximum found by the recursive calls and add $+1$ to update the **maximum depth** to also count the current level:
@@ -69,8 +69,8 @@ int maxDepth(TreeNode* root) {
 #### Complexity
 Intuitively, if $n$ is the number of nodes in the binary tree, the total **time complexity** is $\Theta(n)$ since we visit each node.
 
-We can also see this by taking a generic subtree rooted at node `x`. Assuming it's left subtree contains $k$ nodes,  
-and that it's right subtree contains $n-k-1$ nodes, we can express the complexity using the recurrence:
+We can also see this by taking a generic subtree rooted at node `x`. Assuming its left subtree contains $k$ nodes,  
+and that its right subtree contains $n-k-1$ nodes, we can express the complexity using the recurrence:
 
 $T(n) = T(k) + T(n-k-1) + \Theta(1)$
 
@@ -78,4 +78,4 @@ where $\Theta(1)$ is the constant work done at each step.
 
 The above recurrence can be simplified to $\Theta(n)$, which can be proven by substitution.  
 
-The **space complexity** is $\mathcal{O}(h)$ due to the extra memory allocated onto the stack by the recursive calls.
+The **space complexity** is $\mathcal{O}(h)$ due to the extra memory allocated on the stack by the recursive calls.

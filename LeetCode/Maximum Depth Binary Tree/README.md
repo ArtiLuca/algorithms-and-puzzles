@@ -74,7 +74,7 @@ and that it's right subtree contains $n-k-1$ nodes, we can express the complexit
 
 $T(n) = T(k) + T(n-k-1) + \Theta(1)$
 
-    where $\Theta(1)$ is the constant work done at each step.  
+where $\Theta(1)$ is the constant work done at each step.  
 
 The above recurrence can be simplified to $\Theta(n)$, which can be proven by substitution.  
 

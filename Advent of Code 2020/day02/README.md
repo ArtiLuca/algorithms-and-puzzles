@@ -52,8 +52,7 @@ struct Password {
 };
 ```
 
-Assuming we store all passwords in a `vector<Password> P` we can then validate each one using a boolean helper function and count the total valid  
-passwords found to get Part 1's solution. 
+Assuming we store all passwords in a `vector<Password> P` we can then validate each one using a boolean helper function and count the total valid passwords found to get Part 1's solution. 
 
 ```cpp
 // boolean helper for Password struct

@@ -56,7 +56,9 @@ Some observations:
  - an integer `x` cannot be palindrome if it is a negative number.
  - an integer `x` cannot be palindrome if it ends with a *0*, unless the number `x` is *0* itself.
  
-For example, $-121$ is *not* a palindrome since $-121 \ne 12(-)1$; $100$ is *not* a palindrome since $100 \ne 001 = 1$. 
+For example:  
+$-121$ is *not* a palindrome since $-121 \ne 12(-)1$;  
+$100$ is *not* a palindrome since $100 \ne 001 = 1$. 
 
 We can solve the problem without converting to string by taking the reversed half of `x`.  
 That is, we use `reversedHalf = 0` and then keep stripping the right-most digits from `x` using the *modulo* operator:  

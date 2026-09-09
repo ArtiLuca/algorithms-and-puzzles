@@ -13,6 +13,8 @@ Output: [1,3,2]
 []
 ```
 
+![binaryTree1](binary_tree_1.png)
+
 
 
 ```text

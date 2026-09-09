@@ -113,8 +113,7 @@ By changing the meaning of the policies some previously non-valid passwords may 
 
 Keeping into account the positions indicate *1-indexed* positions, we can implement a new boolean validation helper for the struct `Password`.
 
-In particular, the new validation helper must check that **exactly one** position between the two given by the policy contains the needed character  
-(similar to evaluating an exclusive or **XOR** condition).
+In particular, the new validation helper must check that **exactly one** position between the two given by the policy contains the needed character (similar to evaluating an exclusive or **XOR** condition).
 
 That is, for any given password `str` having policy character `c` and policy positions `i` and `j`, we must check that the following condition  
 evaluates to true:

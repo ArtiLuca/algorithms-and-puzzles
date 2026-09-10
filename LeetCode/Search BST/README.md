@@ -49,6 +49,7 @@ We use a pointer `curr` to the current node and start at the **root** of the tre
 
 Once we exit this loop, if the search was successful we return the current node `curr` which contains `val` as its value and is the root of the subtree 
 $(curr, curr.left, curr.right)$, where `curr.left` and `curr.right` could possibly be `nullptr`.  
+
 If the search was not successful, then `curr` is `nullptr` so it is the root of an empty subtree.
 
 We can implement the search using both a *recursive* and *iterative* approach. I opted for latter, to not use extra memory on the stack.

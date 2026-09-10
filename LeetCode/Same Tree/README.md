@@ -85,5 +85,4 @@ bool isSameTree(TreeNode* p, TreeNode* q) {
 #### Complexity
 The algorithm visits each node at least once. Assuming there are $n$ nodes in both trees, the total **time complexity** is $\Theta(n)$.
 
-The total **space complexity** is given by the extra memory allocated on the stack due to the recursive calls, which depends on the height $h$ of the tree(s) leading to a cost of $\Theta(h)$.  
-In the worst case this means $\Theta(n)$ while in the best case, such as a *complete tree*, this means $\Theta(\log n)$.
+The total **space complexity** is given by the extra memory allocated on the stack due to the recursive calls, which depends on the height $h$ of the tree(s) leading to a cost of $\Theta(h)$. In the worst case this means $\Theta(n)$ while in the best case, such as a *complete tree*, this means $\Theta(\log n)$.

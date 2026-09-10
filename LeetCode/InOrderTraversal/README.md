@@ -54,8 +54,7 @@ In both approaches we can print the resulting vector using a helper `printResult
 
 ### Recursive approach
 In the *recursive* approach the idea is to traverse the tree recursively, starting from the **root node**.  
-We first completely traverse the **left subtree**, then visit the **root node** itself, and then completely  
-traverse  the **right subtree**.
+We first completely traverse the **left subtree**, then visit the **root node** itself, and then completely traverse  the **right subtree**.
 
 In order to match the requested function declaration we can use a private helper `void helper(TreeNode* root, vector<int>& result)` for populating the tree recursively.  
 
@@ -97,8 +96,7 @@ In the best case, when we have a **complete tree** $h = \log n \implies \Theta(\
 ### Iterative approach
 For the *iterative* approach we can implement recursion using a *stack*.  
 We start from the **root node** and keep *pushing* the node into a stack while moving onto the **left node**.  
-When a node becomes **NULL**, we *pop* a node from the stack, **store** its value in our result list, and then  
-move onto the **right node**.
+When a node becomes **NULL**, we *pop* a node from the stack, **store** its value in our result list, and then move onto the **right node**.
  
 #### Pseudocode
 ```cpp

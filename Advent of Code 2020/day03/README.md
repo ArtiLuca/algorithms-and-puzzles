@@ -7,13 +7,14 @@ We are traversing a 2D grid using a toboggan from the top row to the bottom row.
 The 2D grid is given as input and marks *empty spaces* with `.` and **trees** with `#`. 
 
 We are also told that the 2D grid repeats the same pattern to the right many times, so theoretically we can always move to the right until we reach the bottom.  
-We want to find the number of **trees** we would encounter while descending the grid from the top-left *empty space* all the way to the bottom always following a slope of **right 3** and **down 1**. 
+We want to find the number of **trees** we would encounter while descending the grid from the top-left *empty space* all the way to the bottom,  
+always following a slope of **right 3** and **down 1**. 
 
 ### Idea 
 Assuming that we store the grid read from input as a `vector<string> grid` object, our starting position is `grid[0][0]`  
-(or $row j=0$, $column i=0$). We want descend until we pass the last row of the grid.
+(or $row j=0$, $column i=0$). We want to descend until we pass the last row of the grid.
 
-Since the grid repeats the same pattern going **right**, we can use the *modulo* operator mimic this infinitely repeating pattern.
+Since the grid repeats the same pattern going **right**, we can use the *modulo* operator to mimic this infinitely repeating pattern.
 
 In other words, if we store the grid read from input as `vector<string> grid`, we can interpret:  
 
@@ -25,15 +26,15 @@ we can determine our actual horizontal position inside the original pattern usin
 
 $i = i (\mod c)$, where $c$ is the **width** (total columns) of our 2D grid.
 
-Knowing this, we can count the total number of trees found down the slope by using a counter `treeCount` and traversing the grid starting from row $j=0$ and column $i=0$, meaning `grid[0][0]`.
+Knowing this, we can count the total number of trees found down the slope by using a counter `treeCount` and traversing the grid  
+starting from row $j=0$ and column $i=0$, meaning `grid[0][0]`.
 
 At each step, we check if the current coordinate `grid[j][i % c]` contains a tree and update `treeCount` if it does.  
-Then, we advance to the next position by moving right 3 (`i = i + 3`) and down 1 (`j = j + 1`).
-
+Then, we advance to the next position by moving right 3 (`i = i + 3`) and down 1 (`j = j + 1`).  
 Once we hit the last row, meaning `j >= r`, we stop and return `treeCount` as Part 1's solution. 
 
 #### Pseudocode
-Assuming we stored the grid as `std::vector<std::string> grid`:
+Assuming we stored the grid as `std::vector<std::string> grid`:  
 
 ```cpp
 long long solvePart1() const {
@@ -70,7 +71,7 @@ the total **time complexity** is linear with the total number of rows in the gri
 The total **space complexity** is $\mathcal{O}(n \times m)$ since we store a copy of the grid as a private member.
 
 ## Part 2
-In Part 2 we are given four other possible slopes to consider alongside the one from Part 1.  
+In Part 2, we are given four other possible slopes to consider alongside the one from Part 1.  
 We are told to consider how many trees we would encounter if we traversed the 2D grid considering five different slopes:
 
  - Right 1, down 1.
@@ -79,7 +80,7 @@ We are told to consider how many trees we would encounter if we traversed the 2D
  - Right 7, down 1.
  - Right 1, down 2.
 
-To find Part 2's solution we need to count the total number of trees encountered following each different slope and then multiply the five resulting tree counts.
+To find Part 2's solution, we need to count the total number of trees encountered following each different slope and then multiply the five resulting tree counts.
 
 ### Idea
 Since the 2D grid is the same for each slope considered, we can implement a similar logic to Part 1, using the *modulo* operator to deal with the repeated pattern on the right of the grid.
@@ -88,8 +89,8 @@ The only difference now is the number of positions we move **right** and how man
 We can generalize Part 1's algorithm to also take as parameters `right` and `down`, and then implement a helper  
 `countTrees(int right, int down)` to traverse and count the number of trees encountered for each slope.
 
-Since the number could be quite big, we use `long long` as the return value, as to not run into *integer overflow* when multiplying the five results. The base logic remains mostly unchanged.
-
+Since the number could be quite big, we use `long long` as the return value, so as not to run into *integer overflow* when multiplying the five results.  
+The base logic remains mostly unchanged.  
 We can then count the total trees encountered when traversing all five slopes using our helper and multiply the results to get Part 2's solution.
 
 #### Pseudocode
@@ -138,7 +139,7 @@ The cost of a single call to the helper `countTrees` remains linear with the tot
 The time complexity for the first four slopes is $\mathcal{O}(n)$, while the cost for the fifth slope is $\mathcal{O}(\frac{n}{2})$.  
 The total **time complexity** for all five calls can be simplified to $\mathcal{O}(n)$.
 
-The total **space complexity** remains the same as in Part 1 $\mathcal{O}(n \times m)$ since we store a copy of the grid. 
+The total **space complexity** remains the same as in Part 1 $\mathcal{O}(n \times m)$, since we store a copy of the grid. 
 
 ### Build
 Tested using:

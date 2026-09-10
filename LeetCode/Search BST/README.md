@@ -40,13 +40,14 @@ We also know that the number of nodes in the tree is in the range $\in [1, 5000]
 and that $1 \le \text{val} \le 10^{7}$.
 
 We can use the properties of a **BST** to search for the value `val`.  
-We continue searching until we either find the node containing `val` as it's value or we reach a node that is `nullptr`.  
+We continue searching until we either find the node containing `val` as it's value or we reach a node that is `nullptr`. 
+
 We use a pointer `curr` to the current node and start at the **root** of the tree. We then compare the value `val` being searched with the value of the current node.
 
  - if `val < curr.val` we then move the search to the **left subtree**.
  - otherwise, we move the search to the **right subtree**.
 
-Once we exit this loop, if the search was successful we return the current node `curr` which contains `val` as its value and is the root of the subtree  
+Once we exit this loop, if the search was successful we return the current node `curr` which contains `val` as its value and is the root of the subtree 
 $(curr, curr.left, curr.right)$, where `curr.left` and `curr.right` could possibly be `nullptr`.  
 If the search was not successful, then `curr` is `nullptr` so it is the root of an empty subtree.
 

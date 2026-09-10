@@ -7,8 +7,7 @@ We are traversing a 2D grid using a toboggan from the top row to the bottom row.
 The 2D grid is given as input and marks *empty spaces* with `.` and **trees** with `#`. 
 
 We are also told that the 2D grid repeats the same pattern to the right many times, so theoretically we can always move to the right until we reach the bottom. 
-We want to find the number of **trees** we would encounter while descending the grid from the top-left *empty space* all the way to the bottom,  
-always following a slope of **right 3** and **down 1**. 
+We want to find the number of **trees** we would encounter while descending the grid from the top-left *empty space* all the way to the bottom, always following a slope of **right 3** and **down 1**. 
 
 ### Idea 
 Assuming that we store the grid read from input as a `vector<string> grid` object, our starting position is `grid[0][0]`  

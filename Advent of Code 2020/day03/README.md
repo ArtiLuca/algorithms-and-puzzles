@@ -135,8 +135,10 @@ long long solvePart2() const {
 ```
 
 #### Complexity
-The cost of a single call to the helper `countTrees` remains linear with the total number of rows $n$ in the grid, so a single call has a complexity in time of $\mathcal{O}(n)$.  
-The time complexity for the first four slopes is $\mathcal{O}(n)$, while the cost for the fifth slope is $\mathcal{O}(\frac{n}{2})$.  
+The cost of a single call to the helper `countTrees` remains linear with the total number of rows $n$ in the grid, so a single call has a time complexity of:  
+$\mathcal{O}(n)$.
+
+The time complexity for the first four slopes is $\mathcal{O}(n)$, while the cost for the fifth slope is $\mathcal{O}(\frac{n}{2})$. 
 The total **time complexity** for all five calls can be simplified to $\mathcal{O}(n)$.
 
 The total **space complexity** remains the same as in Part 1 $\mathcal{O}(n \times m)$, since we store a copy of the grid. 

@@ -10,7 +10,7 @@ Return the *maximum profit you can achieve* from this transaction. If you cannot
 
 Example 1:  
 Input: $prices = [7,1,5,3,6,4]$  
-Output: $5$
+Output: $5$  
 Explanation: Buy on day 2 ($price = 1$) and sell on day 5 ($price = 6$), profit = $6-1 = 5$.  
 Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
 
@@ -22,10 +22,10 @@ Explanation: In this case, no transactions are done and the max profit $= 0$.
 ## Solution
 We are told that $1 \le \text{prices.length} \le 10^{5}$ and that $0 \le \text{prices[i]} \le 10^{4}$.  
 
-Since we must buy before selling we can use two local variables `minPrice` and `maxProfit`.  
+Since we must buy before selling, we can use two local variables `minPrice` and `maxProfit`.  
 These are initially set as `minPrice = INT_MAX` and `maxProfit = 0`.  
 
-We then scan the array `prices` and update them whenever we find a lower price to buy or we find a day to sell on which we obtain a higher profit.  
+We then scan the array `prices` and update them whenever we find a lower price to buy, or we find a day to sell on which we obtain a higher profit.  
 
 #### Pseudocode
 ```cpp
@@ -56,4 +56,4 @@ int maxProfit(vector<int>& prices) {
 Since we are only doing a linear scan, the total **time complexity** is $\Theta(n)$,  
 where $n$ is the total number of elements in `prices`.
 
-Since we pass `prices` by reference the total **space complexity** remains constant $\Theta(1)$.
+Since we pass `prices` by reference, the total **space complexity** remains constant $\Theta(1)$.

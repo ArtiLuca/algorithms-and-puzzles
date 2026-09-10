@@ -88,8 +88,9 @@ The only difference now is the number of positions we move **right** and how man
 We can generalize Part 1's algorithm to also take as parameters `right` and `down`, and then implement a helper  
 `countTrees(int right, int down)` to traverse and count the number of trees encountered for each slope.
 
-Since the number could be quite big, we use `long long` as the return value, so as not to run into *integer overflow* when multiplying the five results.  
+Since the number could be quite big, we use `long long` as the return value, so as not to run into *integer overflow* when multiplying the five results. 
 The base logic remains mostly unchanged.  
+
 We can then count the total trees encountered when traversing all five slopes using our helper and multiply the results to get Part 2's solution.
 
 #### Pseudocode

@@ -25,7 +25,7 @@ We are told that $1 \le \text{prices.length} \le 10^{5}$ and that $0 \le \text{p
 Since we must buy before selling, we can use two local variables `minPrice` and `maxProfit`.  
 These are initially set as `minPrice = INT_MAX` and `maxProfit = 0`.  
 
-We then scan the array `prices` and update them whenever we find a lower price to buy, or we find a day to sell on which we obtain a higher profit.  
+We then scan the array `prices` and use a **greedy approach** to update them whenever we find a lower price to buy, or we find a day to sell on which we obtain a higher profit.  
 
 #### Pseudocode
 ```cpp

@@ -23,7 +23,8 @@ In other words, if we store the grid read from input as `vector<string> grid`, w
 If we move an arbitrary number of times going **right 3** and **down 1** and find ourselves at the column index $i$,  
 we can determine our actual horizontal position inside the original pattern using the *modulo* operator and the total number of columns:
 
-$i = i (\mod c)$, where $c$ is the **width** (total columns) of our 2D grid.
+$i = i (\mod c)$,  
+where $c$ is the **width** (total columns) of our 2D grid.
 
 Knowing this, we can count the total number of trees found down the slope by using a counter `treeCount` and traversing the grid  
 starting from row $j=0$ and column $i=0$, meaning `grid[0][0]`.

@@ -32,8 +32,7 @@ Example 4:
 
 ## Solution
 
-We are told that the number of nodes in the tree is in the range $\in [0, 100]$  
-and that $-100 \le \text{ Node.val } \le 100$.
+We are told that the number of nodes in the tree is in the range $\in [0, 100]$ and that $-100 \le \text{ Node.val } \le 100$.
 
 We are also given as a reminder the definition of a *binary tree node*:
 

@@ -36,8 +36,8 @@ struct TreeNode {
  };
  ```
 
-We also know that the number of nodes in the tree is in the range $\in [1, 5000]$,  
-$1 \le \text{Node.val} \le 10^{7}$, `root` is a **binary search tree**, and that $1 \le \text{val} \le 10^{7}$.
+We also know that the number of nodes in the tree is in the range $\in [1, 5000]$, that $1 \le \text{Node.val} \le 10^{7}$, that `root` is a **binary search tree**,  
+and that $1 \le \text{val} \le 10^{7}$.
 
 We can use the properties of a **BST** to search for the value `val`.  
 We continue searching until we either find the node containing `val` as it's value or we reach a node that is `nullptr`.  

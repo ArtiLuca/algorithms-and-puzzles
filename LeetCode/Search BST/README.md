@@ -46,8 +46,8 @@ We use a pointer `curr` to the current node and start at the **root** of the tre
  - if `val < curr.val` we then move the search to the **left subtree**.
  - otherwise, we move the search to the **right subtree**.
 
-Once we exit this loop, if the search was successful we return the current node `curr` which contains `val` as its value  
-and is the root of the subtree $(curr, curr.left, curr.right)$ where `curr.left` and `curr.right` could possibly be `nullptr`.  
+Once we exit this loop, if the search was successful we return the current node `curr` which contains `val` as its value and is the root of the subtree  
+$(curr, curr.left, curr.right)$, where `curr.left` and `curr.right` could possibly be `nullptr`.  
 If the search was not successful, then `curr` is `nullptr` so it is the root of an empty subtree.
 
 We can implement the search using both a *recursive* and *iterative* approach. I opted for latter, to not use extra memory on the stack.
@@ -75,8 +75,7 @@ TreeNode* searchBST(TreeNode* root, int val) {
 
 #### Complexity
 Assuming the tree contains $n$ nodes, the total **time complexity** depends on the height $h$ of the tree.  
-In the worst case $h=n$ and therfore we have $\mathcal{O}(n)$, while in the best case such as a *complete tree*  
-we have $\mathcal{O}(\log n)$.  
+In the worst case $h=n$ and therfore we have $\mathcal{O}(n)$, while in the best case such as a *complete tree* we have $\mathcal{O}(\log n)$.  
 In general though, the **time complexity** for the search operation is $\mathcal{O}(h)$.
 
 Since we used an *iterative* approach, the total **space complexity** remains constant $\mathcal{O}(1)$.

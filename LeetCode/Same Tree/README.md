@@ -50,9 +50,9 @@ The two trees are the same if they are **structurally identical**.
 
 We can check this by recursively checking both trees, starting from their **root nodes**: 
 
- - if `p` and `q` are both `nullptr` then they are the same, so we return `true`.
- - if one of them is `nullptr` but the other isn't then they are not the same, so we return `false`.
- - if they differ in value they are not the same, so we return `false`
+ - if `p` and `q` are both `nullptr`, then they are the same, so we return `true`.
+ - if one of them is `nullptr` but the other isn't, then they are not the same, so we return `false`.
+ - if they differ in value, they are not the same, so we return `false`
  - we continue this process by recursively checking if both **left subtrees** are the same and also if both **right subtrees** are the same.
 
 #### Pseudocode
@@ -65,7 +65,7 @@ bool isSameTree(TreeNode* p, TreeNode* q) {
         return true;
     }
 
-    // if one is nullptr but other isn't, they are not the same
+    // if one is nullptr but the other isn't, they are not the same
     else if (p == nullptr || q == nullptr) {
         return false;
     }
@@ -85,4 +85,4 @@ bool isSameTree(TreeNode* p, TreeNode* q) {
 #### Complexity
 The algorithm visits each node at least once. Assuming there are $n$ nodes in both trees, the total **time complexity** is $\Theta(n)$.
 
-The total **space complexity** is given by the extra memory allocated on the stack due to the recursive calls, which depends on the height $h$ of the tree(s) leading to a cost of $\Theta(h)$. In the worst case this means $\Theta(n)$ while in the best case, such as a *complete tree*, this means $\Theta(\log n)$.
+The total **space complexity** is given by the extra memory allocated on the stack due to the recursive calls, which depends on the height $h$ of the tree(s), leading to a cost of $\Theta(h)$. In the worst case, this means $\Theta(n)$, while in the best case, such as a *complete tree*, this means $\Theta(\log n)$.

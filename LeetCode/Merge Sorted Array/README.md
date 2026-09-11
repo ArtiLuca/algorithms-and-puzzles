@@ -43,14 +43,14 @@ Since `nums1` and `nums2` are both sorted in increasing order, we can use this t
 We can use two *index trackers* `i` and `j` initially set to `i=m-1` and `j=n-1` and then iterate `nums1`  
 for index $k = m + n - 1 \dots 0$.  
 
-At each step we insert into `nums1[k]` where:
+At each step, we insert into `nums1[k]` where:
 
  - if no elements are left in `nums2` ($j < 0$), then we don't need to do anything. The remaining elements in nums1 are already in their correct sorted positions, so we can break from the loop. 
- - if no elements are left in `nums1` ($i<0$) or the current element in `nums2` is larger the current one in `nums1` then we insert `nums2[j]` into `nums1[k]` and decrease the index tracker `j` by 1. 
+ - if no elements are left in `nums1` ($i<0$) or the current element in `nums2` is larger than the current one in `nums1` then we insert `nums2[j]` into `nums1[k]` and decrease the index tracker `j` by 1. 
  - otherwise, if `nums1[i]` contains an element that is larger (or equal) to the current one of `nums2`, then we simply insert `nums1[i]` into `nums1[k]` and decrease the index tracker `i` by 1.
 
 The loop stops when `k < 0`, at which point `nums1` contains the merged elements of `nums1` and `nums2` sorted in increasing order.  
-This works since we insert the largest element from **right to left** in `nums1` and we are guaranteed that `nums1` is sufficiently large to contain the merged result, we always insert the largest current element between `nums1` and `nums2` (with duplicate values given higher priority in `nums1`).  
+This works since we insert the largest element from **right to left** in `nums1` and we are guaranteed that `nums1` is sufficiently large to contain the merged result; we always insert the largest current element between `nums1` and `nums2` (with duplicate values given higher priority in `nums1`).  
 
 
 #### Pseudocode

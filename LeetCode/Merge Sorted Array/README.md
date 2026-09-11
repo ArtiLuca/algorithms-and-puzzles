@@ -44,7 +44,7 @@ We can use two *index trackers* `i` and `j` initially set to `i=m-1` and `j=n-1`
 
 At each step, we insert into `nums1[k]` where:
 
- - if no elements are left in `nums2` ($j < 0$), then we don't need to do anything. The remaining elements in nums1 are already in their correct sorted positions, so we can break from the loop. 
+ - if no elements are left in `nums2` ($j < 0$), then we don't need to do anything. The remaining elements in `nums1` are already in their correct sorted positions, so we can break from the loop. 
  - if no elements are left in `nums1` ($i<0$) or the current element in `nums2` is larger than the current one in `nums1` then we insert `nums2[j]` into `nums1[k]` and decrease the index tracker `j` by 1. 
  - otherwise, if `nums1[i]` contains an element that is larger (or equal) to the current one of `nums2`, then we simply insert `nums1[i]` into `nums1[k]` and decrease the index tracker `i` by 1.
 

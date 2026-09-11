@@ -33,15 +33,14 @@ We are told that:
  - $\text{nums2.length} == n$
  - $0 \le m$, $n \le 200$
  - $1 \le m + n \le 200$
- - $-10^{9} \le \text{nums1[i]}$, $\text{nums2[j]} \le 10^{9}$
+ - $-10^{9} \le \text{nums1[i]}$, and that $\text{nums2[j]} \le 10^{9}$
 
 
 We are also asked as a follow-up question if we can come up with an algorithm that runs in $\mathcal{O}(m + n)$ time.
 
 Since `nums1` and `nums2` are both sorted in increasing order, we can use this to our advantage. Since `nums1` is large enough to contain both `nums1` and `nums2` we can implement the merging operation by populating `nums1` from **right to left**, always inserting the largest element of `nums1` and `nums2` that are yet to be merged. 
 
-We can use two *index trackers* `i` and `j` initially set to `i=m-1` and `j=n-1` and then iterate `nums1`  
-for index $k = m + n - 1 \dots 0$.  
+We can use two *index trackers* `i` and `j` initially set to `i=m-1` and `j=n-1` and then iterate `nums1` for index $k = m + n - 1 \dots 0$.
 
 At each step, we insert into `nums1[k]` where:
 

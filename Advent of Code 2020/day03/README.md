@@ -11,7 +11,7 @@ We want to find the number of **trees** we would encounter while descending the 
 
 ### Idea 
 Assuming that we store the grid read from input as a `vector<string> grid` object, our starting position is `grid[0][0]`  
-(or $row j=0$, $column i=0$). We want to descend until we pass the last row of the grid.
+(or $\text{row } j=0$, $\text{column } i=0$). We want to descend until we pass the last row of the grid.
 
 Since the grid repeats the same pattern going **right**, we can use the *modulo* operator to mimic this infinitely repeating pattern.
 

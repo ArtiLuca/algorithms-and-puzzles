@@ -99,10 +99,11 @@ The *watershed function* is $n^{\log_{b}{a}} = n^{\log_{2}{2}} = n^1 = n$, which
 This means **master theorem case 1** can be applied, as the only condition that $\exists \varepsilon > 0$ such that:  
 
 $$
-f(n) = \mathcal{O}(n^{{\log_{2}{2} + \varepsilon}})
+f(n) = \mathcal{O}(n^{{\log_{b}{a} + \varepsilon}})
 $$ 
 
-is verified for any $0 < \varepsilon < 1$, letting us conclude that:  
+where $a=2,b=2$, and is verified for any $0 < \varepsilon < 1$. Therefore, we can onclude that:  
+
 $T(n) = \Theta(n^{\log_{b}{a}}) = \Theta(n)$.
 
 The total **time complexity** is given by the maximum depth of the runtime recursion call stack, which is strictly bounded by the maximum height of the tree, which is $\lfloor \log_2 n \rfloor$. 

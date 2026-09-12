@@ -102,11 +102,11 @@ $$
 f(n) = \mathcal{O}(n^{{\log_{b}{a} + \varepsilon}})
 $$ 
 
-where $a=2,b=2$, and is verified for any $0 < \varepsilon < 1$. Therefore, we can onclude that:  
+where $a=2,b=2$, and is verified for any $0 < \varepsilon < 1$. Therefore, we can conclude that:  
 
 $T(n) = \Theta(n^{\log_{b}{a}}) = \Theta(n)$.
 
-The total **time complexity** is given by the maximum depth of the runtime recursion call stack, which is strictly bounded by the maximum height of the tree, which is $\lfloor \log_2 n \rfloor$. 
+The total **space complexity** is given by the maximum depth of the runtime recursion call stack, which is strictly bounded by the maximum height of the tree, which is $\lfloor \log_2 n \rfloor$. 
 
 **Note**: if we take into account the memory required to store the output tree itself, the total space complexity is $\mathcal{O}(n)$, but the helper memory stack takes only $\mathcal{O}(\log n)$.
 

@@ -24,7 +24,7 @@ Explanation: $[1,null,3]$ and $[3,1]$ are both height-balanced BSTs.
 
 ## Solution
 
-We are told that $1 \le \text{nums.length} \le 10^{4}$, $ \ -10^{4} \le \text{nums[i]} \le 10^{4}$, and that `nums` is sorted in a **strictly increasing order**.
+We are told that $1 \le \text{nums.length} \le 10^{4}$, that $-10^{4} \le \text{nums[i]} \le 10^{4}$, and that `nums` is sorted in a **strictly increasing order**.
 
 We are also given the definition for a **binary tree node**:
 
@@ -47,17 +47,20 @@ $$
 \lfloor \frac{n}{2} \rfloor
 $$  
 
-since this will produce the *most height-balanced* BST possible.  
+...since this will produce the *most height-balanced* BST possible.  
 
-We can take advantage of `nums` being sorted in increasing order to implement a *divide and conquer* approach.  
-Assuming $nums[p \dots r]$ is a subarray of $nums[0 \dots n]$ and therefore smaller in size, we can implement `sortedArrayToBST` by implementing a *recursive helper procedure* `arrayToBSTrec(vector<int>nums&, int p, int r)` which allocates the node `x` at the *centre* of the interval $[p,r]$, which to avoid *overflow* is equivalent to $q = p + \frac{r - p}{2}$. We use as a base case $p > r$, in which case we simply return `nullptr`. The procedure then *recursively* calls `arrayToBSTrec(nums,p,q-1)` to allocate the **left subtree** and calls `arrayToBSTrec(nums,q+1,r)` to allocate the **right subtree**, before returning a pointer to the **root node** `x` of the newly allocated subtree.
+We can take advantage of `nums` being sorted in increasing order to implement a *divide and conquer* approach.
+
+Assuming $nums[p \dots r]$ is a subarray of $nums[0 \dots n]$ and therefore smaller in size, we can implement `sortedArrayToBST` by implementing a *recursive helper procedure* `arrayToBSTrec(vector<int>nums&, int p, int r)` which allocates the node `x` at the *centre* of the interval $[p,r]$, which, to avoid *overflow*, is equivalent to $q = p + \frac{r - p}{2}$. 
+
+We use as a base case $p > r$, in which case we simply return `nullptr`. The procedure then *recursively* calls `arrayToBSTrec(nums,p,q-1)` to allocate the **left subtree** and calls `arrayToBSTrec(nums,q+1,r)` to allocate the **right subtree**, before returning a pointer to the **root node** `x` of the newly allocated subtree. 
 
 We can then have `sortedArrayToBST(vector<int>& nums)` act as a *wrapper* function that calls `arrayToBSTrec(nums, 0, nums.size() - 1)`, which builds the *height-balanced* tree from the sorted array `nums` returning a pointer to the **root node** of the BST created.
 
 #### Pseudocode
 
 ```cpp
-// recursive helper procedur
+// recursive helper procedure
 TreeNode* arrayToBSTrec(vector<int>& nums, int p, int r) {
 
     // base case
@@ -87,7 +90,7 @@ TreeNode* sortedArrayToBST(vector<int>& nums) {
 ```
 
 #### Complexity
-If $n$ is totla number of elements in `nums`, assuming a constant amount of work per node $\Theta(1)$, the total **time complexity** is linear with the number of elements $n$, leading to $\Theta(n)$.
+If $n$ is the total number of elements in `nums`, assuming a constant amount of work per node $\Theta(1)$, the total **time complexity** is linear with the number of elements $n$, leading to $\Theta(n)$.
 
 This can also be shown using the master theorem and the recurrence $T(n) = 2T(\frac{n}{2}) + \Theta(1)$.  
 The *watershed function* is $n^{\log_{b}{a}} = n^{\log_{2}{2}} = n^1 = n$, which "dominates" over the constant work per node.  
@@ -100,7 +103,7 @@ $$
 is verified for any $0 < \varepsilon < 1$, letting us conclude that:  
 $T(n) = \Theta(n^{\log_{b}{a}}) = \Theta(n)$.
 
-The total **time complexity** is givien by maximum depth of the runtime recursion call stack, which is strictly bounded by the maximum height of the tree, which is $\lfloor \log_2 n \rfloor$. 
+The total **time complexity** is given by the maximum depth of the runtime recursion call stack, which is strictly bounded by the maximum height of the tree, which is $\lfloor \log_2 n \rfloor$. 
 
 **Note**: if we take into account the memory required to store the output tree itself, the total space complexity is $\mathcal{O}(n)$, but the helper memory stack takes only $\mathcal{O}(\log n)$.
 

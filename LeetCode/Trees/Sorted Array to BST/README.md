@@ -39,7 +39,7 @@ struct TreeNode {
 };
 ```
 
-If we want to obtain *height-balanced binary search tree* from an array of integers sorted in a increasing **strictly increasing order**, this means there are no *duplicates*. It also means, that to obtain the *most height-balanced* BST possible, we must use the middle element as the root.
+If we want to obtain *height-balanced binary search tree* from an array of integers sorted in a **strictly increasing order**, this means there are no *duplicates*. It also means, that to obtain the *most height-balanced* BST possible, we must use the middle element as the root.
 
 That is, given $nums[0 \dots n]$, we want to use as the **root node** the element that is at the *middle* index  
 

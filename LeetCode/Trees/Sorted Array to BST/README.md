@@ -51,7 +51,9 @@ $$
 
 We can take advantage of `nums` being sorted in increasing order to implement a *divide and conquer* approach.
 
-Assuming $nums[p \dots r]$ is a subarray of $nums[0 \dots n]$ and therefore smaller in size, we can implement `sortedArrayToBST` by implementing a *recursive helper procedure* `arrayToBSTrec(vector<int>nums&, int p, int r)` which allocates the node `x` at the *centre* of the interval $[p,r]$, which, to avoid *overflow*, is equivalent to $q = p + \frac{r - p}{2}$. 
+Assuming $nums[p \dots r]$ is a subarray of $nums[0 \dots n]$ and therefore smaller in size, we can implement `sortedArrayToBST` by implementing a *recursive helper procedure* `arrayToBSTrec(vector<int>nums&, int p, int r)` which allocates the node `x` at the *centre* of the interval $[p,r]$, which, to avoid *overflow*, is equivalent to
+
+$q = p + \frac{r - p}{2}$. 
 
 We use as a base case $p > r$, in which case we simply return `nullptr`. The procedure then *recursively* calls `arrayToBSTrec(nums,p,q-1)` to allocate the **left subtree** and calls `arrayToBSTrec(nums,q+1,r)` to allocate the **right subtree**, before returning a pointer to the **root node** `x` of the newly allocated subtree. 
 

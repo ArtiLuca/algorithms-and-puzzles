@@ -56,7 +56,7 @@ struct Passport {
     std::string byr, iyr, eyr, hgt, hcl, ecl, pid, cid;
 
     void setField(const std::string& key, const std::string& value);
-    bool isValid() const;
+    bool isValidPart1() const;
 };
 ```
 

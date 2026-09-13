@@ -189,7 +189,9 @@ Now, a **valid passport** must meet the following conditions:
  - The *birth year* (`byr`) must be **four digits** and have $1920 \le \text{value} \le 2002$.
  - The *issue year* (`iyr`) must be **four digits** and have $2010 \le \text{value} \le 2020$.
  - The *expiration year* (`eyr`) must be **four digits** and have $2020 \le \text{value} \le 2030$.
- - The *height* (`hgt`) field must be a number followed by either **cm** or **in**. For **cm**, it must be $150 \le \text{number} \le 193$. For **in**, it must be $59 \le \text{number} \le 76$.
+ - The *height* (`hgt`) field must be a number followed by either **cm** or **in**.
+   - For **cm**, it must be $150 \le \text{number} \le 193$.
+   - For **in**, it must be $59 \le \text{number} \le 76$.
  - The *hair color* (`hcl`) must be a **#** followed by **exactly** six characters $[0 \dots 9]$ or $[a \dots f]$.
  - The *eye color* (`ecl`) must be **exactly one** $\in \{"amb", "blu", "brn", "gry", "grn", "hzl", "oth"\}$.
  - The *passport ID* (`pid`) should be a nine-digit number, including leading zeroes.

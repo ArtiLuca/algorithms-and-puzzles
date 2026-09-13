@@ -7,7 +7,14 @@ We are given as input batch files containing passport data. We need to validate 
 
 The expected fields are as follows:
 
-![passport_fields](fields.png)
+- **byr**: Birth Year
+- **iyr**: Issue Year
+- **eyr**: Expiration Year
+- **hgt**: Height
+- **hcl**: Hair Color
+- **ecl**: Eye Color
+- **pid**: Passport ID
+- **cid**: Country ID
 
 Passport data is validated in batch files (our puzzle input). Each passport is represented as a sequence of *key:value* pairs separated by **spaces** or **newlines**. Passports are separated by **blank lines**.
 

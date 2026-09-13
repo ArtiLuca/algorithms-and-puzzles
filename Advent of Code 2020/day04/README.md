@@ -72,7 +72,7 @@ After correctly parsing all passports, we can simply count the number of **valid
 
 Since the parsing phase is a *substantial* part of this problem, the parsing logic is detailed in the pseudocode below:
 
-#### Pseudocode
+### Pseudocode
 
 **Parsing Logic**
 
@@ -205,7 +205,7 @@ All these rules now make the validation a bit more complex, and *heavy*. To simp
  - The helper `isValidPassportID` checks that the `pid` field has a length of exactly 9 and that it is passes `isAllDigits`.
  - The helper `isValidEyeColor` checks that the field `ecl` matches exactly one of the values given by the new rules
 
-#### Pseudocode
+### Pseudocode
 First, the new validation helpers for the struct `Passport` used in Part 2. To prevent undefined behavior or potential crashes, I chose to use `static_cast<unsigned char>` when performing checks that use `isdigit` or `isxdigit`. 
 
 **Note**: In the actual implementation, I used global constants defined in the header file instead of hard-coded values like below.

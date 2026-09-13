@@ -52,9 +52,9 @@ $\text{digit } = \text{ sum } \mod 10$.
 Since one list may contain more elements, we can check for `nullptr` nodes and have them act as if having a value of $0$ as to not influence the result. We continue with this as long *as at least one* linked list still has elements, **OR** there is a *leftover carry*. If there is any *leftover carry* after both lists have been exhausted, we then must allocate a new node to deal with this.
 
 As an example we can consider:
- - $\text{l1 }$ = 3 &rarr 5 &rarr 9 &rarr 2
+ - $\text{l1}$ = 3 → 5 → 9 → 2
    - representing $3 \times 10^{0} + 5 \times 10^{1} + 9 \times 10^{2} + 2 \times 10^{3} = 3 + 50 + 900 + 2000 = 2953$
- - $l2 = 7 \rarr 1 \rarr 3 \rarr 5 \rarr 8$
+ - $\text{l2 }$ = 7 → 1 → 3 → 5 → 8
    - representing $7 \times 10^{0} + 1 \times 10^{1} + 3 \times 10^{2} + 5 \times 10^{3} + 8 \times 10^4 = 7 + 10 + 300 + 5000 + 80000 = 85317$
 
 If we sum the two corresponding numerical values we have $2953 + 85317 = 88270$. We want the **new linked list** containing the resulting sum to have the corresponding digits, in **reverse order**.  
@@ -74,7 +74,7 @@ The operation would be as follows, where `sum` and `carry` are used to indicate 
 
 The final constructed linked list containing the result would be, in this case:
 
-$L_{\text{result}} = 0 \rarr 7 \rarr 2 \rarr 8 \rarr 8$.
+$L_{\text{result}}$ = 0 → 7 → 2 → 8 → 8.
 
 #### Pseudocode
 

@@ -198,13 +198,19 @@ Now, a **valid passport** must meet the following conditions:
  - The *country ID* (`cid`) is still ignored, whether missing or not.
 
 ### Idea
-All these rules now make the validation a bit more complex, and *heavy*. To simplify the validation procedure, I decided to implement 4 helpers in the `Passport` struct. In particular:
+All these rules now make the validation a bit more complex, and *heavy*. To simplify the validation procedure, I decided to implement new boolean helpers in the `Passport` struct. 
+
+In particular:
 
  - The helper `isAllDigits(string str)` returns true if `str` is made up entirely of digits ($0 \dots 9$), which can be checked using `std::isdigit`. This helps later conversions using `std::stoi` avoid potential crashes.
+   
  - The helper `isValidYear(string str, int min, int max)` validates that the year field passes the validation done by `isAllDigits`, that it has a length of exactly 4, and that the converted numerical value falls within the given constraints for the specific year field. 
  - The helper `isValidHeight` extracts the last two characters of the `hgt` field to determine whether they are $\text{ cm }$ or $\text{ in }$, splits the string in order to check if all the characters preceding these last two pass `isAllDigits` and then checks the respective height bounds ($150 \dots 193$ for cm, $59 \dots 76$ for in).
+   
  - The helper `isValidHairColor` checks that the `hcl` field has a total length of exactly 7, starts with the character `#` and that the remaining 6 characters are all valid alphanumeric hex values ($0 \dots 9$ or $a \dots f$), which can be done using `std::isxdigit`.
+   
  - The helper `isValidPassportID` checks that the `pid` field has a length of exactly 9 and that it is passes `isAllDigits`.
+   
  - The helper `isValidEyeColor` checks that the field `ecl` matches exactly one of the values given by the new rules
 
 ### Pseudocode

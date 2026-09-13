@@ -39,7 +39,7 @@ iyr:2011 ecl:brn hgt:59in
 In the above example:  
  - the first passport is **valid** as it contains all required fields.
  - the second passport is **not valid** as it is missing the height field `hgt`.
- - the third passport is missing the `cid` field but we are told to ignore this field in Part 1, so it is considered **valid**.
+ - the third passport is missing the `cid` field, but we are told to ignore this field in Part 1, so it is considered **valid**.
  - the fourth passport is missing the `cid` field, which is fine, but it is also missing the birth year field `byr`, so it is considered **not valid**.
 
 We are asked to count the number of valid passports from input, treating the `cid` field as *optional* for Part 1.
@@ -64,7 +64,7 @@ We can store all the passports in a `vector<Passport> passports` object. To pars
 
 To track this state accurately, I opted for a boolean flag `hasData` to indicate whether the current passport has been correctly parsed or if it is empty. Only if we encounter a **blank line** and `hasData == true` do we insert the passport into our vector and reset `hasData = false` to parse the next one.
 
-Since the *key:value* pairs for a single passport can be separated by spaces or newlines, multiple pairs could exist on the same line. Therefore, for each line read from the input, we extract each `key:value` token found, and then *split* the string at the `:` character to extract the `key` and `value` strings to pass to our `setField` helper. Each time we successfully find a field, we set `hasData = true`. 
+Since the *key:value* pairs for a single passport can be separated by spaces or newlines, multiple pairs could exist on the same line. Therefore, for each line read from the input, we extract each *key:value* token found, and then *split* the string at the `:` character to extract the `key` and `value` strings to pass to our `setField` helper. Each time we successfully find a field, we set `hasData = true`. 
 
 Since the input file might not end with a trailing **blank line**, I added a final *sanity check* on `hasData == true` after the loop finishes so we do not miss the very last passport.
 
@@ -176,13 +176,13 @@ int solvePart1() const {
 ```
 
 #### Complexity
-Assuming there are $n$ passports and that each passport contains on average $m$ characters for its data lines. Splitting and tokeninzing each passport line is linear in cost relative to the line's length, and the validation for a single passport after parsing remains constant $\mathcal{O}(1)$ in cost. Therefore, the total **time complexity** for Part 1 is $\mathcal{O}(n \times m)$.
+Assuming there are $n$ passports and that each passport contains on average $m$ characters for its data lines. Splitting and tokenizing each passport line is linear in cost relative to the line's length, and the validation for a single passport after parsing remains constant $\mathcal{O}(1)$ in cost. Therefore, the total **time complexity** for Part 1 is $\mathcal{O}(n \times m)$.
 
 Since we store a vector containing all $n$ passports read from input, the total **space complexity** is $\mathcal{O}(n)$.
 
 
 ## Part 2
-In Part 2 we are told to continue ignoring the `cid` field, but are given rules regarding the values of each other field.
+In Part 2, we are told to continue ignoring the `cid` field, but are given rules regarding the values of each other field.
 
 Now, a **valid passport** must meet the following conditions:
 
@@ -193,14 +193,14 @@ Now, a **valid passport** must meet the following conditions:
  - The *hair color* (`hcl`) must be a **#** followed by **exactly** six characters $[0 \dots 9]$ or $[a \dots f]$.
  - The *eye color* (`ecl`) must be **exactly one** $\in \{"amb", "blu", "brn", "gry", "grn", "hzl", "oth"\}$.
  - The *passport ID* (`pid`) should be a nine-digit number, including leading zeroes.
- - The *country ID* (`cid`) is still ignored, missing or not.
+ - The *country ID* (`cid`) is still ignored, whether missing or not.
 
 ### Idea
-All these rules now make the validation a bit more complex, and *heavy*. To simplify the validation procedure I decided to implement 4 helpers in the `Passport` struct. In particular:
+All these rules now make the validation a bit more complex, and *heavy*. To simplify the validation procedure, I decided to implement 4 helpers in the `Passport` struct. In particular:
 
- - The helper `isAllDigits(string str)` returns true if `str` is made up entirely of digits ($0 \dots 9$) which can be checked using `std::isdigit`. This helps later conversions using `std::stoi` avoid potential crashes.
+ - The helper `isAllDigits(string str)` returns true if `str` is made up entirely of digits ($0 \dots 9$), which can be checked using `std::isdigit`. This helps later conversions using `std::stoi` avoid potential crashes.
  - The helper `isValidYear(string str, int min, int max)` validates that the year field passes the validation done by `isAllDigits`, that it has a length of exactly 4, and that the converted numerical value falls within the given constraints for the specific year field. 
- - The helper `isValidHeight` extracts the last two characters of the `hgt` field to determine whether they are $\text{ cm }$ or $\text{ in }$, splits the string in order to check if all the characters preceding these last two passes `isAllDigits` and then checks the respective height bounds ($150 \dots 193$ for cm, $59 \dots 76$ for in).
+ - The helper `isValidHeight` extracts the last two characters of the `hgt` field to determine whether they are $\text{ cm }$ or $\text{ in }$, splits the string in order to check if all the characters preceding these last two pass `isAllDigits` and then checks the respective height bounds ($150 \dots 193$ for cm, $59 \dots 76$ for in).
  - The helper `isValidHairColor` checks that the `hcl` field has a total length of exactly 7, starts with the character `#` and that the remaining 6 characters are all valid alphanumeric hex values ($0 \dots 9$ or $a \dots f$), which can be done using `std::isxdigit`.
  - The helper `isValidPassportID` checks that the `pid` field has a length of exactly 9 and that it is passes `isAllDigits`.
  - The helper `isValidEyeColor` checks that the field `ecl` matches exactly one of the values given by the new rules
@@ -208,7 +208,7 @@ All these rules now make the validation a bit more complex, and *heavy*. To simp
 #### Pseudocode
 First, the new validation helpers for the struct `Passport` used in Part 2. To prevent undefined behavior or potential crashes, I chose to use `static_cast<unsigned char>` when performing checks that use `isdigit` or `isxdigit`. 
 
-**Note**: In the actual implementation I used global constants defined in the header file instead of hard-coded values like below.
+**Note**: In the actual implementation, I used global constants defined in the header file instead of hard-coded values like below.
 
 ```cpp
 // checks if a string is made up entirely of digits (0-9)
@@ -310,7 +310,7 @@ bool Passport::isValidEyeColor() const {
 }
 ```
 
-The new validation helper `isValidPart2` performs validation by checking first `isValidPart1` and then checking against all the new rules introduced in Part 2 using the helpers above. The logic for `solvePart2` remains the same `solvePart1` as we now count the total **valid passports**, only using a different validation process.
+The new validation helper `isValidPart2` performs validation by first checking `isValidPart1` and then checking against all the new rules introduced in Part 2 using the helpers above. The logic for `solvePart2` remains the same as `solvePart1`, as we now count the total **valid passports**, only using a different validation process.
 
 ```cpp
 bool Passport::isValidPart2() const {
@@ -364,9 +364,9 @@ int solvePart2() const {
 ```
 
 #### Complexity
-Assuming there are $n$ passports and that each passport contains on average $m$ characters for its data lines. The total **time complexity** remains the same as in Part 1 $\mathcal{O}(n \times m)$.
+Assuming there are $n$ passports and that each passport contains, on average, $m$ characters for its data lines. The total **time complexity** remains the same as in Part 1: $\mathcal{O}(n \times m)$.
 
-The total **space complexity** also remains unchanged $\mathcal{O}(n \times m)$.
+The total **space complexity** also remains unchanged: $\mathcal{O}(n \times m)$.
 
 ### Build
 Tested using:

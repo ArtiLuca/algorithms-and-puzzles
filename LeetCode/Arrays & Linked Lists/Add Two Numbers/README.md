@@ -4,7 +4,7 @@ Problem: [LeetCode](https://leetcode.com/problems/add-two-numbers/description/)
 
 You are given two **non-empty** linked lists representing two non-negative integers. The digits are stored in **reverse** order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
 
-You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+You may assume the two numbers do not contain any leading zeros, except the number 0 itself.
 
 ![addtwonumber](addtwonumber1.jpg)
 
@@ -23,7 +23,7 @@ Output: $[8,9,9,9,0,0,0,1]$
 
 ## Solution
 
-We are told that the number of nodes in each linked list is in the range $\in [1, 100]$, that $0 \le \text{Node.val} \le 9$, and that tt is guaranteed that the list represents a number that does not have leading zeros.
+We are told that the number of nodes in each linked list is in the range $\in [1, 100]$, that $0 \le \text{Node.val} \le 9$, and that it is guaranteed that the list represents a number that does not have leading zeros.
 
 We are also given the definition of a **singly-linked list**:
 
@@ -38,10 +38,10 @@ struct ListNode {
 };
 ```
 
-Since we are not given any information on the number of elements, we can't transform the list into it's corresponding numerical value as it could cause *integer overflow*. However, we are helped by the fact that both linked lists `l1` and `l2` are in **reverse order**.  
+Since we are not given any information on the number of elements, we can't transform the list into its corresponding numerical value, as it could cause *integer overflow*. However, we are helped by the fact that both linked lists `l1` and `l2` are in **reverse order**.  
 
 We can implement a solution by using standard addition and building a new **linked list** by summing the two nodes of `l1` and `l2`.  
-Since the digits can only be $[0 \dots 9]$ we also use a variable `carry` to take into account any *leftover carry values* from the previous operation. So, when evaluating the sum between two nodes we evaluate the sum of the two node values plus any leftover carryover. For any given sum between two nodes the *leftover carry* can be found using *integer division*: 
+Since the digits can only be $[0 \dots 9]$, we also use a variable `carry` to take into account any *leftover carry values* from the previous operation. So, when evaluating the sum between two nodes, we evaluate the sum of the two node values plus any leftover carryover. For any given sum between two nodes, the *leftover carry* can be found using *integer division*: 
 
 $\text{carry } = \text{ sum } \div 10$.
 
@@ -49,15 +49,15 @@ The actual digit stored in the new linked list for any given sum can be found us
 
 $\text{digit } = \text{ sum } \mod 10$.
 
-Since one list may contain more elements, we can check for `nullptr` nodes and have them act as if having a value of $0$ as to not influence the result. We continue with this as long *as at least one* linked list still has elements, **OR** there is a *leftover carry*. If there is any *leftover carry* after both lists have been exhausted, we then must allocate a new node to deal with this.
+Since one list may contain more elements, we can check for `nullptr` nodes and have them act as if having a value of $0$ so as not to influence the result. We continue with this as long *as at least one* linked list still has elements, **OR** there is a *leftover carry*. If there is any *leftover carry* after both lists have been exhausted, we then must allocate a new node to deal with this.
 
-As an example we can consider:
+As an example, we can consider:
  - $\text{l1}$ = 3 → 5 → 9 → 2
    - representing $3 \times 10^{0} + 5 \times 10^{1} + 9 \times 10^{2} + 2 \times 10^{3} = 3 + 50 + 900 + 2000 = 2953$
  - $\text{l2 }$ = 7 → 1 → 3 → 5 → 8
    - representing $7 \times 10^{0} + 1 \times 10^{1} + 3 \times 10^{2} + 5 \times 10^{3} + 8 \times 10^4 = 7 + 10 + 300 + 5000 + 80000 = 85317$
 
-If we sum the two corresponding numerical values we have $2953 + 85317 = 88270$. We want the **new linked list** containing the resulting sum to have the corresponding digits, in **reverse order**.  
+If we sum the two corresponding numerical values, we have $2953 + 85317 = 88270$. We want the **new linked list** containing the resulting sum to have the corresponding digits, in **reverse order**.  
 
 The operation would be as follows, where `sum` and `carry` are used to indicate the sum of two node values and any *leftover carry*, and `digit` is used to indicate the digit stored in the new linked list with the result. Initially, `carry = 0`:
 
@@ -85,13 +85,13 @@ ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
     ListNode dummy;
     ListNode* current = &dummy;
 
-    // initilize leftover carry is 0
+    //initialize leftover carry to 0
     int carry = 0;
 
     // loop as long as l1 has nodes, l2 has nodes, or there is leftover carry
     while (l1 != nullptr || l2 != nullptr || carry != 0) {
 
-        // extract node values from both lists, if one list is empty, default to value 0
+        // extract node values from both lists; if one list is empty, default to value 0
         int val1 = (l1 != nullptr) ? l1->val : 0; 
         int val2 = (l2 != nullptr) ? l2->val : 0; 
 

@@ -12,7 +12,7 @@ Example 1:
 
 Input: `root = [3,9,20,null,null,15,7]`  
 Output: 24  
-Explanation: There are two left leaves in the binary tree, with values 9 and 15 respectively.
+Explanation: There are two left leaves in the binary tree, with values 9 and 15, respectively.
 
 Example 2:
 
@@ -41,9 +41,9 @@ We can implement a *recursive* approach by using a helper `int recLeftLeafSum(Tr
 
  - if `x` is `nullptr` we return `0` as the base case.
  - otherwise, we initialize a variable `sum` to 0 in order to keep track of the sum found. We then check if node `x` has a left child and, if it does, we create a pointer to it `TreeNode* y = x->left`. We then check if `y` is a *leaf node*. 
-    - if `y` is a *leaf node* we update `sum` by adding its value `y->val`.
+    - if `y` is a *leaf node*, we update `sum` by adding its value `y->val`.
     - otherwise, we update `sum` by adding the result found when recursively checking the subtree rooted at node `y`.
- - if `x` did not have a left child, we must still update the `sum` by adding the result found when recursively checking the subtree rooted in `x.right`.
+ - if `x` did not have a left child, we must still update the `sum` by adding the result found when recursively checking the subtree rooted at `x.right`.
 
 We can then have the function `sumOfLeftLeaves` act as a *wrapper function* to the recursive helper above, returning the result found when called on `root`.
 
@@ -61,13 +61,14 @@ int recLeftLeafSum(TreeNode* x) {
 
     // if x has a left child
     if (x->left != nullptr) {
-        // ceate pointer to it 
+
+        //create pointer to it 
         TreeNode* y = x->left;
         // if y is a leaf node, we update the sum with its value
         if (y->left == nullptr && y->right == nullptr) {
             sum = sum + y->val;
         }
-        // otherwise, we update the sum by recursively check node y
+        // otherwise, we update the sum by recursively checking node y
         else {
             sum = sum + recLeftLeafSum(y);
         }
@@ -87,4 +88,4 @@ int sumOfLeftLeaves(TreeNode* root) {
 #### Complexity
 Assuming the tree has $n$ nodes, the total **time complexity** in the worst case is $\mathcal{O}(n)$.
 
-Assuming the tree has a height $h$, the total **space complexity** is $\mathcal{O}(h)$. In the worst case this means $\mathcal{O}(n)$ and in the best case this means $\mathcal{O}(\log n)$.
+Assuming the tree has a height $h$, the total **space complexity** is $\mathcal{O}(h)$. In the worst case, this means $\mathcal{O}(n)$, and in the best case, this means $\mathcal{O}(\log n)$.

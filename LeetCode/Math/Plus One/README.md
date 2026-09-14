@@ -28,15 +28,15 @@ Explanation: The array represents the integer 9. Incrementing by one gives 9 + 1
 Thus, the result should be `[1,0]`.
 
 ## Solution
-We are told that $1 \le \text{digits.length} \le 100$, that $0 \le \text{digits[i]} \le 9$, and that `digits` does not contain any leading 0's.
+We are told that $1 \le \text{digits.length} \le 100$, that $0 \le \text{digits[i]} \le 9$, and that `digits` does not contain any leading 0s.
 
-We are only told that `digits` represents a **large integer**, so its safe to assume that trying to convert the array into it's corresponding numerical value by repeated multiplication could cause *integer overflow*. 
+We are only told that `digits` represents a **large integer**, so it's safe to assume that trying to convert the array into its corresponding numerical value by repeated multiplication could cause *integer overflow*. 
 
-What we can do instead, is iterate through the array from *right to left*, starting from `digits[i-1]`, with $i = \text{digits.size} \dots 0$. At each iteration, we increment the current digit by 1. If the resulting digit is $\le 9$ after the increment, we can return `digits` as we have successfully incremented it by 1. 
+What we can do instead is iterate through the array from *right to left*, starting from `digits[i-1]`, with $i = \text{digits.size} \dots 0$. At each iteration, we increment the current digit by 1. If the resulting digit is $\le 9$ after the increment, we can return `digits` as we have successfully incremented it by 1. 
 
 However, since the digits may only be $0 \dots 9$, if the current digit becomes $> 9$ after the increment, we must then set the current digit to 0 and  *carry over* to the next digit in `digits`.
 
-If we loop the entire array `digits`, then this means that all digits found were 9 and, in this particular case, to increment `digits` by 1 we must **insert** a leading $1$. We can do this using the `std::vector::insert` function or by simply setting the `digits[0]` to $1$ and then **pushing** a trailing $0$ in `digits`. This second option as the benefit of not having to **resize** `digits` before performing the insertion.
+If we loop through the entire array `digits`, then this means that all digits found were 9 and, in this particular case, to increment `digits` by 1 we must **insert** a leading $1$. We can do this using the `std::vector::insert` function or by simply setting `digits[0]` to $1$ and then **pushing** a trailing $0$ into `digits`. This second option has the benefit of not having to **resize** `digits` before performing the insertion.
 
 ```cpp
 vector<int> plusOne(vector<int>& digits) {
@@ -49,7 +49,7 @@ vector<int> plusOne(vector<int>& digits) {
         // increment current digit by 1
         digits[i]++;
 
-        // after incrementing, if no carry is needed we are done
+        // after incrementing, if no carry is needed, we are done
         if (digits[i] < 10) {
             return digits;
         }
@@ -66,6 +66,6 @@ vector<int> plusOne(vector<int>& digits) {
 ```
 
 #### Complexity
-Assuming `digits` contains $n$ elements, we perform at the most $n$ iteration, performing constant work at each step. Therefore, the total **time complexity** in the worst case is $\mathcal{O}(n)$. However, due to early terminations, many times this is not the case.
+Assuming `digits` contains $n$ elements, we perform at most $n$ iterations, performing constant work at each step. Therefore, the total **time complexity** in the worst case is $\mathcal{O}(n)$. However, due to early terminations, this is not usually the case.
 
 The total **space complexity** is $\mathcal{O}(1)$ since we operate *in place* and even in the worst case of all digits being $9$, the single call to `push_back` only adds an extra constant $\mathcal{O}(1)$ in terms of total space used.

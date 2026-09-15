@@ -2,6 +2,8 @@
 
 [Day 3: Toboggan Trajectory](https://adventofcode.com/2020/day/3)
 
+With the toboggan login problems resolved, you set off toward the airport. While travel by toboggan might be easy, it's certainly not safe: there's very minimal steering and the area is covered in trees. You'll need to see which angles will take you near the fewest trees.
+
 ## Part 1
 We are traversing a 2D grid using a toboggan from the top row to the bottom row.  
 The 2D grid is given as input and marks *empty spaces* with `.` and **trees** with `#`. 

@@ -44,8 +44,6 @@ Assuming we store the boarding passes in a vector `std::vector<BoardingPass> boa
 ```cpp
 int BoardingPass::binarySeatPartitioning(int idx, int p, int r) {
 
-    using namespace SeatingLetters;
-
     // base case
     if (p == r) {
         return p;
@@ -55,7 +53,7 @@ int BoardingPass::binarySeatPartitioning(int idx, int p, int r) {
     int q = p + (r - p) / 2;
 
     // if character is 'F' or 'L' we take lower half
-    if (pass[idx] == FRONT || pass[idx] == LEFT) {
+    if (pass[idx] == 'F' || pass[idx] == 'L') {
 
         return binarySeatPartitioning(idx + 1, p, q);
     }

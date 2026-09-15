@@ -5,8 +5,7 @@
 For Christmas, the plan is a vacation at a nice resort on a tropical island. However, before we can leave, the Elves in accounting just need us to fix the **expense report**.
 
 ## Part 1
-
-In Part 1 we are given an expense report containing a list of integers.  
+In Part 1, we are given an expense report containing a list of integers.  
 Our goal is to find the two numbers in the report that sum to **2020** and then multiply the two numbers found to get Part 1's solution.
 
 ### Idea

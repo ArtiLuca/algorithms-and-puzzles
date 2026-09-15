@@ -9,10 +9,9 @@ For each boarding pass, the **first 7** characters determine one of the 128 rows
 
 The first **7** characters are guaranteed to be either **F** or **B**, and these specify 1 of the 128 rows on the plane $0 \dots 127$. In particular, each letter specifies which half of a region of the plane our seat is in (*front* or *back*). For example, the first letter specifies if our seat is in the *front* ($0 \dots 63$) or the *back* ($64 \dots 127$). The second letter then specifies which half of that region our seat is in, and so on until we are left with **exactly one row**. 
 
-The unique **seat ID** is then found by multiplying the seat's row by 8 and then adding its column.
-
 The last three characters are guaranteed to be either **L** or **R** and use the same logic as above to determine the column ($0 \dots 7$) for the corresponding row found. 
 
+The unique **seat ID** is then found by multiplying the seat's row by 8 and then adding its column.  
 For example, the boarding pass $FBFBBFFRLR$ uses the *first 7 characters* $FBFBBFF$ to find row 44, and then the *last three characters* $RLR$ to find column 5. The unique **seat ID** for the given **boarding pass** is therefore 44 * 8 + 5 = 357.
 
 In Part 1, we are asked to look through the list of **boarding passes** (our puzzle input) and find the **highest seat ID** among all boarding passes.

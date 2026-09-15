@@ -44,25 +44,38 @@ Assuming we store the boarding passes in a vector `std::vector<BoardingPass> boa
 ```cpp
 int BoardingPass::binarySeatPartitioning(int idx, int p, int r) {
 
+    using namespace SeatingLetters;
+
+    // base case
     if (p == r) {
         return p;
     }
 
+    // calculate midpoint 
     int q = p + (r - p) / 2;
-    
-    if (pass[idx] == 'F' || pass[idx] == 'L') {
+
+    // if character is 'F' or 'L' we take lower half
+    if (pass[idx] == FRONT || pass[idx] == LEFT) {
+
         return binarySeatPartitioning(idx + 1, p, q);
     }
-    else { // pass[idx] == 'B' || pass[idx] == 'R'
+    // otherwise, if character is 'B' or 'R' we take upper half 
+    else { 
+
         return binarySeatPartitioning(idx + 1, q+1, r);
     }
 }
 
 void BoardingPass::findSeatID() {
 
+    // find seat row and column
     row = binarySeatPartitioning(0, 0, 127);
     col = binarySeatPartitioning(7, 0, 7);
-    ID = (row * 8) + col;
+
+    // only update unique seat ID if row and column were successfully found
+    if (row >= 0 && col >= 0) {
+        ID = (row * 8) + col;
+    }
 }
 ```
 
@@ -92,20 +105,18 @@ Assuming there are $n$ boarding passes, the cost of finding the seat ID for a si
 The total **space complexity** is also $\mathcal{O}(n)$ since we store $n$ boarding passes in our `boardingPasses` vector, and the maximum recursion depth when processing each boarding pass remains constant at $7$ (meaning $\mathcal{O}(1)$).
 
 **Note**  
-Only after finishing Part 1, I realized that there might be an alternative solution using binary digits. For example, if we look at the first 5 boarding passes in the input file:   
-  1. BBFFBFFRRR; Row: 100; Col: 7; ID: 807
-  2. FBBFFBBLRR; Row: 51; Col: 3; ID: 411
-  3. FFBFBFBRRR; Row: 21; Col: 7; ID: 175
-  4. FFFBFBFRRR; Row: 10; Col: 7; ID: 87
-  5. BBFFBBFLRR; Row: 102; Col: 3; ID: 819
+Only after finishing Part 1, I realized that there might be an alternative solution using binary digits. For example, if we look at the first 5 boarding passes in the input file. If we assign binary digits to the rows as B=1, F=0, R=1, L=0, we can notice that, when converting from binary to decimal, the results match the ones found in the solution above. 
 
-If we assign binary digits for the rows as B=1, F=0, R=1, L=0, we can notice that, when converting from binary to decimal, the results match the ones found in the solution above: 
-
-  1. BBFFBFFRRR: Row = 1100100 = 100 and Column = 111 = 7;
-  2. FBBFFBBLRR; Row = 0110011 = 51 and Column = 011 = 3; 
-  3. FFBFBFBRRR; Row = 0010101 = 21 and Column = 111 = 7; 
-  4. FFFBFBFRRR; Row = 000101 = 10 and Column = 111 = 7; 
-  5. BBFFBBFLRR; Row = 1100110 = 102 and Column = 011 = 3; 
+  - BBFFBFFRRR; Row: 100; Col: 7; ID: 807
+      - BBFFBFFRRR: Row = 1100100 = 100 and Column = 111 = 7;
+  - FBBFFBBLRR; Row: 51; Col: 3; ID: 411
+      - FBBFFBBLRR; Row = 0110011 = 51 and Column = 011 = 3; 
+  - FFBFBFBRRR; Row: 21; Col: 7; ID: 175
+      - FFBFBFBRRR; Row = 0010101 = 21 and Column = 111 = 7; 
+  - FFFBFBFRRR; Row: 10; Col: 7; ID: 87
+      - FFFBFBFRRR; Row = 000101 = 10 and Column = 111 = 7; 
+  - BBFFBBFLRR; Row: 102; Col: 3; ID: 819
+      - BBFFBBFLRR; Row = 1100110 = 102 and Column = 011 = 3; 
 
 In any case, I have less experience in *bitwise* operations, so I will leave my solution for Part 1 as is.  
 

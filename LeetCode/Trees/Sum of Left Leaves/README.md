@@ -64,15 +64,18 @@ int recLeftLeafSum(TreeNode* x) {
 
         //create pointer to it 
         TreeNode* y = x->left;
+
         // if y is a leaf node, we update the sum with its value
         if (y->left == nullptr && y->right == nullptr) {
             sum = sum + y->val;
         }
+
         // otherwise, we update the sum by recursively checking node y
         else {
             sum = sum + recLeftLeafSum(y);
         }
     }
+
     // we must still update the sum by recursively checking the right subtree
     sum = sum + recLeftLeafSum(x->right);
     return sum;

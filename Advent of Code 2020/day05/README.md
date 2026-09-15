@@ -17,12 +17,10 @@ For example, the boarding pass $FBFBBFFRLR$ uses the *first 7 characters* $FBFBB
 In Part 1, we are asked to look through the list of **boarding passes** (our puzzle input) and find the **highest seat ID** among all boarding passes.
 
 ### Idea
-Initially, my idea was to create a single class `Plane` and simply store the boarding passes in a vector of strings. However, knowing how Part 2 usually gives some unexpected twist, I decided to model each **boarding pass** using a struct `BoardingPass`. 
+Initially, my idea was to create a single class `Plane` and simply store the boarding passes in a vector of strings. However, knowing how Part 2 usually gives some unexpected twist, I decided to model each **boarding pass** using a struct `BoardingPass`. This way, each **boarding pass** has the relative string read from input stored as well as the corresponding seat row, seat column, and unique **seat ID**, initially set to default values.
 
-This way, each **boarding pass** has the relative string read from input stored as well as the corresponding seat row, seat column, and unique **seat ID**, initially set to default values.
-
-// represents a single boarding pass read from input
 ```cpp
+// represents a single boarding pass read from input
 struct BoardingPass {
 
     std::string pass;

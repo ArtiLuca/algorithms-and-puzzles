@@ -24,9 +24,9 @@ Initially, my idea was to create a single class `Plane` and simply store the boa
 struct BoardingPass {
 
     std::string pass;
-    int row;
-    int col;
-    int ID;
+    int row = -1;
+    int col= -1;
+    int ID = -1;
 
     int binarySeatPartitioning(int idx, int p, int r);
     void findSeatID();

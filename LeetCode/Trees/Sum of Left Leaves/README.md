@@ -43,7 +43,7 @@ We can implement a *recursive* approach by using a helper `int recLeftLeafSum(Tr
  - otherwise, we initialize a variable `sum` to 0 in order to keep track of the sum found. We then check if node `x` has a left child and, if it does, we create a pointer to it `TreeNode* y = x->left`. We then check if `y` is a *leaf node*. 
     - if `y` is a *leaf node*, we update `sum` by adding its value `y->val`.
     - otherwise, we update `sum` by adding the result found when recursively checking the subtree rooted at node `y`.
- - if `x` did not have a left child, we must still update the `sum` by adding the result found when recursively checking the subtree rooted at `x.right`.
+ - we must still update the `sum` by also adding the result found when recursively checking the subtree rooted at `x.right`.
 
 We can then have the function `sumOfLeftLeaves` act as a *wrapper function* to the recursive helper above, returning the result found when called on `root`.
 

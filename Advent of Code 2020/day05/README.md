@@ -102,7 +102,7 @@ int Plane::solvePart1() {
 #### Complexity
 Assuming there are $n$ boarding passes, the cost of finding the seat ID for a single boarding pass remains constant $\mathcal{O}(1)$, since the recursive helper is bounded by the same fixed lengths of each boarding pass. Since we read and process $n$ boarding passes in total, this initial phase has a cost of $n \times \mathcal{O}(1) = \mathcal{O}(n)$. Finding the maximum seat ID after having processed all boarding passes is done with a single linear scan. Therefore, the total **time complexity** is $\mathcal{O}(n) + \mathcal{O}(n) = \mathcal{O}(n)$.
 
-The total **space complexity** is also $\mathcal{O}(n)$ since we store $n$ boarding passes in our `boardingPasses` vector, and the maximum recursion depth when processing each boarding pass remains constant at $7$ (meaning $\mathcal{O}(1)$).
+The total **space complexity** is also $\mathcal{O}(n)$ since we store $n$ boarding passes in our `boardingPasses` vector, and the maximum recursion depth when processing each boarding pass remains constant at $7$, meaning $\mathcal{O}(1)$.
 
 **Note**  
 Only after finishing Part 1, I realized that there might be an alternative solution using binary digits. For example, if we look at the first 5 boarding passes in the input file. If we assign binary digits to the rows as B=1, F=0, R=1, L=0, we can notice that, when converting from binary to decimal, the results match the ones found in the solution above. 

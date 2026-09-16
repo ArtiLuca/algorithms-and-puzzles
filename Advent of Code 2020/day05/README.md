@@ -137,8 +137,9 @@ Assuming there are $n$ boarding passes, the cost of finding the seat ID for a si
 
 The total **space complexity** is also $\mathcal{O}(n)$ since we store $n$ boarding passes in our `boardingPasses` vector, and the maximum recursion depth when processing each boarding pass remains constant at $7$, meaning $\mathcal{O}(1)$.
 
-**Note**  
-Only after finishing Part 1, I realized that there might be an alternative solution using *binary digits*. For example, if we look at the first 5 **boarding passes** in the input file. If we assign binary digits to the rows as **B**=1, **F**=0, **R**=1, **L**=0, we can notice that, when converting from binary to decimal, the results match the ones found in the solution above. 
+---
+
+**Note**: Only after finishing Part 1, I realized that there might be an alternative solution using *binary digits*. For example, if we look at the first 5 **boarding passes** in the input file. If we assign binary digits to the rows as **B**=1, **F**=0, **R**=1, **L**=0, we can notice that, when converting from binary to decimal, the results match the ones found in the solution above. 
 
   - BBFFBFFRRR; Row: 100; Col: 7; ID: 807
       - BBFFBFFRRR: Row = 1100100 = 100 and Column = 111 = 7;
@@ -153,6 +154,7 @@ Only after finishing Part 1, I realized that there might be an alternative solut
 
 In any case, I have less experience in *bitwise* operations, so I will leave my solution for Part 1 as is.  
 
+---
 ## Part 2
 In Part 2, we are told that our seat is the only one missing, and that some of the seats at the very front and back of the plane don't exist on the plane, so they'll be missing from the list as well.
 

@@ -46,6 +46,35 @@ I decided to compute the row, column, and unique seat ID during the initial read
 Assuming we store the boarding passes in a vector `std::vector<BoardingPass> boardinPasses`, we can find each seat's row, column, and unique ID during the initial read phase:
 
 ```cpp
+void readPuzzleInput() {
+
+    // clear previous
+    boardingPasses.clear();
+
+    ifstream file(puzzleInput);
+    if (!file.is_open()) {
+        throw runtime_error("Could not read puzzle input");
+    }
+
+    // read file line by line
+    string line;
+    while (getline(file, line)) {
+
+        // process each boarding pass
+        BoardingPass current;
+        current.pass = line;
+        // compute seat ID using recursive helper
+        current.findSeatID();
+        if (current.ID == -1) {
+            throw runtime_error("Computed invalid seat ID");
+        }
+        else {
+            boardingPasses.push_back(current);
+        }
+    }
+    file.close();
+}
+
 int BoardingPass::binarySeatPartitioning(int idx, int p, int r) {
 
     // base case

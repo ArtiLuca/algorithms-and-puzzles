@@ -81,31 +81,24 @@ $$
 \sum_{i=x}^{n}(i) = \sum_{i=1}^{n}(i) - \sum_{i=1}^{x-1}(i)
 $$
 
-$$
-\begin{aligned}
-\sum_{i=x}^{n}(i) &= \sum_{i=1}^{n}(i) - \sum_{i=1}^{x-1}(i) \\
-&= \dots
-\end{aligned}
-$$
-
 If we expand the *summations*, we have:  
 
 $$
-\frac{x(x+1)}{2} = \frac{n(n+1)}{2} - \frac{(x-1)x}{2} \\ 
+\frac{x(x+1)}{2} = \frac{n(n+1)}{2} - \frac{(x-1)x}{2} \\  
 = \frac{n(n+1)}{2} - \frac{x^{2}-x}{2}
 $$  
 
 Multiplying by 2 and then simplifying we get: 
 
 $$
-x(x+1) = n(n+1) - x(x-1) \\ 
+x(x+1) = n(n+1) - x(x-1) \\  
 = x^{2} + x = n^{2} + n - (x^{2} - x)
 $$
 
 If we cancel the common terms, move the others to the left, and then divide by 2, we have: 
 
 $$
-2x^{2} = n(n+1) \\ 
+2x^{2} = n(n+1) \\  
 = x^2 = \frac{n(n+1)}{2} 
 $$
 

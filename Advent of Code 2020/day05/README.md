@@ -164,7 +164,8 @@ Our seat is not at the very front or back, though, but is between the two seats 
 Since we already processed each boarding pass in Part 1, we already have the entire list of **seat ID's**. Therefore, to find our seat, we can *sort* our vector `boardingPasses` in increasing order of **seat ID's**. We can do this using `std::sort` after redefining the *less than* operator for the struct `BoardingPass`. A *lambda* works too, but coming from C, the overloaded operator feels more natural.
 
 Once we sorted the vector by **seat ID**, we can perform a single scan on $i = 0 \dots n-2$, checking whether:  
-`boardingPasses[i+1].ID - boardingPasses[i].ID == 2`.  
+`boardingPasses[i+1].ID - boardingPasses[i].ID == 2`.
+
 Once we find the two seats that satisfy this condition, we can return `boardingPasses[i+1].ID - 1` as our  **seat ID**, the solution for Part 2.
 
 #### Pseudocode

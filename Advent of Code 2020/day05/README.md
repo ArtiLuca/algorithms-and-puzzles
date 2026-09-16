@@ -138,7 +138,7 @@ Assuming there are $n$ boarding passes, the cost of finding the seat ID for a si
 The total **space complexity** is also $\mathcal{O}(n)$ since we store $n$ boarding passes in our `boardingPasses` vector, and the maximum recursion depth when processing each boarding pass remains constant at $7$, meaning $\mathcal{O}(1)$.
 
 **Note**  
-Only after finishing Part 1, I realized that there might be an alternative solution using binary digits. For example, if we look at the first 5 boarding passes in the input file. If we assign binary digits to the rows as B=1, F=0, R=1, L=0, we can notice that, when converting from binary to decimal, the results match the ones found in the solution above. 
+Only after finishing Part 1, I realized that there might be an alternative solution using *binary digits*. For example, if we look at the first 5 **boarding passes** in the input file. If we assign binary digits to the rows as **B**=1, **F**=0, **R**=1, **L**=0, we can notice that, when converting from binary to decimal, the results match the ones found in the solution above. 
 
   - BBFFBFFRRR; Row: 100; Col: 7; ID: 807
       - BBFFBFFRRR: Row = 1100100 = 100 and Column = 111 = 7;
@@ -158,7 +158,7 @@ In Part 2, we are told that our seat is the only one missing, and that some of t
 
 Our seat is not at the very front or back, though, but is between the two seats with **seat IDs** that are *+1* and *-1* from ours in the list.
 
-## Idea
+### Idea
 Since we already processed each boarding pass in Part 1, we already have the entire list of **seat ID's**. Therefore, to find our seat, we can *sort* our vector `boardingPasses` in increasing order of **seat ID's**. We can do this using `std::sort` after redefining the *less than* operator for the struct `BoardingPass`. A *lambda* works too, but coming from C, the overloaded operator feels more natural.
 
 Once we sorted the vector by **seat ID**, we can perform a single scan on $i = 0 \dots n-2$, checking whether `boardingPasses[i+1].ID - boardingPasses[i].ID == 2`. Once we find the two seats that satisfy this condition, we can return `boardingPasses[i+1].ID - 1` as our  **seat ID**, the solution for Part 2.

@@ -8,16 +8,15 @@ Given an array of numbers `arr`, return `true` *if the array can be rearranged* 
 
 Example 1:
 
-Input: `arr = [3,5,1]`  
+Input: $arr = [3,5,1]$  
 Output: `true`  
-Explanation: We can reorder the elements as `[1,3,5]` or `[5,3,1]` with differences of 2 and -2, respectively, between each consecutive element.
+Explanation: We can reorder the elements as $[1,3,5]$ or $[5,3,1]$ with differences of 2 and -2, respectively, between each consecutive element.
 
 Example 2:
 
-Input: `arr = [1,2,4]`  
+Input: $arr = [1,2,4]$  
 Output: `false`  
 Explanation: There is no way to reorder the elements to obtain an arithmetic progression.
-
 
 ## Solution
 We are told that $2 \le \text{arr.length} \le 1000$ and that $-10^{6} \le \text{arr[i]} \le 10^{6}$.
@@ -39,7 +38,7 @@ bool canMakeArithmeticProgression_Sorting(vector<int>& arr) {
     // sort 'arr' in increasing order
     sort(arr.begin(), arr.end());
 
-    // find difference between first two elements in sorted array
+    // find the difference between the first two elements in the sorted array
     int diff = arr[1] - arr[0];
 
     // iterate through remaining sorted numbers, checking they have the same difference

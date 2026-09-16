@@ -30,8 +30,7 @@ We are told that $1 \le n \le 1000$ and that it is *guaranteed* that the given i
 
 The *immediate* approach that came to mind was performing a linear scan and comparing the **left sum** with the **right sum**. To do this, we would:
 
- 1. Calculate the `totalSum` of 1 to n. Using the **Gauss summation**, this is equivalent to:  
- $\frac{n \times (n+1)}{2}$. 
+ 1. Calculate the `totalSum` of 1 to n. Using the **Gauss summation**, this is equivalent to: $\frac{n \times (n+1)}{2}$. 
 
  2. Keep a running `leftSum` starting at 0.
  3. For each number i from 1 to n, we then:

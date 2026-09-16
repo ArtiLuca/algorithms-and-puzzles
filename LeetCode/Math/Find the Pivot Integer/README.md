@@ -81,6 +81,13 @@ $$
 \sum_{i=x}^{n}(i) = \sum_{i=1}^{n}(i) - \sum_{i=1}^{x-1}(i)
 $$
 
+$$
+\begin{aligned}
+\sum_{i=x}^{n}(i) &= \sum_{i=1}^{n}(i) - \sum_{i=1}^{x-1}(i) \\
+&= \dots
+\end{aligned}
+$$
+
 If we expand the *summations*, we have:  
 
 $$

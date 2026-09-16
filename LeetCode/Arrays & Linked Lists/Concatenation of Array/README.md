@@ -8,8 +8,6 @@ Specifically, `ans` is the **concatenation** of two `nums` arrays.
 
 Return the *array* `ans`.
 
-
-
 Example 1:
 
 Input: $nums = [1,2,1]$  
@@ -30,7 +28,7 @@ Explanation: The array ans is formed as follows:
 ## Solution
 We are told that $n = \text{nums.length}$, $1 \le n \le 1000$, and $1 \le \text{nums[i]} \le 1000$.  
 
-The first idea that came to mind was creating a vector `ans` of size **2n** in order to hold the **concatenation** of the two `nums` vectors. We can use a single loop to fill both *equal* halves of `ans` ($ans[0 \dots n-1]$ and $ans[n \dots 2n-1]$), before returning it as the result.
+The first idea that came to mind was creating a vector `ans` of size **2n** in order to hold the **concatenation** of the two `nums` vectors. We can use a single loop to fill both *equal* halves of `ans` ($ans[0 \dots n-1]$ and $ans[n \dots 2n-1]$) before returning it as the result.
 
 #### Pseudocode
 

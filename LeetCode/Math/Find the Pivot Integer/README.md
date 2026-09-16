@@ -71,6 +71,7 @@ Using this approach, the total **time complexity** is $\mathcal{O}(n)$, since we
 
 The total **space complexity** is $\mathcal{O}(1)$.
 
+---
 
 However, we can achieve a solution in constant time if we make the following observation. We want to find the element at index `x` such that the sum of 1 to x (inclusive) is equal to the sum of x to n (inclusive).
 
@@ -82,14 +83,19 @@ If we expand the *summations*, we have:
 
 $\frac{x(x+1)}{2} = \frac{n(n+1)}{2} - \frac{(x-1)x}{2} = \frac{n(n+1)}{2} - \frac{x^{2}-x}{2}$.  
 
-Multiplying by $2$, we have: $x(x+1) = n(n+1) - x(x-1)$,  which then becomes: $x^{2} + x = n^{2} + n - (x^{2} - x)$.
+Multiplying by $2$, we have:  
+$x(x+1) = n(n+1) - x(x-1)$,  
+which then becomes:  
+$x^{2} + x = n^{2} + n - (x^{2} - x)$.
 
-If we cancel the common terms and move the others to the left, we have: $2x^{2} = n(n+1)$, which, if we divide by $2$, becomes: $x^2 = \frac{n(n+1)}{2}$.
+If we cancel the common terms and move the others to the left, we have:  
+$2x^{2} = n(n+1)$,  
+which, if we divide by $2$, becomes:  
+$x^2 = \frac{n(n+1)}{2}$.
 
 This means that the **pivot integer** `x` is equal to the **square root** of the *total sum from 1 to n*, meaning:
 
-$x = \sqrt{\frac{n(n+1)}{2}}$, 
-or simply put: $\sqrt{\text{totalSum}}$.
+$x = \sqrt{\frac{n(n+1)}{2}}$, or simply put: $\sqrt{\text{totalSum}}$.
 
 This makes the solution to the problem much more straightforward.
 

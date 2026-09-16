@@ -77,7 +77,9 @@ However, we can achieve a solution in constant time if we make the following obs
 
 Using the **Gauss summation**, we can express the sum of x to n as the sum of 1 to n, minus the sum of 1 to x, meaning:  
 
-$\sum_{i=x}^{n}(i) = \sum_{i=1}^{n}(i) - \sum_{i=1}^{x-1}(i)$.
+$$
+\sum_{i=x}^{n}(i) = \sum_{i=1}^{n}(i) - \sum_{i=1}^{x-1}(i)
+$$
 
 If we expand the *summations*, we have:  
 
@@ -94,7 +96,9 @@ which, if we divide by $2$, becomes: $x^2 = \frac{n(n+1)}{2}$.
 
 This means that the **pivot integer** `x` is equal to the **square root** of the *total sum from 1 to n*, meaning:
 
-$x = \sqrt{\frac{n(n+1)}{2}}$  
+$$
+x = \sqrt{\frac{n(n+1)}{2}}
+$$  
 
 Or simply put: $\sqrt{\text{totalSum}}$.
 

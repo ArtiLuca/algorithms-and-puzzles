@@ -42,7 +42,7 @@ bool canMakeArithmeticProgression_Sorting(vector<int>& arr) {
     int diff = arr[1] - arr[0];
 
     // iterate through remaining sorted numbers, checking they have the same difference
-    for (int i = 2; i <(int)arr.size(); i++) {
+    for (int i = 2; i < (int)arr.size(); i++) {
 
         // if we find a mismatch in difference, 'arr' cannot form an arithmetic progression
         if (arr[i] - arr[i-1] != diff) {

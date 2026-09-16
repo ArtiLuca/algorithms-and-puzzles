@@ -63,8 +63,10 @@ void readPuzzleInput() {
         // process each boarding pass
         BoardingPass current;
         current.pass = line;
+
         // compute seat ID using recursive helper
         current.findSeatID();
+
         if (current.ID == -1) {
             throw runtime_error("Computed invalid seat ID");
         }

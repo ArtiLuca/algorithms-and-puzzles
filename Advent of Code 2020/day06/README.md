@@ -18,7 +18,7 @@ abcz
 ```
 
 The group has *three* people, and there are *6* questions to which anyone in the group answered *"yes"*: questions *a, b, c, x, y, z*.  
-**Duplicate answers** to the same question don't count extra; each question counts *at most once.*
+(**duplicate answers** to the same question don't count extra; each question counts *at most once.*).
 
 We are asked to count, *for each group*, the number of questions to which anyone answered *"yes"* and return the **total sum** of those counts.
 
@@ -26,7 +26,7 @@ We are asked to count, *for each group*, the number of questions to which anyone
 ### Idea
 The first part of Day 6, like in Day 4, is parsing the input. We can read the input in a similar way we did regarding **passport data** by defining a struct `Group` to represent a single **group** read from input. Since I don't know the usual "twist" Part 2 will give, I decided to also store the answers of each person in the group in a `vector<string> groupAnswers`, as well as the number of people `passengerCount` within the group. 
 
-Given that each group may contain more than one person, we want to avoid counting **duplicate answers** to the same question. To implement this, we can map each **unique** question answered to its relative frequency within a given group. We can implement this using an `unordered_map<char,int> answersCounts` which maps each question (*key*) to the corresponding frequency (*value*). And since `unordered_map` does not allow duplicate keys, this handles **duplicates** quite nicely. 
+Given that each group may contain more than one person, we want to avoid counting **duplicate answers** to the same question. To implement this, we can map each **unique** question answered to its relative frequency within a given group. We can implement this using an `unordered_map<char,int> answersCounts` which maps each question (*key*) to the corresponding frequency (*value*). And since `unordered_map` does not allow duplicate keys, this handles the requirement of **counting each question at most once** quite nicely. 
 
 ```cpp
 // represents a single group read from input

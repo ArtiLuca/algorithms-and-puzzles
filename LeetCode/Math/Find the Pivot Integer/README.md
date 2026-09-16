@@ -81,7 +81,10 @@ $\sum_{i=x}^{n}(i) = \sum_{i=1}^{n}(i) - \sum_{i=1}^{x-1}(i)$.
 
 If we expand the *summations*, we have:  
 
-$\frac{x(x+1)}{2} = \frac{n(n+1)}{2} - \frac{(x-1)x}{2} = \frac{n(n+1)}{2} - \frac{x^{2}-x}{2}$.  
+$$
+\frac{x(x+1)}{2} = \frac{n(n+1)}{2} - \frac{(x-1)x}{2} \\ 
+= \frac{n(n+1)}{2} - \frac{x^{2}-x}{2}
+$$  
 
 Multiplying by $2$, we have: $x(x+1) = n(n+1) - x(x-1)$,  
 which then becomes: $x^{2} + x = n^{2} + n - (x^{2} - x)$.
@@ -91,7 +94,9 @@ which, if we divide by $2$, becomes: $x^2 = \frac{n(n+1)}{2}$.
 
 This means that the **pivot integer** `x` is equal to the **square root** of the *total sum from 1 to n*, meaning:
 
-$x = \sqrt{\frac{n(n+1)}{2}}$, or simply put: $\sqrt{\text{totalSum}}$.
+$x = \sqrt{\frac{n(n+1)}{2}}$  
+
+Or simply put: $\sqrt{\text{totalSum}}$.
 
 This makes the solution to the problem much more straightforward.
 

@@ -7,8 +7,6 @@ Given a positive integer `n`, find the **pivot integer** `x` such that:
   - The sum of all elements between `1` and `x` inclusively equals the sum of all elements between `x` and `n` inclusively.
   - Return *the pivot integer* `x`. If no such integer exists, return `-1`. It is guaranteed that there will be at most one pivot index for the given input.
 
-
-
 Example 1:
 
 Input: $n = 8$  
@@ -30,7 +28,7 @@ Explanation: It can be proved that no such integer exist.
 ## Solution
 We are told that $1 \le n \le 1000$ and that it is *guaranteed* that the given input will have at most **one pivot index**.
 
-The *immediate* approach that came to mind was perfoming a linear scan and comparing the **left sum** with the **right sum**. To do this we would:
+The *immediate* approach that came to mind was performing a linear scan and comparing the **left sum** with the **right sum**. To do this, we would:
 
  1. Calculate the `totalSum` of 1 to n. Using the **Gauss summation**, this is equivalent to:  
  $\frac{n \times (n+1)}{2}$. 
@@ -58,7 +56,7 @@ int pivotInteger(int n) {
         leftSum += i;
         int rightSum = totalSum - leftSum + i;
 
-        // if they match we found the pivot integer
+        // if they match, we found the pivot integer
         if (leftSum == rightSum) {
             return i;
         }
@@ -70,7 +68,7 @@ int pivotInteger(int n) {
 ```
 
 #### Complexity
-Using this approach the total **time complexity** is $\mathcal{O}(n)$, since we iterate the entire sequence in the worst case.
+Using this approach, the total **time complexity** is $\mathcal{O}(n)$, since we iterate the entire sequence in the worst case.
 
 The total **space complexity** is $\mathcal{O}(1)$.
 
@@ -87,7 +85,7 @@ $\frac{x(x+1)}{2} = \frac{n(n+1)}{2} - \frac{(x-1)x}{2} = \frac{n(n+1)}{2} - \fr
 
 Multiplying by $2$, we have: $x(x+1) = n(n+1) - x(x-1)$,  which then becomes: $x^{2} + x = n^{2} + n - (x^{2} - x)$.
 
-If we cancel the common terms and move the others to the left we have: $2x^{2} = n(n+1)$, which if we divide by $2$ becomes: $x^2 = \frac{n(n+1)}{2}$.
+If we cancel the common terms and move the others to the left, we have: $2x^{2} = n(n+1)$, which, if we divide by $2$, becomes: $x^2 = \frac{n(n+1)}{2}$.
 
 This means that the **pivot integer** `x` is equal to the **square root** of the *total sum from 1 to n*, meaning:
 

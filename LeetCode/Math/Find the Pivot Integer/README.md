@@ -88,11 +88,19 @@ $$
 = \frac{n(n+1)}{2} - \frac{x^{2}-x}{2}
 $$  
 
-Multiplying by $2$, we have: $x(x+1) = n(n+1) - x(x-1)$,  
-which then becomes: $x^{2} + x = n^{2} + n - (x^{2} - x)$.
+Multiplying by 2 and then simplifying we get: 
 
-If we cancel the common terms and move the others to the left, we have: $2x^{2} = n(n+1)$,  
-which, if we divide by $2$, becomes: $x^2 = \frac{n(n+1)}{2}$.
+$$
+x(x+1) = n(n+1) - x(x-1) \\ 
+= x^{2} + x = n^{2} + n - (x^{2} - x)
+$$
+
+If we cancel the common terms, move the others to the left, and then divide by 2, we have: 
+
+$$
+2x^{2} = n(n+1) \\ 
+= x^2 = \frac{n(n+1)}{2} 
+$$
 
 This means that the **pivot integer** `x` is equal to the **square root** of the *total sum from 1 to n*, meaning:
 

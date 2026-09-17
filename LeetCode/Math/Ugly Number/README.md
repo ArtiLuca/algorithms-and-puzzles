@@ -28,7 +28,7 @@ For this problem, I remembered the **Fundamental Theorem of Arithmetic**, which 
 
 We can therefore check if a number `n` is an **ugly number** by first checking if the number is zero or negative. If `n <= 0` we immediately return `false`. Otherwise, we repeatedly keep dividing `n` by one of the *prime factors* $2,3,5$, as long as `n` is perfectly divisible by the given *prime factor*. We do this using three loops, one for each *prime factor*, where the order in which we check them is irrelevant.
 
-After performing all three loops, if `n==1` we can conclude that `n` is an **ugly number**, so we return `true`. Otherwise, `n` is **not an ugly number**, so we return `false`.
+After performing all three loops, if `n==1`, we can conclude that `n` is an **ugly number**, so we return `true`. Otherwise, `n` is **not an ugly number**, so we return `false`.
 
 #### Pseudocode
 

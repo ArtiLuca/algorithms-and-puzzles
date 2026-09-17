@@ -141,7 +141,7 @@ Since, for solving Part 2, we don't actually need to store the raw text lines co
 ### Idea
 Since we mapped each **unique** question answered with *"yes"* to its relative frequency for each group using `unordered_map<char,int> answersCount`, this makes things easy. 
 
-To find the question to which **all** members of a group answered *"yes"*, this means finding the question in out map `answersCount` that has a value (*frequency*) that is the same as the number of people in the group, which we store in `passengerCount`. 
+To find the question to which **all** members of a group answered *"yes"*, this means finding the question in our map `answersCount` that has a value (*frequency*) that is the same as the number of people in the group, which we store in `passengerCount`. 
 
 Solving Part 2 only means changing the counting logic slightly. Since, under the hood, each *key:value* pair in `unordered_map<char,int>` is seen as a `pair<char,int>`, we can use a *range-based* loop to find all the questions with `pair.second` (*frequency*) that is equal to the total number of people in the group, `passengerCount`. For clarity, I implemented this counting logic through a helper `answeredByAll` in the struct `Group`.
 

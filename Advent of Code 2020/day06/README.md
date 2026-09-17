@@ -189,7 +189,7 @@ int solvePart2() const {
 ```
 
 #### Complexity
-Assuming there are $n$ characters in total across all lines in the input file, and that there are in total $g$ groups, he total **time complexity** in Part 2 remains unchanged. Iterating through all groups has a cost of $\mathcal{O}(g)$, and at each iteration, the work done is strictly bounded by the alphabet size of 26. Therefore, the total cost of iterating all groups is $\mathcal{O}(g \times 26) = \mathcal{O}(g)$, meaning an overall **time complexity** of $\mathcal{O}(n)$.
+Assuming there are $n$ characters in total across all lines in the input file, and that there are in total $g$ groups, the total **time complexity** in Part 2 remains unchanged. Iterating through all groups has a cost of $\mathcal{O}(g)$, and at each iteration, the work done is strictly bounded by the alphabet size of 26. Therefore, the total cost of iterating all groups is $\mathcal{O}(g \times 26) = \mathcal{O}(g)$, meaning an overall **time complexity** of $\mathcal{O}(n)$.
 
 In Part 2, the private struct member `groupAnswers` is removed; the space used is bounded by the maximum alphabet size of 26 used by `answersCount`. Therefore, the total **space complexity** for Part 2 is reduced to $\mathcal{O}(g)$.
 

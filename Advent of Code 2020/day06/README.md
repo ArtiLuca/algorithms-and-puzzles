@@ -40,7 +40,7 @@ struct Group {
 
 The reading phase is similar to Day 4. We can track the state of each **group** being processed by using a boolean flag `hasAnswers` (initially set to `false`). We read the input file *line by line*, processing one group at a time. 
 
-For each new person found, we increment `passengerCount`, store the raw text line containing their answers, and process their answers. When processing a person's answers, we update `answersCount` by processing each answer `ch` found. To do this, we can use `answersCount[c]++`:  
+For each new person found, we increment `passengerCount`, store the raw text line containing their answers, and process their answers. When processing a person's answers, we update `answersCount` by processing each answer `ch` found. To do this, we can use `answersCount[ch]++`:  
  - if the answer `ch` is already in the map, we simply increment its relative frequency.
  - if the answer `ch` was not present in the group, we **insert** it with a frequency of 1.  
 

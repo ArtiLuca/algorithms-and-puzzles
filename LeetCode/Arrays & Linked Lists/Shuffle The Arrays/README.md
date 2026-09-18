@@ -24,7 +24,7 @@ Output: $[1,2,1,2]$
 ## Solution
 We are told that $1 \le n \le 500$, that $\text{nums.length} = 2n$, and $1 \le \text{nums[i]} \le 10^{3}$.
 
-My first idea was to perform the *shuffling* in-place using a boolean flag to alternate between taking elements on the left side ($x_i$)and elements on the right side ($y_j$). However, this is not necessary, since the resulting vector after *shuffling* has a specific rule regarding the indices from which it takes its values. 
+My first idea was to perform the *shuffling* in-place using a boolean flag to alternate between taking elements on the left side ($x_i$) and elements on the right side ($y_j$). However, this is not necessary, since the resulting vector after *shuffling* has a specific rule regarding the indices from which it takes its values. 
 
 In the final vector, for each index $i \in [0 \dots 2n - 1]$:  
  - all the elements from the left part of `nums` ($x_1 \dots x_n$) end up in even-valued indices (including index 0).

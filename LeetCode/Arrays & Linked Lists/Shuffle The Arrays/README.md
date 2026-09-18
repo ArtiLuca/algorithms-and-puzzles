@@ -30,7 +30,7 @@ In the final vector, for each index $i \in [0 \dots 2n - 1]$:
  - all the elements from the left part of `nums` ($x_1 \dots x_n$) end up in even-valued indices (including index 0).
  - all the elements from the right part of `nums` ($y_1 \dots y_n$) end up in odd-valued indices. 
 
-Knowing this, we can allocate a new vector `result` of size $2n$ and populate it by applying the rule above while iterating from index `i` to `2n-1`, using two indices `x` and `y`, initially set to `x=0` and `y=n`, to track the current index for the *x* elements and *y* elements in the original vector `nums`. Then, for each index `i` we use the *modulo operator*:  
+Knowing this, we allocate a new vector `result` of size $2n$ and populate it by applying the rule above while iterating from index `i` to `2n-1`, using two indices `x` and `y`, initially set to `x=0` and `y=n`, to track the current index for the *x* elements and *y* elements in the original vector `nums`. Then, for each index `i` we use the *modulo operator*:  
  - if `i % 2 == 0`, then we populate `result[i]` using `nums[x]` and increment `x` by 1.
  - if `i % 2 != 0`, then we populate `result[i]` using `nums[y]` and increment `y` by 1. 
 

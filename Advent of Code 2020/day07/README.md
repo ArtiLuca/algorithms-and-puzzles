@@ -54,12 +54,10 @@ $\text{parentAdjective parentColor}$ bags contain $\text{childQuantity childAdje
 
 With the graph built, I decided to use a **BFS** (* Breadth-First Search*) algorithm for Part 1's solution. To do this, I implemented the **BFS** algorithm using a **queue** structure `std::queue<std::string> q` and initially **only inserting our shiny gold bag**. 
 
-#### Note
-I did not know this, but *inserting* into a hash set returns a *pair object*, with the *second value* indicating whether the insertion was successful or not, meaning if `visited.insert(parentName).second` evaluates to `true`.
-
  - At each step of the algorithm, I take the *front* of the queue as the **current bag color** and then *pop* a **bag color** from the queue.
  - The current bag color uses the **reverse graph** structure to check its *direct parents*.
  - The *direct parents* are checked by performing **insert** operations on a **hash set** `std::unordered_set<std::string> visited`.
+   - **(Note)**: I did not know this, but *inserting* into a hash set returns a *pair object*, with the *second value* indicating whether the insertion was successful or not, meaning if `visited.insert(parentName).second` evaluates to `true`.  
  - If an **insert** operation is successful, this means I found a *unique parent*, meaning a *valid candidate* to act as an outerbag for the **shiny gold bag**.
  - Each time an **insert** operation is successful, I **push** it into the queue to inspect its *direct parents* next.
  - This process continues *until the queue runs empty*, at which point the **size** of the **hash set** `visited` is the number of *valid candidate outerbags* that may contain the **shiny gold bag**, which is Part 1's solution.

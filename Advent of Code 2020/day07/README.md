@@ -226,7 +226,9 @@ int solvePart2() const {
 ```
 
 #### Complexity
-...TODO
+Assuming the **forward graph** contains $v$ unique bag colors (*vertices*) and $r$ is the total number of contained relationships (*edges*), the recursive helper traverses the graph starting from the "shiny gold" bag. Since it is a **DAG**, there are no infinite cycles, but bags can be nested inside multiple different parents. In the worst case, this leads to a total **time complexity** of $\mathcal{O}(v + r)$.
+
+The depth of the recursion stack is bounded by the maximum nesting depth of the bags, which evaluates to $\mathcal{O}(v)$ in the worst case. Since the **forward graph** takes up $\mathcal{O}(v+r)$ space, the total **space complexity** is $\mathcal{O}(v+r)$.
 
 ### Build
 Tested using 

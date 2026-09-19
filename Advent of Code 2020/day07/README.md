@@ -154,9 +154,16 @@ int solvePart1() const {
 ```
 
 #### Complexity
-Assuming there are $n$ rules (lines of input) and that $m$ is the maximum number of *child bags* within a single rule. Parsing a single line's tokens takes constant time, and the cost of insertions into our map `childToParents` has a cost of $\mathcal{O}(1)$ on average. Assuming our graph contains $v$ unique bag colors (*vertices*) and $r$ is the total number of containing relationships (*edges*), traversing the graph (**BFS**) has a cost of $\mathcal{O}(v + r)$ since we never traverse the same path more than once. If we disregard the initial read phase, the total **time complexity** is therefore $\mathcal{O}(v+r)$. If we do count the initial read/parsing phase, then it becomes $\mathcal{O}(n \times m)$.
 
-The **reverse graph** takes up $\mathcal{O}(v+r)$ space, and the **hash set** used takes up an additional $\mathcal{O}(v)$ space. Therefore, the total **space complexity** can be simplified to $\mathcal{O}(v+r)$.
+ - Assuming there are $n$ rules (lines of input) and that $m$ is the maximum number of *child bags* within a single rule.
+ - Parsing a single line's tokens takes constant time, and the cost of insertions into our map `childToParents` has a cost of $\mathcal{O}(1)$ on average.
+ - Assuming our graph contains $v$ unique bag colors (*vertices*) and $r$ is the total number of containing relationships (*edges*), traversing the graph (**BFS**) has a cost of $\mathcal{O}(v + r)$ since we never traverse the same path more than once.
+   
+If we disregard the initial read phase, the total **time complexity** is therefore $\mathcal{O}(v+r)$. If we do count the initial read/parsing phase, then it becomes $\mathcal{O}(n \times m)$.
+
+ - The **reverse graph** takes up $\mathcal{O}(v+r)$ space, and the **hash set** used takes up an additional $\mathcal{O}(v)$ space.
+
+Therefore, the total **space complexity** can be simplified to $\mathcal{O}(v+r)$.
 
 ---
 
@@ -175,10 +182,10 @@ struct ColorCodedBag {
 
 This helps with implementing the **forward graph** of *parent-to-child* relationships while parsing the input. This is implemented through the new private member `parentToChildren` I added to the class `Haversacks`. The map is represented as an object `std::unordered_map<std::string, std::vector<ColorCodedBag>> parentToChildren` to correctly represent the **forward graph** of  *parent-to-child* relationships read from input. 
 
-The changes needed during the initial read phase were minimal.  
-Now, instead of skipping the *numerical quantity* of each *child* bag of a rule, I convert it into its corresponding value.   
-I then also update the new `parentToChildren` map for every rule with a *parent* that contains *child* bags.   
-This is done by **pushing** the **parent name** as the **key** and the `ColorCodedBag` representing the *child* bag (with name and quantity) as the **value**.
+The changes needed during the initial read phase were minimal. 
+
+ 1. Now, instead of skipping the *numerical quantity* of each *child* bag of a rule, I convert it into its corresponding value.
+ 2. I then also update the new `parentToChildren` map for every rule with a *parent* that contains *child* bags. This is done by **pushing** the **parent name** as the **key** and the `ColorCodedBag` representing the *child* bag (with name and quantity) as the **value**.
 
 After applying those changes, to solve Part 2, I decided to use a *recursive top-down traversal* helper:  
 `countNestedBags(const std::string& currentColor) const`. 
@@ -189,7 +196,9 @@ $$
 \text{Total for this child} = \text{quantity } + (\text{quantity } \times \text{ everything inside that child})
 $$ 
 
-The helper calls itself *recursively* in order to reach the *deepest nested layer* and return the total number of bags associated (directly or indirectly) with the `currentColor`. If the `currentColor` does not hold any *child* bags, then I return 0, so as not to influence the total sum. I can then solve Part 2 by using the helper and calling `countNestedBags("shiny gold")` to return the total number of bags required inside the **shiny gold bag**.
+ - The helper calls itself *recursively* in order to reach the *deepest nested layer* and return the total number of bags associated (directly or indirectly) with the `currentColor`.
+ - If the `currentColor` does not hold any *child* bags, then I return 0, so as not to influence the total sum.
+ - I can then solve Part 2 by using the helper and calling `countNestedBags("shiny gold")` to return the total number of bags required inside the **shiny gold bag**.
 
 #### Pseudocode
 

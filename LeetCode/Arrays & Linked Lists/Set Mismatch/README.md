@@ -152,7 +152,7 @@ This approach is a bit like the *best of both worlds* from the first and second,
 
 One last approach that is as efficient as the third one does not modify the original vector `nums` and uses mathematical properties to implement the solution. It is definitely the *least intuitive* one and also, for me, the *less likely* to be actually implemented in a real-world scenario (as opposed to the second approach).  
 
-Let $x$ be the `duplicate` number and `y` be `missing` number. If we subtract the *actual sum* of the vector *expected sum*:
+Let $x$ be the `duplicate` number and `y` be `missing` number. If we subtract the *actual sum* of the vector from the *expected sum*:
 
 $$
 \sum_{i=1}^{n} (i) - \sum_{\text{nums[i]}}^{\text{nums[n]}} (\text{nums[i]}) = y - x

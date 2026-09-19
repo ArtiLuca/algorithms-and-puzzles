@@ -159,6 +159,7 @@ Assuming there are $n$ rules (lines of input) and that $m$ is the maximum number
 
 The **reverse graph** takes up $\mathcal{O}(v+r)$ space, and the **hash set** used takes up an additional $\mathcal{O}(v)$ space. Therefore, the total **space complexity** can be simplified to $\mathcal{O}(v+r)$.
 
+---
 
 ## Part 2
 It turns out that Part 2 asks to count *how many individual bags are required inside* the **shiny gold bag**. Since I already have a **reverse graph** that maps each *child* bag back up to its *parent* bag, I decided to implement a similar logic, using another **DAG** structure to act as a **forward graph**.

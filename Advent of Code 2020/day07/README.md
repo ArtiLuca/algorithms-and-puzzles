@@ -132,9 +132,9 @@ int solvePart1() const {
 ### Complexity
 
 Assuming $n$ rules and a maximum of $m$ child bags per rule, parsing takes $\mathcal{O}(n \times m)$ time.
-Let $v$ be the number of unique bag colors (vertices) and $r$ be the total containing relationships (edges). Traversing the graph via **BFS** takes $\mathcal{O}(v + r)$ time, as each path is traversed at most once.
+Let $v$ be the number of unique bag colors (vertices) and $r$ be the total containing relationships (edges). Traversing the graph via **BFS** takes $\mathcal{O}(v + r)$ time, as each path is traversed at most once. Therefore, disregarding the reading phase, the total **time complexity** is $\mathcal{O}(v + r)$.
 
-The reverse graph takes $\mathcal{O}(v + r)$ space, and the hash set requires $\mathcal{O}(v)$ space. The total space complexity is therefore $\mathcal{O}(v + r)$.
+The reverse graph takes $\mathcal{O}(v + r)$ space, and the hash set requires $\mathcal{O}(v)$ space. The total **space complexity** is therefore $\mathcal{O}(v + r)$.
 
 ## Part 2
 
@@ -201,7 +201,9 @@ int solvePart2() const {
 
 ### Complexity
 
-Constructing the forward graph takes $\mathcal{O}(v + r)$ space and time. Because this recursive implementation does not use memoization, the time complexity scales directly with the total number of nested bags inside the target bag. While this tree traversal could theoretically take exponential time $\mathcal{O}(2^v)$ in a heavily interconnected worst-case **DAG**, it runs quite efficiently for the provided puzzle constraints.
+Constructing the forward graph takes $\mathcal{O}(v + r)$ space and time. Because this recursive implementation does not use memoization, the time complexity scales directly with the total number of nested bags inside the target bag. While this tree traversal could theoretically take exponential time $\mathcal{O}(2^v)$ in a heavily interconnected worst-case **DAG**, it runs quite efficiently for the provided puzzle constraints. Therefore, the total **time complexity** is $\mathcal{O}(v + r)$.
+
+The total **space complexity** remains the same as Part 1.
 
 ### Build
 

@@ -42,7 +42,7 @@ For Part 1, I decided to model these *child-to-parent* relationships by mapping 
 
 $$
 \text{"shiny gold"} \rightarrow \text{\{"bright white", "muted yellow"\}}
-$$ 
+$$
 
 Parsing the input meant reading it line by line, since the rules are each given on a single line in the format:
 

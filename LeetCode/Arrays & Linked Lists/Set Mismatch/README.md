@@ -161,8 +161,9 @@ If we expand this: $y^{2} - x^{2} = (y-x)(y+x)$, we can *divide the squares diff
 
 Once we have $\text{sumXY} = y+x$, we can find: 
 
- - `missing` = $(sumDiff + sumXY) / 2$
- - `duplicate` = $sumXY$ - `missing`
+ - `missing` = $\frac{\text{(sumDiff + sumXY)}}{2}$
+  
+ - `duplicate` = $sumXY - missing$
 
 ```cpp
 vector<int> findErrorNums(vector<int>& nums) {

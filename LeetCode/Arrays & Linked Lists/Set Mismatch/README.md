@@ -111,6 +111,7 @@ We perform two linear scans, with the operations performed on the **hash set** h
 
 Although the time complexity is better than the previous approach, we now use a **hash set**, which means we now use a total **space complexity** of $\mathcal{O}(n)$ to store it.
 
+---
 
 ### Approach 3: Cyclic Sorting
 It is possible to obtain a solution that uses no auxiliary space in linear time. The idea is to *sort* the vector `nums` *in-place* in a single pass. This can be done by observing that, since the vector `nums` contains the numbers strictly from $1 \dots n$, the array's indices can be used as a *hash map*. 
@@ -143,7 +144,9 @@ vector<int> findErrorNums(vector<int>& nums) {
 }
 ```
 
-This approach is a bit like the *best of both worlds* from the first and second, since we obtain a total **time complexity** of $\mathcal{O}(n)$ while at the same time also a total **space complexity of $\mathcal{O}(1)$.
+This approach is a bit like the *best of both worlds* from the first and second, since we obtain a total **time complexity** of $\mathcal{O}(n)$ while at the same time also a total **space complexity** of $\mathcal{O}(1)$.
+
+---
 
 ### Approach 4: Using the Sum and Sum of Squares
 

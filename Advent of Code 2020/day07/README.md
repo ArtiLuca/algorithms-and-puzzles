@@ -25,7 +25,7 @@ dotted black bags contain no other bags.
 
 These rules specify the required contents for 9 bag types. In this example, every faded blue bag is empty, every vibrant plum bag contains 11 bags (5 faded blue and 6 dotted black), and so on.
 
-We have a **shiny gold bag** that we want to carry in *at least one other bag* and want to find out how many different bag colors would be valid for the *outermost* bag? In the example above, the number of bag colors that can eventually contain at least one shiny gold bag is 4.
+We have a **shiny gold bag** that we want to carry in *at least one other bag* and want to find out how many different bag colors would be valid for the *outermost* bag. In the example above, the number of bag colors that can eventually contain at least one shiny gold bag is 4.
 
 We are asked to read the list of *rules* given to us as input, and figure out how many *bag colors* can, eventually, *contain at least one* **shiny gold bag**. 
 

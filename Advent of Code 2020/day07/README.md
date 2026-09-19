@@ -36,7 +36,7 @@ The *rules* given as input form a structural hierarchy of sorts, where the *pare
 
 I initially thought about a **doubly linked list**, but soon realized that the relationships between each *child* bag and the *parent* bag acting as its container are not linear, meaning a *child* bag may be contained by multiple *parent* bags. This is when I realized that a doubly linked list would not work. So, after some online research, I found out about **Directed Acyclic Graphs (or DAGs)**, which I had only previously seen briefly in my *Data Structures & Algorithms* and *Database* courses.
 
-Since Part 1 only asks about the *child-to-parent* relationships, using only the *color-coded names*, the *quantity* of each *child* bag is not needed. However, I suspect it might be for Part 2. For Part 1, I decided to model these *child-to-parent* relationships by mapping every *child* bag to each *parent* bag using a `std::unordered_map<std::string, std::vector<std::string>> childToParents` object, as a private member of the class `Haversacks`. This represents the **reversed graph**, which allows mapping the* child-to-parent* relationships in the form:
+Since Part 1 only asks about the *child-to-parent* relationships, using only the *color-coded names*, the *quantity* of each *child* bag is not needed. However, I suspect it might be for Part 2. For Part 1, I decided to model these *child-to-parent* relationships by mapping every *child* bag to each *parent* bag using a `std::unordered_map<std::string, std::vector<std::string>> childToParents` object, as a private member of the class `Haversacks`. This represents the **reversed graph**, which allows mapping the *child-to-parent* relationships in the form:
 
 $$
 \text{"shiny gold"} \rightarrow \text{\{"bright white", "muted yellow"\}}
@@ -170,7 +170,7 @@ struct ColorCodedBag {
 };
 ```
 
-This helps with implementing the **forward graph** of* parent-to-child* relationships while parsing the input. This is implemented through the new private member `parentToChildren` I added to the class `Haversacks`. The map is represented as an object `std::unordered_map<std::string, std::vector<ColorCodedBag>> parentToChildren` to correctly represent the **forward graph** of* parent-to-child* relationships read from input. 
+This helps with implementing the **forward graph** of *parent-to-child* relationships while parsing the input. This is implemented through the new private member `parentToChildren` I added to the class `Haversacks`. The map is represented as an object `std::unordered_map<std::string, std::vector<ColorCodedBag>> parentToChildren` to correctly represent the **forward graph** of  *parent-to-child* relationships read from input. 
 
 The changes needed during the initial read phase were minimal. Now, instead of skipping the *numerical quantity* of each *child* bag of a rule, I convert it into its corresponding value. I then also update the new `parenteToChildren` map for every rule with a *parent* that contains *child* bags. This is done by **pushing** the **parent name** as the **key** and the `ColorCodedBag` representing the *child* bag (with name and quantity) as the **value**.
 

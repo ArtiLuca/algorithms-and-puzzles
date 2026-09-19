@@ -32,9 +32,9 @@ We are asked to read the list of *rules* given to us as input, and figure out ho
 ### Idea
 In Day 7, I noticed a significant increase in difficulty compared to the previous 6 days, mostly because I was not quite familiar with the data structure I eventually ended up implementing for Day 7.
 
-The *rules* given as input form a structural hierarchy of sorts, where the *parent* bag (*color-coded* using an "adjective" + "color") may contain a *child* (also *color-coded* and with a given *quantity*). Since we want to find the *total number of bags that* can hold our **shiny gold bag**, it made sense in my head to have this hierarchy of color-coded bags stored in some sort of structure that could be traversed **backwards** (from **children to parents**) in order to find all the valid *candidate* bags.
+The *rules* given as input form a structural hierarchy of sorts, where the *parent* bag may contain a *child* bag. Since we want to find the *total number of bags that* can hold our **shiny gold bag**, it made sense in my head to have this hierarchy of color-coded bags stored in a structure that could be traversed **backwards** (from **children to parents**) to find all the valid *candidate* bags.
 
-I initially thought about a **doubly linked list**, but soon realized that the relationships between each *child* bag and the *parent* bag acting as its container are not linear, meaning a *child* bag may be contained by multiple *parent* bags. This is when I realized that a doubly linked list would not work. So, after some online research, I found out about **Directed Acyclic Graphs (or DAGs)**, which I had only previously seen briefly in my *Data Structures & Algorithms* and *Database* courses.
+I initially thought about a **doubly linked list**, but soon realized that the relationships between each *child* bag and the *parent* bag are not linear, meaning a *child* bag may be contained by multiple *parent* bags. This is when I realized that a doubly linked list would not work. So, after some online research, I found out about **Directed Acyclic Graphs (or DAGs)**, which I had only previously seen briefly in my *Data Structures & Algorithms* and *Database* courses.
 
 Since Part 1 only asks about the *child-to-parent* relationships, using only the *color-coded names*, the *quantity* of each *child* bag is not needed. However, I suspect it might be for Part 2. 
 
@@ -176,7 +176,10 @@ struct ColorCodedBag {
 
 This helps with implementing the **forward graph** of *parent-to-child* relationships while parsing the input. This is implemented through the new private member `parentToChildren` I added to the class `Haversacks`. The map is represented as an object `std::unordered_map<std::string, std::vector<ColorCodedBag>> parentToChildren` to correctly represent the **forward graph** of  *parent-to-child* relationships read from input. 
 
-The changes needed during the initial read phase were minimal. Now, instead of skipping the *numerical quantity* of each *child* bag of a rule, I convert it into its corresponding value. I then also update the new `parentToChildren` map for every rule with a *parent* that contains *child* bags. This is done by **pushing** the **parent name** as the **key** and the `ColorCodedBag` representing the *child* bag (with name and quantity) as the **value**.
+The changes needed during the initial read phase were minimal.  
+Now, instead of skipping the *numerical quantity* of each *child* bag of a rule, I convert it into its corresponding value.   
+I then also update the new `parentToChildren` map for every rule with a *parent* that contains *child* bags.   
+This is done by **pushing** the **parent name** as the **key** and the `ColorCodedBag` representing the *child* bag (with name and quantity) as the **value**.
 
 After applying those changes, to solve Part 2, I decided to use a *recursive top-down traversal* helper:  
 `countNestedBags(const std::string& currentColor) const`. 
@@ -187,9 +190,7 @@ $$
 \text{Total for this child} = \text{quantity } + (\text{quantity } \times \text{ everything inside that child})
 $$ 
 
-The helper calls itself *recursively* in order to reach the *deepest nested layer* and return the total number of bags associated (directly or indirectly) with the `currentColor`. If the `currentColor` does not hold any *child* bags, then I return 0, so as not to influence the total sum. 
-
-I can then solve Part 2 by using the helper and calling `countNestedBags("shiny gold")` to return the total number of bags required inside the **shiny gold bag**.
+The helper calls itself *recursively* in order to reach the *deepest nested layer* and return the total number of bags associated (directly or indirectly) with the `currentColor`. If the `currentColor` does not hold any *child* bags, then I return 0, so as not to influence the total sum. I can then solve Part 2 by using the helper and calling `countNestedBags("shiny gold")` to return the total number of bags required inside the **shiny gold bag**.
 
 #### Pseudocode
 

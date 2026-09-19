@@ -48,23 +48,23 @@ Parsing the input meant reading it line by line, since the rules are each given 
 
 $\text{parentAdjective parentColor}$ bags contain $\text{childQuantity childAdjective childColor}$ bag(s), ...
 
- - Each *parent* bag may contain more than one *child* bag or, if the $\text{childQuantity}$ field is "no", then it contains *no child bags*.
- - For each rule, I extract and create the *parent* bag. Then, if it contains any *child* bags, I extract their color-coded name and **push** it into the map `childToParents` by using the **child name** as the **key** and the **parent name** as the **value**.
- - Extra tokens in the string, such as the words "bags", "contain", or the numerical quantities of the child bags, are skipped as they are not needed for Part 1.
- - This parsing process is done for every *child* bag found in the rule, unless no child bag is present, in which case I simply *break* and move on to the next one.
+ - Each *parent* bag may contain more than one *child* bag or, if the $\text{childQuantity}$ field is "no", then it contains *no child bags*.
+ - For each rule, I extract and create the *parent* bag. Then, if it contains any *child* bags, I extract their color-coded name and **push** it into the map `childToParents` by using the **child name** as the **key** and the **parent name** as the **value**.
+ - Extra tokens in the string, such as the words "bags", "contain", or the numerical quantities of the child bags, are skipped as they are not needed for Part 1.
+ - This parsing process is done for every *child* bag found in the rule, unless no child bag is present, in which case I simply *break* and move on to the next one.
 
 With the graph built, I decided to use a **BFS** (*Breadth First Search*) algorithm for Part 1's solution. To do this, I implemented the **BFS** algorithm using a **queue** structure `std::queue<std::string> q` and initially **only inserting our shiny gold bag**. 
 
- - At each step of the algorithm, I take the *front* of the queue as the **current bag color** and then *pop* a **bag color** from the queue.
- - The current bag color uses the **reverse graph** structure to check its *direct parents*.
- - The *direct parents* are checked by performing **insert** operations on a **hash set** `std::unordered_set<std::string> visited`.
- - If an **insert** operation is successful, this means I found a *unique parent*, meaning a *valid candidate* to act as an outerbag for the **shiny gold bag**.
+ - At each step of the algorithm, I take the *front* of the queue as the **current bag color** and then *pop* a **bag color** from the queue.
+ - The current bag color uses the **reverse graph** structure to check its *direct parents*.
+ - The *direct parents* are checked by performing **insert** operations on a **hash set** `std::unordered_set<std::string> visited`.
+ - If an **insert** operation is successful, this means I found a *unique parent*, meaning a *valid candidate* to act as an outerbag for the **shiny gold bag**.
 
 #### Note
 I did not know this, but *inserting* into a hash set returns a *pair object*, with the *second value* indicating whether the insertion was successful or not, meaning if `visited.insert(parentName).second` evaluates to `true`.
 
- - Each time an **insert** operation is successful, I **push** it into the queue to inspect its *direct parents* next.
- - This process continues *until the queue runs empty*, at which point the **size** of the **hash set** `visited` is the number of *valid candidate outerbags* that may contain the **shiny gold bag**, which is Part 1's solution.
+ - Each time an **insert** operation is successful, I **push** it into the queue to inspect its *direct parents* next.
+ - This process continues *until the queue runs empty*, at which point the **size** of the **hash set** `visited` is the number of *valid candidate outerbags* that may contain the **shiny gold bag**, which is Part 1's solution.
 
 #### Pseudocode
 
@@ -187,9 +187,9 @@ $$
 \text{Total for this child} = \text{quantity } + (\text{quantity } \times \text{ everything inside that child})
 $$ 
 
-The helper calls itself *recursively* in order to reach the *deepest nested layer* and return the total number of bags associated (directly or indirectly) with the `currentColor`. If the `currentColor` does not hold any *child* bags, then I return 0, so as not to influence the total sum. 
-
-I can then solve Part 2 by using the helper and calling `countNestedBags("shiny gold")` to return the total number of bags required inside the **shiny gold bag**.
+ - The helper calls itself *recursively* in order to reach the *deepest nested layer* and return the total number of bags associated (directly or indirectly) with the `currentColor`.
+ - If the `currentColor` does not hold any *child* bags, then I return 0, so as not to influence the total sum.
+ - I can then solve Part 2 by using the helper and calling `countNestedBags("shiny gold")` to return the total number of bags required inside the **shiny gold bag**.
 
 #### Pseudocode
 

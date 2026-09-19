@@ -34,7 +34,7 @@ In Day 7, I noticed a significant increase in difficulty compared to the previou
 
 The *rules* given as input form a structural hierarchy of sorts, where the *parent* bag may contain a *child* bag. Since we want to find the *total number of bags that* can hold our **shiny gold bag**, it made sense in my head to have this hierarchy of color-coded bags stored in a structure that could be traversed **backwards** (from **children to parents**) to find all the valid *candidate* bags.
 
-I initially thought about a **doubly linked list**, but soon realized that the relationships between each *child* bag and the *parent* bag are not linear, meaning a *child* bag may be contained by multiple *parent* bags. This is when I realized that a doubly linked list would not work. So, after some online research, I found out about **Directed Acyclic Graphs (or DAGs)**, which I had only previously seen briefly in my *Data Structures & Algorithms* and *Database* courses.
+I initially thought about a **doubly linked list**, but soon realized that the relationships between each *child* bag and *parent* bag were not linear, meaning a *child* bag may be contained by multiple *parent* bags. This is when I realized that a doubly linked list would not work. So, after some online research, I found out about **Directed Acyclic Graphs (or DAGs)**, which I had only previously seen briefly in my *Data Structures & Algorithms* and *Database* courses.
 
 Since Part 1 only asks about the *child-to-parent* relationships, using only the *color-coded names*, the *quantity* of each *child* bag is not needed. However, I suspect it might be for Part 2. 
 

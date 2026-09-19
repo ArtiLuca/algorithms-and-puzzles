@@ -23,16 +23,16 @@ For this problem, we do not know whether the vector `nums` is *sorted* or not. W
 
 For this problem, I thought of 4 different possible solutions, each with its pros and cons:
 
-1. Sorting and Sequence Checking
-2. Using a Hash Set
-3. Cyclic Sorting
-4. Using the Sum and Sum of Squares
+1. **Sorting and Sequence Checking**
+2. **Using a Hash Set**
+3. **Cyclic Sorting**
+4. **Using the Sum and Sum of Squares**
 
-**Note**: In each approach I assume that the vector `nums` contains $n$ elements.
+**Note**: In each approach, I assume that the vector `nums` contains $n$ elements.
 
 ### Approach 1: Sorting and Sequence Checking
 
-The first one is the most "intuitive", but is also the least efficient  out of all of them, in terms of time complexity. The idea is to first **sort** the vector `nums` in increasing order and then do a single linear scan to find the `duplicate` number and the `expected` number. Initially, we use `duplicate = -1` and `expected = 1` and then scan the vector `nums` from $i=1 \dots n$: 
+The first one is the most "intuitive", but is also the least efficient  out of all of them, in terms of time complexity. The idea is to first **sort** the vector `nums` in increasing order and then do a single linear scan to find the `duplicate` number and the `expected` number. Initially, we use `duplicate = -1` and `expected = 1`, and then scan the vector `nums` from $i=1 \dots n$: 
 
  - if `nums[i] == nums[i-1]`, then we found the `duplicate`.
  - if `nums[i] == expected`, we increment `expected`.
@@ -50,7 +50,7 @@ vector<int> findErrorNums(vector<int>& nums) {
 
     for (int i = 0; i < (int)nums.size(); i++) {
 
-        // if past first we check for duplicate
+        // if past first, we check for a duplicate
         if (i > 0 && nums[i] == nums[i-1]) {
             duplicate = nums[i];
         }
@@ -76,7 +76,7 @@ We can obtain a more efficient time complexity using a **hash set**, at the expe
 
 The idea is to perform two linear scans using a `std::unordered_set<int> seen` object. In the first scan, we populate the set by *inserting* each element found in `nums`. Since there is a *duplicate*, when we try to insert it into an `unordered_set`, the operation will fail. This gives us the `duplicate` number. 
 
-Once we have populate the set, we can perform a second scan to check the numbers in `nums` against the sequence $1 \dots n$. We inspect the set `seen`, eventually not being able to find one. This gives us the `missing` number.
+Once we have populated the set, we can perform a second scan to check the numbers in `nums` against the sequence $1 \dots n$. We inspect the set `seen`, eventually not being able to find one. This gives us the `missing` number.
 
  ```cpp
  vector<int> findErrorNums(vector<int>& nums) {
@@ -115,9 +115,9 @@ Although the time complexity is better than the previous approach, we now use a 
 ### Approach 3: Cyclic Sorting
 It is possible to obtain a solution that uses no auxiliary space in linear time. The idea is to *sort* the vector `nums` *in-place* in a single pass. This can be done by observing that, since the vector `nums` contains the numbers strictly from $1 \dots n$, the array's indices can be used as a *hash map*. 
 
-This means, that for each number $x$ in $1 \dots n$, we can iterate the vector `nums` and place $x$ in its correct *0-indexed* position $x-1$. This *cyclic sorting* continues swapping elements until every number $x$ is at its correct index or the `duplicate` number is found.  
+This means that for each number $x$ in $1 \dots n$, we can iterate the vector `nums` and place $x$ in its correct *0-indexed* position $x-1$. This *cyclic sorting* continues swapping elements until every number $x$ is at its correct index or the `duplicate` number is found.  
 
-After *sorting* the vector, we use a second linear scan to find the `missing` number by checking for the condition `nums[i] != i+1`. Once this happens, we have found the `duplicate` number and the `missing` number is simply `i+1`. 
+After *sorting* the vector, we use a second linear scan to find the `missing` number by checking for the condition `nums[i] != i+1`. Once this happens, we have found the `duplicate` number, and the `missing` number is simply `i+1`. 
 
 ```cpp
 vector<int> findErrorNums(vector<int>& nums) {
@@ -143,11 +143,11 @@ vector<int> findErrorNums(vector<int>& nums) {
 }
 ```
 
-This approach is a bit like the *best of both worlds* from the first and second since we obtain a total **time complexity** of $\mathcal{O}(n)$ while at the same time also a total **space complexity of $\mathcal{O}(1)$.
+This approach is a bit like the *best of both worlds* from the first and second, since we obtain a total **time complexity** of $\mathcal{O}(n)$ while at the same time also a total **space complexity of $\mathcal{O}(1)$.
 
 ### Approach 4: Using the Sum and Sum of Squares
 
-One last approach that is as efficient as the third one, does not modify the original vector `nums` and uses mathematical properties to implement the solution. It is definitely the *least intuitive* one and also, for me, the *less likely* to be actually implemented in a real-world scenario (as opposed to the second approach).  
+One last approach that is as efficient as the third one does not modify the original vector `nums` and uses mathematical properties to implement the solution. It is definitely the *least intuitive* one and also, for me, the *less likely* to be actually implemented in a real-world scenario (as opposed to the second approach).  
 
 Let $x$ be the `duplicate` number and `y` be `missing` number. If we subtract the *actual sum* of the vector *expected sum*:
 
@@ -201,5 +201,5 @@ vector<int> findErrorNums(vector<int>& nums) {
 }
 ```
 
-This last approach, although less intuitive, is as efficient as the third one. The total **time complexity** here is also $\mathcal{O}(n)$, as with the total **space complexity** which here is also $\mathcal{O}(1)$.
+This last approach, although less intuitive, is as efficient as the third one. The total **time complexity** here is also $\mathcal{O}(n)$, as is the total **space complexity**, which here is also $\mathcal{O}(1)$.
 

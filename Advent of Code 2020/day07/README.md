@@ -36,9 +36,8 @@ The *rules* given as input form a structural hierarchy of sorts, where the *pare
 
 I initially thought about a **doubly linked list**, but soon realized that the relationships between each *child* bag and *parent* bag were not linear, meaning a *child* bag may be contained by multiple *parent* bags. This is when I realized that a doubly linked list would not work. So, after some online research, I found out about **Directed Acyclic Graphs (or DAGs)**, which I had only previously seen briefly in my *Data Structures & Algorithms* and *Database* courses.
 
-Since Part 1 only asks about the *child-to-parent* relationships, using only the *color-coded names*, the *quantity* of each *child* bag is not needed. However, I suspect it might be for Part 2. For Part 1, I decided to model these *child-to-parent* relationships by mapping every *child* bag to each *parent* bag using a  
-`std::unordered_map<std::string, std::vector<std::string>> childToParents`  
-object, as a private member of the class `Haversacks`. This represents the **reversed graph**, which allows mapping the *child-to-parent* relationships in the form:
+Since Part 1 only asks about the *child-to-parent* relationships, using only the *color-coded names*, the *quantity* of each *child* bag is not needed. However, I suspect it might be for Part 2. For Part 1, I decided to model these *child-to-parent* relationships by mapping every *child* bag to each *parent* bag using a 
+`std::unordered_map<std::string, std::vector<std::string>> childToParents` object, as a private member of the class `Haversacks`. This represents the **reversed graph**, which allows mapping the *child-to-parent* relationships in the form:
 
 $$
 \text{"shiny gold"} \rightarrow \text{\{"bright white", "muted yellow"\}}

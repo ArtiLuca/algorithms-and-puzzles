@@ -185,7 +185,7 @@ This helper returns the total number of *nested child bags* assigned to `current
 
 $$
 \text{Total for this child} = \text{quantity } + (\text{quantity } \times \text{ everything inside that child})
-$$ 
+$$
 
  - The helper calls itself *recursively* in order to reach the *deepest nested layer* and return the total number of bags associated (directly or indirectly) with the `currentColor`.
  - If the `currentColor` does not hold any *child* bags, then I return 0, so as not to influence the total sum.

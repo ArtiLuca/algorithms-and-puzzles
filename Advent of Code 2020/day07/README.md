@@ -36,7 +36,9 @@ The *rules* given as input form a structural hierarchy of sorts, where the *pare
 
 I initially thought about a **doubly linked list**, but soon realized that the relationships between each *child* bag and the *parent* bag acting as its container are not linear, meaning a *child* bag may be contained by multiple *parent* bags. This is when I realized that a doubly linked list would not work. So, after some online research, I found out about **Directed Acyclic Graphs (or DAGs)**, which I had only previously seen briefly in my *Data Structures & Algorithms* and *Database* courses.
 
-Since Part 1 only asks about the *child-to-parent* relationships, using only the *color-coded names*, the *quantity* of each *child* bag is not needed. However, I suspect it might be for Part 2. For Part 1, I decided to model these *child-to-parent* relationships by mapping every *child* bag to each *parent* bag using a `std::unordered_map<std::string, std::vector<std::string>> childToParents` object, as a private member of the class `Haversacks`. This represents the **reversed graph**, which allows mapping the *child-to-parent* relationships in the form:
+Since Part 1 only asks about the *child-to-parent* relationships, using only the *color-coded names*, the *quantity* of each *child* bag is not needed. However, I suspect it might be for Part 2. 
+
+For Part 1, I decided to model these *child-to-parent* relationships by mapping every *child* bag to each *parent* bag using a `std::unordered_map<std::string, std::vector<std::string>> childToParents` object, as a private member of the class `Haversacks`. This represents the **reversed graph**, which allows mapping the *child-to-parent* relationships in the form:
 
 $$
 \text{"shiny gold"} \rightarrow \text{\{"bright white", "muted yellow"\}}
@@ -46,17 +48,23 @@ Parsing the input meant reading it line by line, since the rules are each given 
 
 $\text{parentAdjective parentColor}$ bags contain $\text{childQuantity childAdjective childColor}$ bag(s), ...
 
-Each *parent* bag may contain more than one *child* bag or, if the $\text{childQuantity}$ field is "no", then it contains *no child bags*.
-For each rule, I extract and create the *parent* bag. Then, if it contains any *child* bags, I extract their color-coded name and **push** it into the map `childToParents` by using the **child name** as the **key** and the **parent name** as the **value**. Extra tokens in the string, such as the words "bags", "contain", or the numerical quantities of the child bags, are skipped as they are not needed for Part 1. This parsing process is done for every *child* bag found in the rule, unless no child bag is present, in which case I simply *break* and move on to the next one.
+ - Each *parent* bag may contain more than one *child* bag or, if the $\text{childQuantity}$ field is "no", then it contains *no child bags*.
+ - For each rule, I extract and create the *parent* bag. Then, if it contains any *child* bags, I extract their color-coded name and **push** it into the map `childToParents` by using the **child name** as the **key** and the **parent name** as the **value**.
+ - Extra tokens in the string, such as the words "bags", "contain", or the numerical quantities of the child bags, are skipped as they are not needed for Part 1.
+ - This parsing process is done for every *child* bag found in the rule, unless no child bag is present, in which case I simply *break* and move on to the next one.
 
 With the graph built, I decided to use a **BFS** (*Breadth First Search*) algorithm for Part 1's solution. To do this, I implemented the **BFS** algorithm using a **queue** structure `std::queue<std::string> q` and initially **only inserting our shiny gold bag**. 
 
-At each step of the algorithm, I take the *front* of the queue as the **current bag color** and then *pop* a **bag color** from the queue. The current bag color uses the **reverse graph** structure to check its *direct parents*. The *direct parents* are checked by performing **insert** operations on a **hash set** `std::unordered_set<std::string> visited`. If an **insert** operation is successful, this means I found a *unique parent*, meaning a *valid candidate* to act as an outerbag for the **shiny gold bag**.
+ - At each step of the algorithm, I take the *front* of the queue as the **current bag color** and then *pop* a **bag color** from the queue.
+ - The current bag color uses the **reverse graph** structure to check its *direct parents*.
+ - The *direct parents* are checked by performing **insert** operations on a **hash set** `std::unordered_set<std::string> visited`.
+ - If an **insert** operation is successful, this means I found a *unique parent*, meaning a *valid candidate* to act as an outerbag for the **shiny gold bag**.
 
 #### Note
 I did not know this, but *inserting* into a hash set returns a *pair object*, with the *second value* indicating whether the insertion was successful or not, meaning if `visited.insert(parentName).second` evaluates to `true`.
 
-Each time an **insert** operation is successful, I **push** it into the queue to inspect its *direct parents* next. This process continues *until the queue runs empty*, at which point the **size** of the **hash set** `visited` is the number of *valid candidate outerbags* that may contain the **shiny gold bag**, which is Part 1's solution.
+ - Each time an **insert** operation is successful, I **push** it into the queue to inspect its *direct parents* next.
+ - This process continues *until the queue runs empty*, at which point the **size** of the **hash set** `visited` is the number of *valid candidate outerbags* that may contain the **shiny gold bag**, which is Part 1's solution.
 
 #### Pseudocode
 
@@ -148,8 +156,7 @@ int solvePart1() const {
 ```
 
 #### Complexity
-Assuming there are $n$ rules (lines of input) and that $m$ is the maximum number of *child bags* within a single rule. Parsing a single line's tokens takes constant time, and the cost of insertions into our map `childToParents` has a cost of $\mathcal{O}(1)$ on average. Assuming our graph contains $v$ unique bag colors (*vertices*) and $r$ is the total number of containing relationships (*edges*), traversing the graph (**BFS**) has a cost of $\mathcal{O}(v + r)$ since we never traverse the same path more than once.  
-If we disregard the initial read phase, the total **time complexity** is therefore $\mathcal{O}(v+r)$. If we do count the initial read/parsing phase, then it becomes $\mathcal{O}(n \times m)$.
+Assuming there are $n$ rules (lines of input) and that $m$ is the maximum number of *child bags* within a single rule. Parsing a single line's tokens takes constant time, and the cost of insertions into our map `childToParents` has a cost of $\mathcal{O}(1)$ on average. Assuming our graph contains $v$ unique bag colors (*vertices*) and $r$ is the total number of containing relationships (*edges*), traversing the graph (**BFS**) has a cost of $\mathcal{O}(v + r)$ since we never traverse the same path more than once. If we disregard the initial read phase, the total **time complexity** is therefore $\mathcal{O}(v+r)$. If we do count the initial read/parsing phase, then it becomes $\mathcal{O}(n \times m)$.
 
 The **reverse graph** takes up $\mathcal{O}(v+r)$ space, and the **hash set** used takes up an additional $\mathcal{O}(v)$ space. Therefore, the total **space complexity** can be simplified to $\mathcal{O}(v+r)$.
 
@@ -171,13 +178,16 @@ This helps with implementing the **forward graph** of *parent-to-child* relation
 
 The changes needed during the initial read phase were minimal. Now, instead of skipping the *numerical quantity* of each *child* bag of a rule, I convert it into its corresponding value. I then also update the new `parentToChildren` map for every rule with a *parent* that contains *child* bags. This is done by **pushing** the **parent name** as the **key** and the `ColorCodedBag` representing the *child* bag (with name and quantity) as the **value**.
 
-After applying those changes, to solve Part 2, I decided to use a *recursive top-down traversal* helper `countNestedBags(const std::string& currentColor) const`. This helper returns the total number of *nested child bags* assigned to `currentColor`. For each *child*, the returned result is given by:
+After applying those changes, to solve Part 2, I decided to use a *recursive top-down traversal* helper:  
+`countNestedBags(const std::string& currentColor) const`. 
+
+This helper returns the total number of *nested child bags* assigned to `currentColor`. For each *child*, the returned result is given by:
 
 $$
 \text{Total for this child} = \text{quantity } + (\text{quantity } \times \text{ everything inside that child})
 $$ 
 
-The helper calls itself *recursively* in order to reach the *deepest nested layer* and return the total number of bags associated (directly or indirectly) to the `currentColor`. If the `currentColor` does not hold any *child* bags, then I return 0, so as not to influence the total sum. 
+The helper calls itself *recursively* in order to reach the *deepest nested layer* and return the total number of bags associated (directly or indirectly) with the `currentColor`. If the `currentColor` does not hold any *child* bags, then I return 0, so as not to influence the total sum. 
 
 I can then solve Part 2 by using the helper and calling `countNestedBags("shiny gold")` to return the total number of bags required inside the **shiny gold bag**.
 

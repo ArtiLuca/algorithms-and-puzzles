@@ -44,7 +44,7 @@ $$
 
 Parsing the input meant reading it line by line, since the rules are each given on a single line in the format:
 
-$\text{[parent_adjective] [parent_color]}$ bags contain $\text[child_quantity] [child_adjective] [child_color] bag(s)}, \dots$
+$\text{parent_adjective parent_color}$ bags contain $\text{child_quantity child_adjective child_color}$ bag(s), ...
 
 Each *parent* bag may contain more than one *child* bag or, if the [child_quantity] field is "no", then it contains *no child bags*.
 For each rule, I extract and create the *parent* bag. Then, if it contains any *child* bags, I extract their color-coded name and **push** it into the map `childToParents` by using the **child name** as the **key** and the **parent name** as the **value**. Extra tokens in the string, such as the words "bags", "contain", or the numerical quantities of the child bags, are skipped as they are not needed for Part 1. This parsing process is done for every *child* bag found in the rule, unless no child bag is present, in which case I simply *break* and move on to the next one.

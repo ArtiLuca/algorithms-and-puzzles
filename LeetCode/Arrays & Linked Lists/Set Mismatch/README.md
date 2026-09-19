@@ -155,7 +155,7 @@ One last approach that is as efficient as the third one does not modify the orig
 Let $x$ be the `duplicate` number and `y` be `missing` number. If we subtract the *actual sum* of the vector from the *expected sum*:
 
 $$
-\sum_{i=1}^{n} (i) - \sum_{\text{nums[i]}}^{\text{nums[n]}} (\text{nums[i]}) = y - x
+\sum_{i=1}^{n} (i) - \sum_{i=0}^{i=n-1}} (\text{nums[i]}) = y - x
 $$ 
 
 Therefore, if we subtract the *actual sum of squares* from the *expected sum of squares*, the difference is: $y^{2} - x^{2}$.

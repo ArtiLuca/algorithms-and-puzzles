@@ -160,13 +160,17 @@ $$
 
 Therefore, if we subtract the *actual sum of squares* from the *expected sum of squares*, the difference is: $y^{2} - x^{2}$.
 
-If we expand this: $y^{2} - x^{2} = (y-x)(y+x)$, we can *divide the squares difference* $\text{sumDiffSq}$ by the *sum difference* $\text{sumDiff}$ to get $\text{sumXY} = y+x$.
+If we expand this: $y^{2} - x^{2} = (y-x)(y+x)$, we can *divide the squares difference* by the *sum difference* to get:
 
-Once we have $\text{sumXY} = y+x$, we can find: 
+$$
+\frac{\text{sumDiffSq}}{\text{sumDiff}} = \text{sumXY} = y + x
+$$
 
- - `missing` = $\frac{\text{(sumDiff + sumXY)}}{2}$
+Once we have $\text{sumXY}$ we can find: 
+
+ - $\text{missing} = \frac{\text{(sumDiff + sumXY)}}{2}$
   
- - `duplicate` = $sumXY - missing$
+ - $\text{duplicate} = sumXY - missing$
 
 ```cpp
 vector<int> findErrorNums(vector<int>& nums) {

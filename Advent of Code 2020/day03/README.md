@@ -11,8 +11,7 @@ The 2D grid is given as input and marks *empty spaces* with `.` and **trees** wi
 We are also told that the 2D grid repeats the same pattern to the right many times, so theoretically we can always move to the right until we reach the bottom. We want to find the number of **trees** we would encounter while descending the grid from the top-left *empty space* all the way to the bottom, always following a slope of **right 3** and **down 1**. 
 
 ### Idea 
-Assuming that we store the grid read from input as a `vector<string> grid` object, our starting position is `grid[0][0]`  
-(or $\text{row } j=0$, $\text{column } i=0$). We want to descend until we pass the last row of the grid. Since the grid repeats the same pattern going **right**, we can use the *modulo* operator to mimic this infinitely repeating pattern. In other words, if we store the grid read from input as `vector<string> grid`, we can interpret:  
+Assuming that we store the grid read from input as a `vector<string> grid` object, our starting position is `grid[0][0]` (or $\text{row } j=0$, $\text{column } i=0$). We want to descend until we pass the last row of the grid. Since the grid repeats the same pattern going **right**, we can use the *modulo* operator to mimic this infinitely repeating pattern. In other words, if we store the grid read from input as `vector<string> grid`, we can interpret:  
 
  - `grid.size()` as $r$, the total number of **rows** (the **height** of the grid).
  - `grid[0].length()` as $c$, the total number of **columns** (the **width** of the grid).

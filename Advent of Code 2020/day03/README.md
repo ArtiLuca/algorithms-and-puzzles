@@ -12,17 +12,12 @@ We are also told that the 2D grid repeats the same pattern to the right many tim
 
 ### Idea 
 Assuming that we store the grid read from input as a `vector<string> grid` object, our starting position is `grid[0][0]`  
-(or $\text{row } j=0$, $\text{column } i=0$). We want to descend until we pass the last row of the grid.
-
-Since the grid repeats the same pattern going **right**, we can use the *modulo* operator to mimic this infinitely repeating pattern.
-
-In other words, if we store the grid read from input as `vector<string> grid`, we can interpret:  
+(or $\text{row } j=0$, $\text{column } i=0$). We want to descend until we pass the last row of the grid. Since the grid repeats the same pattern going **right**, we can use the *modulo* operator to mimic this infinitely repeating pattern. In other words, if we store the grid read from input as `vector<string> grid`, we can interpret:  
 
  - `grid.size()` as $r$, the total number of **rows** (the **height** of the grid).
  - `grid[0].length()` as $c$, the total number of **columns** (the **width** of the grid).
  
-If we move an arbitrary number of times going **right 3** and **down 1** and find ourselves at the column index $i$,  
-we can determine our actual horizontal position inside the original pattern using the *modulo* operator and the total number of columns:
+If we move an arbitrary number of times going **right 3** and **down 1** and find ourselves at the column index $i$, we can determine our actual horizontal position inside the original pattern using the *modulo* operator and the total number of columns:
 
 $$
 i = i (\mod c)

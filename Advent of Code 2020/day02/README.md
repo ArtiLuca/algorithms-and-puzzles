@@ -135,7 +135,7 @@ We can then use this new validation helper across all passwords to count the tot
 #### Pseudocode
 
 ```cpp
-bool isValidPart2() const {
+bool Password::isValidPart2() const {
 
     if (psw.empty()) {
         return false;

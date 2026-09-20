@@ -5,11 +5,9 @@
 With the toboggan login problems resolved, you set off toward the airport. While travel by toboggan might be easy, it's certainly not safe: there's very minimal steering and the area is covered in trees. You'll need to see which angles will take you near the fewest trees.
 
 ## Part 1
-We are traversing a 2D grid using a toboggan from the top row to the bottom row.  
-The 2D grid is given as input and marks *empty spaces* with `.` and **trees** with `#`. 
+We are traversing a 2D grid using a toboggan from the top row to the bottom row. The 2D grid is given as input and marks *empty spaces* with `.` and **trees** with `#`. 
 
-We are also told that the 2D grid repeats the same pattern to the right many times, so theoretically we can always move to the right until we reach the bottom. 
-We want to find the number of **trees** we would encounter while descending the grid from the top-left *empty space* all the way to the bottom, always following a slope of **right 3** and **down 1**. 
+We are also told that the 2D grid repeats the same pattern to the right many times, so theoretically we can always move to the right until we reach the bottom. We want to find the number of **trees** we would encounter while descending the grid from the top-left *empty space* all the way to the bottom, always following a slope of **right 3** and **down 1**. 
 
 ### Idea 
 Assuming that we store the grid read from input as a `vector<string> grid` object, our starting position is `grid[0][0]`  
@@ -25,14 +23,17 @@ In other words, if we store the grid read from input as `vector<string> grid`, w
 If we move an arbitrary number of times going **right 3** and **down 1** and find ourselves at the column index $i$,  
 we can determine our actual horizontal position inside the original pattern using the *modulo* operator and the total number of columns:
 
-$i = i (\mod c)$,   where $c$ is the **width** (total columns) of our 2D grid.
+$$
+i = i (\mod c)
+$$
 
-Knowing this, we can count the total number of trees found down the slope by using a counter `treeCount` and traversing the grid  
-starting from row $j=0$ and column $i=0$, meaning `grid[0][0]`.
+where $c$ is the **width** (total columns) of our 2D grid.
 
-At each step, we check if the current coordinate `grid[j][i % c]` contains a tree and update `treeCount` if it does.  
-Then, we advance to the next position by moving right 3 (`i = i + 3`) and down 1 (`j = j + 1`).  
-Once we hit the last row, meaning `j >= r`, we stop and return `treeCount` as Part 1's solution. 
+Knowing this, we can count the total number of trees found down the slope by using a counter `treeCount` and traversing the grid starting from row $j=0$ and column $i=0$, meaning `grid[0][0]`.
+
+ - At each step, we check if the current coordinate `grid[j][i % c]` contains a tree and update `treeCount` if it does.
+ - Then, we advance to the next position by moving right 3 (`i = i + 3`) and down 1 (`j = j + 1`).
+ - Once we hit the last row, meaning `j >= r`, we stop and return `treeCount` as Part 1's solution. 
 
 #### Pseudocode
 Assuming we stored the grid as `std::vector<std::string> grid`:  
@@ -87,13 +88,11 @@ To find Part 2's solution, we need to count the total number of trees encountere
 Since the 2D grid is the same for each slope considered, we can implement a similar logic to Part 1, using the *modulo* operator to deal with the repeated pattern on the right of the grid.
 
 The only difference now is the number of positions we move **right** and how many we move **down**.  
-We can generalize Part 1's algorithm to also take as parameters `right` and `down`, and then implement a helper  
-`countTrees(int right, int down)` to traverse and count the number of trees encountered for each slope.
+We can generalize Part 1's algorithm to also take `right` and `down` as parameters, and then implement a helper  
+`long long countTrees(int right, int down)` to traverse and count the number of trees encountered for each slope.
 
 Since the number could be quite big, we use `long long` as the return value, so as not to run into *integer overflow* when multiplying the five results. 
-The base logic remains mostly unchanged.  
-
-We can then count the total trees encountered when traversing all five slopes using our helper and multiply the results to get Part 2's solution.
+The base logic remains mostly unchanged. We can then count the total trees encountered when traversing all five slopes using our helper and multiply the results to get Part 2's solution.
 
 #### Pseudocode
 

@@ -59,18 +59,9 @@ In Part 2, we are told that we are to find three numbers in the expense report t
 ### Idea
 Since we are looking for a triplet that sums to **2020**, we can use two approaches.
 
-In the first approach, we can extend the two-pointer sum approach used in Part 1 by working with a sorted copy of the list. 
+In the first approach, we can extend the two-pointer sum approach used in Part 1 by working with a sorted copy of the list. We search by fixing the first element `report[k]` and then applying our two-pointer sum logic by searching for the target sum `sum = target - report[k]` within `report[k+1...n-1]`. If we find `report[i] + report[j] = sum` we have found our triplet, so we multiply these three together and have Part 2's solution. Otherwise, no triplet was found, so we return `-1`.
 
- - We search by fixing the first element `report[k]` and then applying our two-pointer sum logic by searching for the target sum `sum = target - report[k]` within `report[k+1...n-1]`.
- - If we find `report[i] + report[j] = sum` we have found our triplet, so we multiply these three together and have Part 2's solution.
- - Otherwise, no triplet was found, so we return `-1`.
-
-Alternatively, we can use a hashing approach by fixing the first element `report[i]` for the triplet.
-
-- For each fixed element `report[i]` we use a hash set to store the potential second elements and run another loop inside it from `i+1` to `n-1`.
-- At each iteration, we check if `target - report[i] - report[j]` is present in the hash set.
-- If it is, then we found our triplet, so we multiply these three together and have Part 2's solution.
-- Otherwise, no triplet was found, so we return `-1`.
+Alternatively, we can use a hashing approach by fixing the first element `report[i]` for the triplet. For each fixed element `report[i]` we use a hash set to store the potential second elements and run another loop inside it from `i+1` to `n-1`. At each iteration, we check if `target - report[i] - report[j]` is present in the hash set. If it is, then we found our triplet, so we multiply these three together and have Part 2's solution. Otherwise, no triplet was found, so we return `-1`.
 
 #### Pseudocode
 

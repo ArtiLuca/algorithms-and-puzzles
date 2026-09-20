@@ -66,13 +66,13 @@ struct Passport {
 };
 ```
 
-We can store all the passports in a `vector<Passport> passports` object. To parse them, we read the input file one line at a time. Whenever we encounter a **blank line**, it means we have finished reading a single passport and can push it into our vector. 
+When *parsing* the input, we can store all the passports in a `vector<Passport> passports` object. 
 
-To track this state accurately, I opted for a boolean flag `hasData` to indicate whether the current passport has been correctly parsed or if it is empty. Only if we encounter a **blank line** and `hasData == true` do we insert the passport into our vector and reset `hasData = false` to parse the next one.
-
-Since the *key:value* pairs for a single passport can be separated by spaces or newlines, multiple pairs could exist on the same line. Therefore, for each line read from the input, we extract each *key:value* token found, and then *split* the string at the `:` character to extract the `key` and `value` strings to pass to our `setField` helper. Each time we successfully find a field, we set `hasData = true`. 
-
-Since the input file might not end with a trailing **blank line**, I added a final *sanity check* on `hasData == true` after the loop finishes so we do not miss the very last passport.
+ - We read the input file one line at a time. Whenever we encounter a **blank line**, it means we have finished reading a single passport and can push it into our vector.
+ - To track this state accurately, I opted for a boolean flag `hasData` to indicate whether the current passport has been correctly parsed or if it is empty. Only if we encounter a **blank line** and `hasData == true` do we insert the passport into our vector and reset `hasData = false` to parse the next one.
+ - Since the *key:value* pairs for a single passport can be separated by spaces or newlines, multiple pairs could exist on the same line.
+ - Therefore, for each line read from the input, we extract each *key:value* token found, and then *split* the string at the `:` character to extract the `key` and `value` strings to pass to our `setField` helper. Each time we successfully find a field, we set `hasData = true`.
+ - Since the input file might not end with a trailing **blank line**, I added a final *sanity check* on `hasData == true` after the loop finishes so we do not miss the very last passport.
 
 After correctly parsing all passports, we can simply count the number of **valid passports** by checking which ones contain all required fields, treating the `cid` field as optional. So a passport is **valid** if none of the required Part 1 fields are missing.
 
@@ -186,6 +186,7 @@ Assuming there are $n$ passports and that each passport contains on average $m$ 
 
 Since we store a vector containing all $n$ passports read from input, the total **space complexity** is $\mathcal{O}(n)$.
 
+---
 
 ## Part 2
 In Part 2, we are told to continue ignoring the `cid` field, but are given rules regarding the values of each other field.
@@ -209,14 +210,10 @@ All these rules now make the validation a bit more complex, and *heavy*. To simp
 In particular:
 
  - The helper `isAllDigits(string str)` returns true if `str` is made up entirely of digits ($0 \dots 9$), which can be checked using `std::isdigit`. This helps later conversions using `std::stoi` avoid potential crashes.
-   
  - The helper `isValidYear(string str, int min, int max)` validates that the year field passes the validation done by `isAllDigits`, that it has a length of exactly 4, and that the converted numerical value falls within the given constraints for the specific year field. 
  - The helper `isValidHeight` extracts the last two characters of the `hgt` field to determine whether they are $\text{ cm }$ or $\text{ in }$, splits the string in order to check if all the characters preceding these last two pass `isAllDigits` and then checks the respective height bounds ($150 \dots 193$ for cm, $59 \dots 76$ for in).
-   
- - The helper `isValidHairColor` checks that the `hcl` field has a total length of exactly 7, starts with the character `#` and that the remaining 6 characters are all valid alphanumeric hex values ($0 \dots 9$ or $a \dots f$), which can be done using `std::isxdigit`.
-   
+ - The helper `isValidHairColor` checks that the `hcl` field has a total length of exactly 7, starts with the character `#` and that the remaining 6 characters are all valid alphanumeric hex values ($0 \dots 9$ or $a \dots f$), which can be done using `std::isxdigit`.   
  - The helper `isValidPassportID` checks that the `pid` field has a length of exactly 9 and that it is passes `isAllDigits`.
-   
  - The helper `isValidEyeColor` checks that the field `ecl` matches exactly one of the values given by the new rules
 
 ### Pseudocode

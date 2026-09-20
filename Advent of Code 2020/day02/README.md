@@ -158,9 +158,9 @@ int countValidPart2(vector<Password> P) const {
 ```
 
 #### Complexity
-Assuming the database contains $n$ passwords and that each password has at the most $m$ characters.  
+Assuming the database contains $n$ passwords and that each password has at most $m$ characters.  
 The validation of a single password for Part 2 has a constant cost $\Theta(1)$ since  performing the necessary checks remains constant in time  
-and accessing elements of a vector is constant $\Theta(1)$.  
+and accessing elements of a vector is constant $\Theta(1)$. Therefore, the total **time complexity** remains $\mathcal{O}(n \times m)$, as in Part 1.
 
 The total **space complexity** remains $\Theta(n \times m)$ as we still have to keep storing the entire database of passwords read from input.
 

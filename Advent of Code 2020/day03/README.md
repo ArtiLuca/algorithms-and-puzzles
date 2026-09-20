@@ -82,9 +82,7 @@ To find Part 2's solution, we need to count the total number of trees encountere
 ### Idea
 Since the 2D grid is the same for each slope considered, we can implement a similar logic to Part 1, using the *modulo* operator to deal with the repeated pattern on the right of the grid.
 
-The only difference now is the number of positions we move **right** and how many we move **down**.  
-We can generalize Part 1's algorithm to also take `right` and `down` as parameters, and then implement a helper  
-`long long countTrees(int right, int down)` to traverse and count the number of trees encountered for each slope.
+The only difference now is the number of positions we move **right** and how many we move **down**. We can generalize Part 1's algorithm to also take `right` and `down` as parameters, and then implement a helper `long long countTrees(int right, int down)` to traverse and count the number of trees encountered for each slope.
 
 Since the number could be quite big, we use `long long` as the return value, so as not to run into *integer overflow* when multiplying the five results. 
 The base logic remains mostly unchanged. We can then count the total trees encountered when traversing all five slopes using our helper and multiply the results to get Part 2's solution.

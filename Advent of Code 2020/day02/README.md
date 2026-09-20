@@ -109,20 +109,15 @@ Therefore, the total **time complexity** for Part 1 is $\Theta(n \times m)$.
 The total **space complexity** is $\Theta(n \times m)$ for storing the entire database of passwords read from input.
 
 ## Part 2
-In Part 2 we are told that the policies regarding valid passwords are actually interpreted differently.  
+In Part 2, we are told that the policies regarding valid passwords are actually interpreted differently.  
 
 We are now told that the policy for a password `str` that is `i-j c` actually indicates the *1-index* positions in which the character `c`  
 must appear in the password `str`, where exactly one of the positions must contain the character `c` in order for the password to be valid.
 
 ### Idea
-By changing the meaning of the policies some previously non-valid passwords may now actually be valid (or the other way around).  
+By changing the meaning of the policies, some previously invalid passwords may now actually be valid (or the other way around).  
 
-Keeping into account the positions indicate *1-indexed* positions, we can implement a new boolean validation helper for the struct `Password`.
-
-In particular, the new validation helper must check that **exactly one** position between the two given by the policy contains the needed character (similar to evaluating an exclusive or **XOR** condition).
-
-That is, for any given password `str` having policy character `c` and policy positions `i` and `j`, we must check that the following condition  
-evaluates to true:
+Keeping into account the positions indicate *1-indexed* positions, we can implement a new boolean validation helper for the struct `Password`. In particular, the new validation helper must check that **exactly one** position between the two given by the policy contains the needed character (similar to evaluating an exclusive or **XOR** condition). That is, for any given password `str` having policy character `c` and policy positions `i` and `j`, we must check that the following condition evaluates to true:
 
 $$
 (psw[i-1] == c) 

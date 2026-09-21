@@ -32,13 +32,19 @@ My first idea was to sort the vector `nums`, but this would mean losing the valu
 
 After discarding that option, I thought of using the logic implemented in the algorithm **Counting Sort**. In particular, the idea of using an *occurrence array* to keep track of how many elements are smaller than the current one.
 
+---
+
 In the standard **Counting Sort** algorithm: 
 
  1. We create a vector $C[0 \dots k]$ (with $k$ being the maximum value), and count how many times each number appears in the input vector $A$.
  2. We modify $C$ by adding elements such that $C[i]$ tells us the exact *ending position* of element $i$ by doing $C[i] += C[i-1]$. This tracks how many elements are less than or equal to $i$.
  3. We loop backwards through $A$, placing each element directly into its correct sorted slot in the output vector $B$ using the position stored in $C$, decrementing $C$ as it goes.
  
-In our case, `nums` is the input vector $A$. The vector `result` is the output vector $B$, matching the size of `nums`. The value of $k$ is 100. The vector `count` is the occurrence array $C$ of size $101$ initialized to all zeros and representing the indices $0 \dots 100$. We can adapt the standard **Counting Sort** logic by making two small adjustments:
+In our case, `nums` is the input vector $A$. The vector `result` is the output vector $B$, matching the size of `nums`. The value of $k$ is 100. The vector `count` is the occurrence array $C$ of size $101$ initialized to all zeros and representing the indices $0 \dots 100$. 
+
+---
+
+We can adapt the standard **Counting Sort** logic by making two small adjustments:
 
  - Instead of calculating in `count` the *less than or equal to* positions, we modify `count` using a **running sum** so that `count[i]` stores elements *strictly smaller than* `i`.
  - We keep the output vector `result` in its original layout. We loop through `nums` *left-to-right* from $j=0 \dots \text{nums.size()}- 1$, using `count[nums[j]]` as a **direct lookup table** to populate `result[j]`.

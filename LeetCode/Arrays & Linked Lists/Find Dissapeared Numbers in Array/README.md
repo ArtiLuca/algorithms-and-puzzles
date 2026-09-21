@@ -98,6 +98,8 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
  
  * Since the *sorting* is done *in-place*, the total **space complexity** is $\mathcal{O}(1)$.
 
+---
+
 #### Approach 2: Using Sign Modification
 Since we know that the vector `nums` contains numbers from 1 to n, this means that each number corresponds directly to a *valid index* within the vector (subtracting 1 to adjust for *0-indexing*).  
 

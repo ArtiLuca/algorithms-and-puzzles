@@ -19,7 +19,7 @@ Output: $[1,2]$
 ## Solution
 We are told that $2 \le \text{nums.length} \le 10^{4}$ and that $1 \le \text{nums[i]} \le 10^{4}$.
 
-For this problem, we do not know whether the vector `nums` is *sorted* or not. We only know that there are $n$ elements $1 \dots n$ and that one of them is missing, creating a *duplicate*.
+For this problem, we do not know whether the vector `nums` is *sorted* or not. We only know that there are $n$ elements $1 \to n$ and that one of them is missing, creating a *duplicate*.
 
 For this problem, I thought of 4 different possible solutions, each with its pros and cons:
 

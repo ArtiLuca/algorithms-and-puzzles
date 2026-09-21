@@ -147,9 +147,7 @@ vector<int> findErrorNums(vector<int>& nums) {
 }
 ```
 
- * This approach is a bit like the *best of both worlds* from the first and second, since we obtain a total **time complexity** of $\mathcal{O}(n)$.
-
- * The total **space complexity** of $\mathcal{O}(1)$.
+ * This approach is a bit like the *best of both worlds* from the first and second, since we obtain a total **time complexity** of $\mathcal{O}(n)$, as well as a total **space complexity** of $\mathcal{O}(1)$.
 
 ---
 

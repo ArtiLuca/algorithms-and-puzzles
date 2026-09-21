@@ -96,8 +96,7 @@ int solvePart1() const {
 
 #### Complexity
 
- - Assuming there are $n$ instructions in the input file, excluding the cost of the initial input read, the algorithm iterates at most $n$ times, with **insert** operations on the **hash set** having a cost of $\mathcal{O}(1)$ on average. 
- - Therefore, the total **time complexity** is $\mathcal{O}(n)$.
+ - Assuming there are $n$ instructions in the input file, excluding the cost of the initial input read, the algorithm iterates at most $n$ times, with **insert** operations on the **hash set** having a cost of $\mathcal{O}(1)$ on average. Therefore, the total **time complexity** is $\mathcal{O}(n)$.
 
  - Since we use a **hash set** for Part 1's solution, the total **space complexity** is $\mathcal{O}(n)$.
 
@@ -200,9 +199,7 @@ int solvePart2() {
 
 #### Complexity
 
- - Assuming there are $n$ instructions in the input file, excluding the cost of the initial input read, the algorithm used in Part 2 uses a * brute-force* approach by swapping each **jmp** or **nop** instruction found. 
- - Each simulation has cost $\mathcal{O}(n)$, with operations performed on the **hash set** having cost $\mathcal{O}(1)$ on average.
- - Therefore, the resulting total **time complexity** is quadratic: $\mathcal{O}(n^2)$. 
+ - Assuming there are $n$ instructions in the input file, excluding the cost of the initial input read, the algorithm used in Part 2 uses a * brute-force* approach by swapping each **jmp** or **nop** instruction found. Each simulation has cost $\mathcal{O}(n)$, with operations performed on the **hash set** having cost $\mathcal{O}(1)$ on average. Therefore, the resulting total **time complexity** is quadratic: $\mathcal{O}(n^2)$. 
 
  - Since we use a temporary **hash set** every simulation, the total **space complexity** is $\mathcal{O}(n)$.
  

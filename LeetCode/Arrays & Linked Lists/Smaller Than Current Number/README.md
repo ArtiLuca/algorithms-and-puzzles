@@ -83,6 +83,6 @@ vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
 
 #### Complexity
 
-- Assuming the vector `nums` contains $n$ elements, the algorithm has a time complexity of $\mathcal{O}(n+k)$. Since $k$ is a fixed constant, we can simplify the total **time complexity** as $\mathcal{O}(n)$.
+- Assuming the vector `nums` contains $n$ elements, the algorithm has a time complexity of $\mathcal{O}(n+k)$. Since $k$ is a fixed constant, we can simplify the total **time complexity** to $\mathcal{O}(n)$.
 
 - We allocate the vector `result` with the same size as `nums`. Therefore, the total **space complexity** is $\mathcal{O}(n)$.

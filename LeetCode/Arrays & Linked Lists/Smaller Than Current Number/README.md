@@ -42,7 +42,8 @@ In the standard **Counting Sort** algorithm:
 
 3. We loop backwards through $A$, placing each element directly into its correct sorted slot in the output vector $B$ using the position stored in $C$, decrementing $C$ as it goes.
  
-In our case, `nums` is the input vector $A$. The vector `result` is the output vector $B$, matching the size of `nums`. The value of $k$ is 100. The vector `count` is the occurrence array $C$ of size $101$ initialized to all zeros and representing the indices $0 \dots 100$. 
+In our case, `nums` is the input vector $A$. The vector `result` is the output vector $B$, matching the size of `nums`. The value of $k$ is 100.  
+The vector `count` is the occurrence array $C$ of size $101$ initialized to all zeros and representing the indices $0 \dots 100$. 
 
 ---
 
@@ -92,6 +93,6 @@ vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
 
 #### Complexity
 
-- Assuming the vector `nums` contains $n$ elements, the algorithm has a time complexity of $\mathcal{O}(n+k)$. Since $k$ is a fixed constant, we can simplify the total **time complexity** to $\mathcal{O}(n)$.
+* Assuming the vector `nums` contains $n$ elements, the algorithm has a time complexity of $\mathcal{O}(n+k)$. Since $k$ is a fixed constant, we can simplify the total **time complexity** to $\mathcal{O}(n)$.
 
-- We allocate the vector `result` with the same size as `nums`. Therefore, the total **space complexity** is $\mathcal{O}(n)$.
+* We allocate the vector `result` with the same size as `nums`. Therefore, the total **space complexity** is $\mathcal{O}(n)$.

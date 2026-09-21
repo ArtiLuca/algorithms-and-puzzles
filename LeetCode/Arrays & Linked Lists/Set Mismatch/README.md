@@ -33,7 +33,8 @@ For this problem, I thought of 4 different possible solutions, each with its pro
 
 ### Approach 1: Sorting and Sequence Checking
 
-The first one is the most "intuitive", but is also the least efficient  out of all of them, in terms of time complexity. The idea is to first **sort** the vector `nums` in increasing order and then do a single linear scan to find the `duplicate` number and the `expected` number. Initially, we use `duplicate = -1` and `expected = 1`, and then scan the vector `nums` from $i=1 \dots n$: 
+The first one is the most "intuitive", but is also the least efficient  out of all of them, in terms of time complexity. The idea is to first **sort** the vector `nums` in increasing order and then do a single linear scan to find the `duplicate` number and the `expected` number.  
+Initially, we use `duplicate = -1` and `expected = 1`, and then scan the vector `nums` from $i=1 \dots n$: 
 
  - if `nums[i] == nums[i-1]`, then we found the `duplicate`.
  - if `nums[i] == expected`, we increment `expected`.
@@ -66,18 +67,19 @@ vector<int> findErrorNums(vector<int>& nums) {
 }
 ``` 
 
-This approach is probably the most "intuitive" but also the one with the worst total **time complexity**, which is given by the initial *sorting* phase, which has cost $\mathcal{O}(n \log n)$. We then perform a linear scan of cost $\mathcal{O}(n)$, which is absorbed by the *sorting* cost.
-
-The total **space complexity** is $\mathcal{O}(1)$ since we do not use any extra auxiliary space.
+ * This approach is probably the most "intuitive" but also the one with the worst total **time complexity**, which is given by the initial *sorting* phase, which has cost $\mathcal{O}(n \log n)$. We then perform a linear scan of cost $\mathcal{O}(n)$, which is absorbed by the *sorting* cost.
+ 
+ * The total **space complexity** is $\mathcal{O}(1)$ since we do not use any extra auxiliary space.
 
 ---
 
 ### Approach 2: Hash Set: Using a Hash Set
 We can obtain a more efficient time complexity using a **hash set**, at the expense of using a costlier space complexity.
 
-The idea is to perform two linear scans using a `std::unordered_set<int> seen` object. In the first scan, we populate the set by *inserting* each element found in `nums`. Since there is a *duplicate*, when we try to insert it into an `unordered_set`, the operation will fail. This gives us the `duplicate` number. 
+The idea is to perform two linear scans using a `std::unordered_set<int> seen` object. 
 
-Once we have populated the set, we can perform a second scan to check the numbers in `nums` against the sequence from 1 to n. We inspect the set `seen`, eventually not being able to find one. This gives us the `missing` number.
+ - In the first scan, we populate the set by *inserting* each element found in `nums`. Since there is a *duplicate*, when we try to insert it into an `unordered_set`, the operation will fail. This gives us the `duplicate` number.
+ - Once we have populated the set, we can perform a second scan to check the numbers in `nums` against the sequence from 1 to n. We inspect the set `seen`, eventually not being able to find one. This gives us the `missing` number.
 
  ```cpp
  vector<int> findErrorNums(vector<int>& nums) {
@@ -108,18 +110,18 @@ Once we have populated the set, we can perform a second scan to check the number
  }
  ```
 
-We perform two linear scans, with the operations performed on the **hash set** having a cost of $\mathcal{O}(1)$ on average. Therefore, the total **time complexity** is $\mathcal{O}(n)$.
-
-Although the time complexity is better than the previous approach, we now use a **hash set**, which means we now use a total **space complexity** of $\mathcal{O}(n)$ to store it.
+ * We perform two linear scans, with the operations performed on the **hash set** having a cost of $\mathcal{O}(1)$ on average. Therefore, the total **time complexity** is $\mathcal{O}(n)$.
+   
+ * Although the time complexity is better than the previous approach, we now use a **hash set**, which means we now use a total **space complexity** of $\mathcal{O}(n)$ to store it.
 
 ---
 
 ### Approach 3: Cyclic Sorting
 It is possible to obtain a solution that uses no auxiliary space in linear time. The idea is to *sort* the vector `nums` *in-place* in a single pass. This can be done by observing that, since the vector `nums` contains the numbers strictly from 1 to n, the array's indices can be used as a *hash map*. 
 
-This means that for each number $x$ from 1 to n, we can iterate through the vector `nums` and place $x$ in its correct *0-indexed* position $x-1$. This *cyclic sorting* continues swapping elements until every number $x$ is at its correct index or the `duplicate` number is found.  
-
-After *sorting* the vector, we use a second linear scan to find the `missing` number by checking for the condition $\text{nums[i]} \ne i+1$. Once this happens, we have found the `duplicate` number, and the `missing` number is simply $i+1$. 
+ - This means that for each number $x$ from 1 to n, we can iterate through the vector `nums` and place $x$ in its correct *0-indexed* position $x-1$.
+ - This *cyclic sorting* continues swapping elements until every number $x$ is at its correct index or the `duplicate` number is found.
+ - After *sorting* the vector, we use a second linear scan to find the `missing` number by checking for the condition $\text{nums[i]} \ne i+1$. Once this happens, we have found the `duplicate` number, and the `missing` number is simply $i+1$. 
 
 ```cpp
 vector<int> findErrorNums(vector<int>& nums) {
@@ -145,7 +147,9 @@ vector<int> findErrorNums(vector<int>& nums) {
 }
 ```
 
-This approach is a bit like the *best of both worlds* from the first and second, since we obtain a total **time complexity** of $\mathcal{O}(n)$ while at the same time also a total **space complexity** of $\mathcal{O}(1)$.
+ * This approach is a bit like the *best of both worlds* from the first and second, since we obtain a total **time complexity** of $\mathcal{O}(n)$.
+
+ * The total **space complexity** of $\mathcal{O}(1)$.
 
 ---
 
@@ -210,5 +214,5 @@ vector<int> findErrorNums(vector<int>& nums) {
 }
 ```
 
-This last approach, although less intuitive, is as efficient as the third one. The total **time complexity** here is also $\mathcal{O}(n)$, as is the total **space complexity**, which here is also $\mathcal{O}(1)$.
+ * This last approach, although less intuitive, is as efficient as the third one. The total **time complexity** here is also $\mathcal{O}(n)$, as is the total **space complexity**, which here is also $\mathcal{O}(1)$.
 

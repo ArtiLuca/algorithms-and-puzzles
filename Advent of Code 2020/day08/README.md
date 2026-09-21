@@ -96,23 +96,30 @@ int solvePart1() const {
 
 #### Complexity
 
- - Assuming there are $n$ instructions in the input file, excluding the cost of the initial input read, the algorithm iterates at most $n$ times, with **insert** operations on the **hash set** having a cost of $\mathcal{O}(1)$ on average. Therefore, the total **time complexity** is $\mathcal{O}(n)$.
+ * Assuming there are $n$ instructions in the input file, excluding the cost of the initial input read, the algorithm iterates at most $n$ times, with **insert** operations on the **hash set** having a cost of $\mathcal{O}(1)$ on average. Therefore, the total **time complexity** is $\mathcal{O}(n)$.
 
- - Since we use a **hash set** for Part 1's solution, the total **space complexity** is $\mathcal{O}(n)$.
+ * Since we use a **hash set** for Part 1's solution, the total **space complexity** is $\mathcal{O}(n)$.
 
 --- 
 
 ## Part 2
-In Part 2, we are told that the *boot code* is corrupted. Somewhere in the code, either a **nop** is supposed to be a **jmp**, or a **jmp** is supposed to be a **nop**. All the **acc** instructions are correct, and the *boot code* is supposed to terminate correctly by trying to execute the instruction immediately following the last one.
+In Part 2, we are told that the *boot code* is corrupted. Somewhere in the code, either a **nop** is supposed to be a **jmp**, or a **jmp** is supposed to be a **nop**. 
+
+All the **acc** instructions are correct, and the *boot code* is supposed to terminate correctly by trying to execute the instruction immediately following the last one.
 
 We need to *swap* a **jmp** or **nop** instruction to have the program terminate correctly, and then return the value of the accumulator.
 
 ### Idea
-Since the number of instructions is relatively small, a *brute force* approach could work. I can iterate through all instructions, skipping all **acc** instructions and swapping any **jmp** or **nop** instructions I find. To not influence future simulations, I first save the operation of an instruction before performing the swap. After performing the swap, I can use a helper `runSimulation` by implementing slightly modified logic used for Part 1's solution.
+Since the number of instructions is relatively small, a *brute force* approach could work. I can iterate through all instructions, skipping all **acc** instructions and swapping any **jmp** or **nop** instructions I find.
 
-The helper `runSimulation` applies the same logic as `solvePart1` but uses a `pair<int,bool>` as the return type. This is used to indicate the value of the accumulator and whether or not the simulation ended successfully. After applying a *swap* and running a simulation, whenever I encounter an *infinite loop*, I return the pair `{accumulator,false}` to indicate the simulation failed. 
+ - To not influence future simulations, I first save the operation of an instruction before performing the swap.
+ - After performing the swap, I can use a helper `runSimulation` by implementing slightly modified logic used for Part 1's solution.
+ - The helper `runSimulation` applies the same logic as `solvePart1` but uses an object `pair<int,bool>` as the return type. This is used to indicate the value of the accumulator and whether or not the simulation ended successfully.
+ - After applying a *swap* and running a simulation, whenever I encounter an *infinite loop*, I return the pair `{accumulator,false}` to indicate the simulation failed.
+ - Whenever I run a simulation and find that `currentIndex == n`, this means the simulation terminates successfully
+ -
 
-Whenever I run a simulation and find that `currentIndex == n`, this means the simulation terminates successfully, at which point I can return the first value of the pair as the **accumulator** value, which is Part 2's solution.
+Once I perform a *swap* and find a simulation that terminates successfully, I can return the first value of the pair: the **accumulator** value, which is Part 2's solution.
 
 
 #### Pseudocode
@@ -199,9 +206,9 @@ int solvePart2() {
 
 #### Complexity
 
- - Assuming there are $n$ instructions in the input file, excluding the cost of the initial input read, the algorithm used in Part 2 uses a * brute-force* approach by swapping each **jmp** or **nop** instruction found. Each simulation has cost $\mathcal{O}(n)$, with operations performed on the **hash set** having cost $\mathcal{O}(1)$ on average. Therefore, the resulting total **time complexity** is quadratic: $\mathcal{O}(n^2)$. 
+ * Assuming there are $n$ instructions in the input file, excluding the cost of the initial input read, the algorithm used in Part 2 uses a * brute-force* approach by swapping each **jmp** or **nop** instruction found. Each simulation has cost $\mathcal{O}(n)$, with operations performed on the **hash set** having cost $\mathcal{O}(1)$ on average. Therefore, the resulting total **time complexity** is quadratic: $\mathcal{O}(n^2)$. 
 
- - Since we use a temporary **hash set** every simulation, the total **space complexity** is $\mathcal{O}(n)$.
+ * Since we use a temporary **hash set** every simulation, the total **space complexity** is $\mathcal{O}(n)$.
  
 ### Build
 Tested using:

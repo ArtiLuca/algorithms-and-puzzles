@@ -74,6 +74,7 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
 
         // iterate over nums, applying cyclic sorting
         for (int i = 0; i < n; i++) {
+
             // until each number is in its correct 0-indexed position
             while (nums[i] != nums[nums[i] - 1]) {
                 swap(nums[i], nums[nums[i] - 1]);
@@ -83,7 +84,9 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
         // allocate result vector, and iterate over the now sorted vector nums
         vector<int> missing;
         for (int i = 0; i < n; i++) {
-            // each time we find index of number that does not match expected value, we push into result vector
+
+            // each time we find the index of a number that does not match 
+            // the expected value, we push into result vector
             if (nums[i] != i+1) {
                 missing.push_back(i+1);
             }
@@ -114,8 +117,10 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
 
         // iterate over vector, marking "seen" numbers
         for (int i = 0; i < (int)nums.size(); i++) {
+
             // find the 0-index position of current number
             int index = abs(nums[i]) - 1;
+
             // insert negated number in 0-index position
             // we skip negative numbers (index already visited/marked)
             if (nums[index] > 0) {
@@ -126,6 +131,7 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
         // allocate result vector, and iterate over "marked" vector
         vector<int> missing;
         for (int i = 0; i < (int)nums.size(); i++) {
+
             // every positive value found is a duplicate, meaning a "disappearing" number
             // for every positive number found, we increment it by 1 and push into result vector
             if (nums[i] > 0) {

@@ -27,6 +27,7 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
 
         // create hash set, and insert numbers found in nums
         unordered_set<int> seen;
+
         for (int num : nums) {
             // skipping duplicate values
             seen.insert(num);
@@ -35,9 +36,9 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
         // allocate result vector, and inspect against sequence 1 to n
         vector<int> missing;
         for (int i = 1; i <= nums.size(); i++) {
-            // if an expected number from sequence is missing
+
+            // if an expected number from the sequence is missing,  we push into result vector
             if (seen.find(i) == seen.end()) {
-                // we push into result vector
                 missing.push_back(i);
             }
         }

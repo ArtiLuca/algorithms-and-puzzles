@@ -19,7 +19,7 @@ Output: $[1,2]$
 ## Solution
 We are told that $2 \le \text{nums.length} \le 10^{4}$ and that $1 \le \text{nums[i]} \le 10^{4}$.
 
-For this problem, we do not know whether the vector `nums` is *sorted* or not. We only know that there are $n$ elements $1 \to n$ and that one of them is missing, creating a *duplicate*.
+For this problem, we do not know whether the vector `nums` is *sorted* or not. We only know that there are $n$ elements from 1 to n and that one of them is missing, creating a *duplicate*.
 
 For this problem, I thought of 4 different possible solutions, each with its pros and cons:
 
@@ -76,7 +76,7 @@ We can obtain a more efficient time complexity using a **hash set**, at the expe
 
 The idea is to perform two linear scans using a `std::unordered_set<int> seen` object. In the first scan, we populate the set by *inserting* each element found in `nums`. Since there is a *duplicate*, when we try to insert it into an `unordered_set`, the operation will fail. This gives us the `duplicate` number. 
 
-Once we have populated the set, we can perform a second scan to check the numbers in `nums` against the sequence $1 \dots n$. We inspect the set `seen`, eventually not being able to find one. This gives us the `missing` number.
+Once we have populated the set, we can perform a second scan to check the numbers in `nums` against the sequence from 1 to n. We inspect the set `seen`, eventually not being able to find one. This gives us the `missing` number.
 
  ```cpp
  vector<int> findErrorNums(vector<int>& nums) {
@@ -114,11 +114,11 @@ Although the time complexity is better than the previous approach, we now use a 
 ---
 
 ### Approach 3: Cyclic Sorting
-It is possible to obtain a solution that uses no auxiliary space in linear time. The idea is to *sort* the vector `nums` *in-place* in a single pass. This can be done by observing that, since the vector `nums` contains the numbers strictly from $1 \dots n$, the array's indices can be used as a *hash map*. 
+It is possible to obtain a solution that uses no auxiliary space in linear time. The idea is to *sort* the vector `nums` *in-place* in a single pass. This can be done by observing that, since the vector `nums` contains the numbers strictly from 1 to n, the array's indices can be used as a *hash map*. 
 
-This means that for each number $x$ in $1 \dots n$, we can iterate the vector `nums` and place $x$ in its correct *0-indexed* position $x-1$. This *cyclic sorting* continues swapping elements until every number $x$ is at its correct index or the `duplicate` number is found.  
+This means that for each number $x$ from 1 to n, we can iterate through the vector `nums` and place $x$ in its correct *0-indexed* position $x-1$. This *cyclic sorting* continues swapping elements until every number $x$ is at its correct index or the `duplicate` number is found.  
 
-After *sorting* the vector, we use a second linear scan to find the `missing` number by checking for the condition `nums[i] != i+1`. Once this happens, we have found the `duplicate` number, and the `missing` number is simply `i+1`. 
+After *sorting* the vector, we use a second linear scan to find the `missing` number by checking for the condition $\text{nums[i]} \ne i+1$. Once this happens, we have found the `duplicate` number, and the `missing` number is simply $i+1$. 
 
 ```cpp
 vector<int> findErrorNums(vector<int>& nums) {

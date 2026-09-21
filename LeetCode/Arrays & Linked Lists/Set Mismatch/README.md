@@ -23,11 +23,6 @@ For this problem, we do not know whether the vector `nums` is *sorted* or not. W
 
 For this problem, I thought of 4 different possible solutions, each with its pros and cons:
 
-1. ##### Sorting and Sequence Checking 
-2. ##### Using a Hash Set
-3. ##### Cyclic Sorting
-4. ##### Using the Sum and Sum of Squares
-
 1. **Sorting and Sequence Checking**
 2. **Using a Hash Set**
 3. **Cyclic Sorting**

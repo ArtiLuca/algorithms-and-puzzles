@@ -2,7 +2,7 @@
 
 Problem: [LeetCode](https://leetcode.com/problems/how-many-numbers-are-smaller-than-the-current-number/description/)
 
-Given the array `nums`, for each `nums[i]` find out how many numbers in the array are smaller than it. That is, for each `nums[i]` you have to count the number of valid `j`'s such that $j \ne i$ **and** $\text{nums[j]} < \text{nums[i]}$.
+Given the array `nums`, for each $\text{nums[i]}$ find out how many numbers in the array are smaller than it. That is, for each $\text{nums[i]}$ you have to count the number of valid $j$'s such that $j \ne i$ **and** $\text{nums[j]} < \text{nums[i]}$.
 
 Return the answer in an array.
 

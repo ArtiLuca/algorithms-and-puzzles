@@ -177,10 +177,7 @@ This helps with implementing the **forward graph** of *parent-to-child* relation
 
 The changes needed during the initial read phase were minimal. Now, instead of skipping the *numerical quantity* of each *child* bag of a rule, I convert it into its corresponding value. I then also update the new `parentToChildren` map for every rule with a *parent* that contains *child* bags. This is done by **pushing** the **parent name** as the **key** and the `ColorCodedBag` representing the *child* bag (with name and quantity) as the **value**.
 
-After applying those changes, to solve Part 2, I decided to use a *recursive top-down traversal* helper:  
-`countNestedBags(const std::string& currentColor) const`. 
-
-This helper returns the total number of *nested child bags* assigned to `currentColor`. For each *child*, the returned result is given by:
+After applying those changes, to solve Part 2, I decided to use a *recursive top-down traversal* helper `countNestedBags(const std::string& currentColor) const`. This helper returns the total number of *nested child bags* assigned to `currentColor`. For each *child*, the returned result is given by:
 
 $$
 \text{Total for this child} = \text{quantity } + (\text{quantity } \times \text{ everything inside that child})

@@ -38,7 +38,7 @@ In the standard **Counting Sort** algorithm:
 
  1. We create a vector $C[0 \dots k]$ (with $k$ being the maximum value), and count how many times each number appears in the input vector $A$.
  
- 2. We modify $C$ by adding elements such that $C[i]$ tells us the exact *ending position* of element $i$ by doing $\text{C[i] = C[i] + C[i-1]}$. This tracks how many elements are less than or equal to $i$.
+ 2. We modify $C$ by adding elements such that $C[i]$ tells us the exact *ending position* of element $i$ by doing $C[i] \text{ += } C[i-1]$. This tracks how many elements are less than or equal to $i$.
 
 3. We loop backwards through $A$, placing each element directly into its correct sorted slot in the output vector $B$ using the position stored in $C$, decrementing $C$ as it goes.
  

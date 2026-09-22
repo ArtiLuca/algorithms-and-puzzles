@@ -7,8 +7,7 @@ Your flight to the major airline hub reaches cruising altitude without incident.
 Their handheld game console won't turn on! They ask if you can take a look.
 
 ## Part 1
-We are given the *boot code* of a handheld gaming console as input, which seems to be stuck in an infinite loop.
-
+We are given the *boot code* of a handheld gaming console as input, which seems to be stuck in an infinite loop.  
 The boot code is given as a list of **instructions**. Each line represents a single instruction, with each instruction specifying the type of **operation** and an **argument** (a signed number such as +4 or -20).
 
 We are told that the operations are exactly of three types:
@@ -17,10 +16,12 @@ We are told that the operations are exactly of three types:
  2. A **jmp** instruction moves to a new instruction relative to itself, using the argument value as the *offset*. 
  3. A **nop** instruction does nothing, and simply moves to the instruction immediately below it.
 
-We are asked to simulate running our boot code to find the infinite loop. Immediately before any instruction is executed a second time, we want to return the value in the **accumulator**.
+We are asked to simulate running our boot code to find the infinite loop.  
+Immediately before any instruction is executed a second time, we want to return the value in the **accumulator**.
 
 ### Idea
-I decided to parse the puzzle input line by line, parsing each line into a dedicated  struct `Instruction`. This struct stores the instruction *index* (which tracks its position in the program line order), the *operation type*, and the *argument value*.
+I decided to parse the puzzle input line by line, parsing each line into a dedicated  struct `Instruction`.  
+This struct stores the instruction *index* (which tracks its position in the program line order), the *operation type*, and the *argument value*.
 
 ```cpp
 struct Instruction {
@@ -32,7 +33,8 @@ struct Instruction {
 
 After parsing the input, all instructions are stored in the private member `vector<Instruction> instructions` of the class `BootCode`.
 
-I decided to use a **hash set** approach, using a temporary object `unordered_set<int> seen` to implement a solution for Part 1. Every time an instruction is executed, I insert its `index` into `seen`. Since `unordered_set` does not allow duplicate values, whenever I find an **insert operation** that fails, I can *break*, since I found the start of the *infinite loop*.
+I decided to use a **hash set** approach, using a temporary object `unordered_set<int> seen` to implement a solution for Part 1.  
+Every time an instruction is executed, I insert its `index` into `seen`. Since `unordered_set` does not allow duplicate values, whenever I find an **insert operation** that fails, I can *break*, since I found the start of the *infinite loop*.
 
  - While simulating the *boot code*, I used two variables `accumulator` and `currentIndex` to represent the current value of the accumulator and the current index. These are updated depending on the instruction being executed. 
  - I keep simulating the *boot code* as long as `currentIndex` is within bounds, meaning within 0 and n.
@@ -112,15 +114,11 @@ We need to *swap* a **jmp** or **nop** instruction to have the program terminate
 ### Idea
 Since the number of instructions is relatively small, a *brute force* approach could work. I can iterate through all instructions, skipping all **acc** instructions and swapping any **jmp** or **nop** instructions I find.
 
- - To not influence future simulations, I first save the operation of an instruction before performing the swap.
- - After performing the swap, I can use a helper `runSimulation` by implementing slightly modified logic used for Part 1's solution.
+ - To not influence future simulations, I first save the operation of an instruction before performing the swap. After performing the swap, I can use a helper `runSimulation` by implementing slightly modified logic used for Part 1's solution.
  - The helper `runSimulation` applies the same logic as `solvePart1` but uses an object `pair<int,bool>` as the return type. This is used to indicate the value of the accumulator and whether or not the simulation ended successfully.
- - After applying a *swap* and running a simulation, whenever I encounter an *infinite loop*, I return the pair `{accumulator,false}` to indicate the simulation failed.
- - Whenever I run a simulation and find that `currentIndex == n`, this means the simulation terminates successfully
- -
-
+ - After applying a *swap* and running a simulation, whenever I encounter an *infinite loop*, I return the pair `{accumulator,false}` to indicate the simulation failed. Whenever I run a simulation and find that `currentIndex == n`, this means the simulation terminates successfully
+ 
 Once I perform a *swap* and find a simulation that terminates successfully, I can return the first value of the pair: the **accumulator** value, which is Part 2's solution.
-
 
 #### Pseudocode
 

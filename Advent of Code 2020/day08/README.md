@@ -47,6 +47,8 @@ Every time an instruction is executed, I insert its `index` into `seen`. Since `
 
 Eventually, one of the **insert operations** into the **hash set** will fail, at which point I return the `accumulator` value, which is the solution to Part 1.  
 
+#### Pseudocode
+
 ```cpp
 int solvePart1() const {
 

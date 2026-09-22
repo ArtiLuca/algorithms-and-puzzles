@@ -105,7 +105,7 @@ vector<string> buildArray(vector<int>& target, int n) {
 
 #### Complexity
 
- * We perform a linear scan, with *insert* operations having cost $\mathcal{O}(1)$ on average. Therefore, the total **time complexity** is $\mathcal{O}(n)$.
+ * We perform a linear scan, with **insert** operations done on the *vector* having cost $\mathcal{O}(1)$ on average. Therefore, the total **time complexity** is $\mathcal{O}(n)$.
 
  * Since we can disregard the allocated return vector in the space complexity, and we don't use any extra *auxiliary space*, the total **space complexity** is $\mathcal{O}(1)$. 
 

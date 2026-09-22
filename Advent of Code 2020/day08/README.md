@@ -34,7 +34,7 @@ struct Instruction {
 After parsing the input, all instructions are stored in the private member `vector<Instruction> instructions` of the class `BootCode`.
 
 I decided to use a **hash set** approach, using a temporary object `unordered_set<int> seen` to implement a solution for Part 1.  
-Every time an instruction is executed, I insert its `index` into `seen`. Since `unordered_set` does not allow duplicate values, whenever I find an **insert operation** that fails, I can *break*, since I found the start of the *infinite loop*.
+Every time an instruction is executed, I insert its `index` into `seen`. Since `unordered_set` does not = allow duplicate values, whenever I find an **insert operation** that fails, I can *break*, since I found the start of the *infinite loop*.
 
  - While simulating the *boot code*, I used two variables `accumulator` and `currentIndex` to represent the current value of the accumulator and the current index. These are updated depending on the instruction being executed. 
  - I keep simulating the *boot code* as long as `currentIndex` is within bounds, meaning within 0 and n.
@@ -102,7 +102,7 @@ int solvePart1() const {
 
  * Since we use a **hash set** for Part 1's solution, the total **space complexity** is $\mathcal{O}(n)$.
 
---- 
+---  
 
 ## Part 2
 In Part 2, we are told that the *boot code* is corrupted. Somewhere in the code, either a **nop** is supposed to be a **jmp**, or a **jmp** is supposed to be a **nop**. 

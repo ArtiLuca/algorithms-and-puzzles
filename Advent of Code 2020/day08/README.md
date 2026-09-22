@@ -7,7 +7,7 @@ Your flight to the major airline hub reaches cruising altitude without incident.
 Their handheld game console won't turn on! They ask if you can take a look.
 
 ## Part 1
-We are given the *boot code* of a handheld gaming console as input, which seems to be stuck in an infinite loop.  
+We are given as input the *boot code* of a handheld gaming console, which seems to be stuck in an infinite loop.  
 The boot code is given as a list of **instructions**. Each line represents a single instruction, with each instruction specifying the type of **operation** and an **argument** (a signed number such as +4 or -20).
 
 We are told that the operations are exactly of three types:

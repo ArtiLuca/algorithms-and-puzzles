@@ -86,8 +86,8 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
         vector<int> missing;
         for (int i = 0; i < n; i++) {
 
-            // each time we find the index of a number that does not match 
-            // the expected value, we push into result vector
+            // each time we find the index of a number that does not match the expected value,
+            // we push into result vector
             if (nums[i] != i+1) {
                 missing.push_back(i+1);
             }

@@ -11,22 +11,22 @@ The data appears to be encrypted with the *eXchange-Masking Addition System* (**
 ## Part 1
 In Part 1, we are given as input a series of numbers encrypted with the *eXchange-Masking Addition System* (**XMAS**).
 
-We are told that *XMAS* starts by transmitting a **preamble** of 25 numbers. After that, each number we receive should be the *sum of any two of the immediately 25 previous numbers*. There could be more than one pair of numbers, although the two numbers in the pair must be *different*. 
+We are told that *XMAS* starts by transmitting a **preamble** of 25 numbers. After that, each number we receive should be the *sum of any two of the 25 immediately previous numbers*. There could be more than one pair of numbers, although the two numbers in the pair must be *different*. 
 
 To solve Part 1, we must find the first number in the list (after the initial **preamble**) which is *not* the sum of the 25 numbers before it.
 
 ### Idea
 For Part 1, I need to preserve the original order of the input numbers because checking whether a given number $\text{num}$ has a valid sum using its 25 previous numbers means preserving their original order. 
 
-To not overcomplicate things, I decided to read the input data line by line and store each number read into an object `vector<long long> numbers` in my class `Cypher`. I chose to use `long long` instead of `int` since looking at the puzzle input I noticed the numbers getting progressively much larger, large enough to possibly cause **integer overflow**. 
+To not overcomplicate things, I decided to read the input data line by line and read each number into a `vector<long long> numbers`, stored as a private member in my class `Cypher`. I chose to use `long long` instead of `int` since, looking at the puzzle input, I noticed the numbers getting progressively much larger, large enough to possibly cause **integer overflow**. 
 
-After reading in each number I decided to implement a private helper `hasValidSum(long long target, int start)` in the class `Cypher`. This helper returns `true` if the list of numbers going from index $\text{start}$ to $\text{start + 25}$ contain a pair different numbers that sum up to `target`. 
+After reading in each number, I decided to implement a private helper `hasValidSum(long long target, int start)` in the class `Cypher`. This helper returns `true` if the list of numbers going from index $\text{start}$ to $\text{start + 25}$ contains a pair of different numbers that sum up to `target`. 
 
 I can then implement this helper in the main algorithm for solving Part 1: 
 
  - I start *after* the initial *preamble*, meaning from the 26th number `numbers[25]`.
  - I then iterate through the list `numbers` from $i=25 \to n$.
- - For each number $i$ I check if the helper `hasValidSum` returns `false` when called on the number `target[i]` using `i - 25` as the starting index (since we need to consider the previous 25 numbers to verify the sum).
+ - For each number $i$, I check if the helper `hasValidSum` returns `false` when called on the number `target[i]` using `i - 25` as the starting index (since we need to consider the previous 25 numbers to verify the sum).
  - The first time this helper returns `false`, I can return `target` as it is the first number in the list for which there was no valid sum using its previous 25 numbers.
 
 #### Pseudocode
@@ -57,11 +57,11 @@ void readPuzzleInput() {
 // private helper for Part 1 solution 
 bool hasValidSum(long long target, int start) const {
 
-    // check if any two pair of different numbers sum to target 
+    // check if any two pairs of different numbers sum to target 
     for (int i = start; i < start + 25; i++) {
         for (int j = i + 1; j < start + 25; j++) {
             
-            // if any pair of different numbers sum to target, we have a valid sum
+            // if any pair of different numbers sums to target, we have a valid sum
             if (numbers[i] + numbers[j] == target && numbers[i] != numbers[j]) {
                 return true;
             }    
@@ -84,7 +84,7 @@ long long solvePart1() const {
         // the current element considers the 25 previous numbers
         int start = i - 25;
     
-        // check for first number that does not have a valid sum
+        // check for the first number that does not have a valid sum
         if (!hasValidSum(numbers[i], start)) {
             return numbers[i];
         }
@@ -97,35 +97,36 @@ long long solvePart1() const {
 
 #### Complexity
 
- * If we disregard the cost of initially reading the input. Assuming there are $n$ numbers in the vector `numbers`, the algorithm iterates at the most $n-25$ times. For each number, the cost of the operations perfomed by `hasValidSum` remains constant since the two nested loops iterate at the most a fixed constant number of times. Therefore, the total **time complexity** is $\mathcal{O}(n)$.
+ * If we disregard the cost of initially reading the input. Assuming there are $n$ numbers in the vector `numbers`, the algorithm iterates at most $n-25$ times. For each number, the cost of the operations performed by `hasValidSum` remains constant since the two nested loops iterate at most a fixed constant number of times. Therefore, the total **time complexity** is $\mathcal{O}(n)$.
 
  * Since we actually store the $n$ numbers read from input in the vector `numbers`, the total **space complexity** is $\mathcal{O}(n)$.
 
 ---
 
 ## Part 2
-In Part 2, we are asked to take the **invalid number** found from Part 1 and find a *contiguous set* of *at least* two numbers in the list which sum to the **invalid number**.
+In Part 2, we are asked to take the **invalid number** found from Part 1 and find a *contiguous set* of *at least* two numbers in the list that sum to the **invalid number**.
 
 Once we find the set of numbers, the solution to Part 2 is given by adding the *smallest* and *largest* in the set.
 
 
 ### Idea
-Again, I cannot rely on a *sorting-based* solution since I must to preserve the order of the original list. Since I don't know how the numbers are sorted within the list I cannot use the standard **two-pointer** algorithm which requires the vector to be sorted.  
+Again, I cannot rely on a *sorting-based* solution since I must preserve the order of the original list. Since I don't know how the numbers are sorted within the list, I cannot use the standard **two-pointer** algorithm, which requires the vector to be sorted.  
 
 However, I can use a **sliding window** approach, using two *index trackers* `right` and `left` to keep track of the sliding window, and a variable `runningSum` to keep an updated sum of the contiguous set $\text{numbers}[left \dots right]$ being considered. 
 
- - In particular, my initial instinct on the potential **integer overflow** turned out to be true, as the value of `runningSum` becomes too large to be represented using `int`. Therefore, I used the type `long long` to deal with this. All three of these are initially set to 0. 
+ - In particular, my initial instinct about the potential **integer overflow** turned out to be true, as the value of `runningSum` becomes too large to be represented using `int`. Therefore, I used the type `long long` to deal with this. All three of these are initially set to 0. 
 
-     - The algorithm `solvePart2(long long target)` takes Part 1's answer as input (to avoid unnecessary recomputations) and iterates over the list `numbers`. It does so as long as the index `right` reaches the end of the list: $\text{right} < \text{numbers.size}$.
-     - At each step I update the `runningSum` by adding `numbers[right]` and then incrementing the `right` index by 1.
+     - The algorithm `solvePart2(long long target)` takes Part 1's answer as input (to avoid unnecessary recomputations) and iterates over the list `numbers`. It does so as long as the index `right` is less than the end of the list: $\text{right} < \text{numbers.size}$.
+     - At each step, I update the `runningSum` by adding `numbers[right]` and then incrementing the `right` index by 1.
      - If this addition results in a value for `runningSum` that surpasses the `target`, and $\text{left } < \text{right } - 1$, then I must subtract the value `numbers[left]` from it and also increment the `left` index by 1. 
  
  - After each *addition* and/or *subtraction* I then check if $\text{runningSum = target}$.
      - If this happens **and** the condition $\text{right} - \text{left} \ge 2$ is also true we then found the solution. 
      (**Note**: the second condition is needed to enforce the requirement of a **contiguous set* of *at least* two numbers).
-     - When both of the conditions above are met, I can then quickly loop `numbers` within the solution set $\text{numbers}[left \dots right]$ in order to find the *smallest* and *largest* numbers in it,  to then return their sum as the solution for Part 2.
-
-If the target was never reached, I indicate this by returning $-1$. 
+     - When both of the conditions above are met, I can then quickly loop through `numbers` within the solution set, meaning:  
+     $\text{numbers}[left \dots right]$.
+     - This last loop finds the *smallest* and *largest* numbers in the set, adds them, and returns their sum as Part 2's solution.
+     - If the target was never reached, I indicate this by returning $-1$. 
 
 #### Pseudocode
 

@@ -48,7 +48,7 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
 
  * We perform two linear scans, with the operations performed on the **hash set** having a cost of $\mathcal{O}(1)$ on average. Therefore, the total **time complexity** is $\mathcal{O}(n)$.
  
- * Since we use a **hash set**, twe use total **space complexity** of $\mathcal{O}(n)$ to store it.
+ * Since we use a **hash set**, we use a total **space complexity** of $\mathcal{O}(n)$ to store it.
 
 ---
 

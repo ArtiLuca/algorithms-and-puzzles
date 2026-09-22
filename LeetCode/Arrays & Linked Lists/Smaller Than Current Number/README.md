@@ -50,7 +50,7 @@ The vector `count` is the occurrence array $C$ of size $101$ initialized to all 
 We can adapt the standard **Counting Sort** logic by making two small adjustments:
 
  - Instead of calculating in `count` the *less than or equal to* positions, we modify `count` using a **running sum** so that `count[i]` stores elements *strictly smaller than* `i`.
- 
+
  - We keep the output vector `result` in its original layout. We loop through `nums` *left-to-right* from $j=0 \dots \text{nums.size()}- 1$, using `count[nums[j]]` as a **direct lookup table** to populate `result[j]`.
 
 #### Pseudocode

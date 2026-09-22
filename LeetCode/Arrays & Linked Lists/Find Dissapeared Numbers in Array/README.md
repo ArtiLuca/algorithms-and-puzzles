@@ -61,7 +61,7 @@ For this follow-up question, two approaches that operate **in-place** came to mi
  1. **Cyclic Sorting**
  2. **Using Sign Modification**
 
-#### Approach 1: Cyclic Sorting
+### Approach 1: Cyclic Sorting
 I had already used this approach to implement a solution for the *Set Mismatch* problem. 
 
  - Since the vector `nums` contains the numbers strictly from 1 to n, we can use its indices as a *hash map*. For each number $x$ from 1 to n, we iterate over `nums` and place it in its correct *0-indexed* position $x-1$. We apply this *cyclic sorting* by doing a single pass and continuing to swap elements until each one is in its correct position.
@@ -104,7 +104,7 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
 
 ---
 
-#### Approach 2: Using Sign Modification
+### Approach 2: Using Sign Modification
 Since we know that the vector `nums` contains numbers from 1 to n, this means that each number corresponds directly to a *valid index* within the vector (subtracting 1 to adjust for *0-indexing*).  
 
 We then implement a solution by performing two linear scans.

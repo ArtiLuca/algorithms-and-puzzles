@@ -107,7 +107,7 @@ vector<int> findDisappearedNumbers(vector<int>& nums) {
 ### Approach 2: Using Sign Modification
 Since we know that the vector `nums` contains numbers from 1 to n, this means that each number corresponds directly to a *valid index* within the vector (subtracting 1 to adjust for *0-indexing*).  
 
-We then implement a solution by performing two linear scans.
+We can implement a solution by performing two linear scans:
 
  - In the first scan, for each number we encounter, we find its corresponding *0-indexed* position within the vector and store the negated number in that position. If we encounter duplicates, these are skipped and remain positive.
  

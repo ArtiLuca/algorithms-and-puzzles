@@ -51,7 +51,7 @@ We can adapt the standard **Counting Sort** logic by making two small adjustment
 
  - Instead of calculating in `count` the *less than or equal to* positions, we modify `count` using a **running sum** so that `count[i]` stores elements *strictly smaller than* `i`.
 
- - We keep the output vector `result` in its original layout. We loop through `nums` *left-to-right* from $j=0 \dots \text{nums.size()}- 1$, using `count[nums[j]]` as a **direct lookup table** to populate `result[j]`.
+ - We keep the output vector `result` in its original layout. We loop through `nums` *left-to-right* from $j=0 \dots \text{nums.size()}- 1$, using the value of $\text{count[nums[j]]}$ as a **direct lookup table** to populate `result[j]`.
 
 #### Pseudocode
 
@@ -71,7 +71,7 @@ vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
     int sum = 0;
     for (int i = 0; i <= k; i++) {
 
-        // get num. occurrences of current element
+        // get number of occurrences of current element
         int current = count[i];
         // update it by storing how many numbers were strictly smaller than it
         count[i] = sum;

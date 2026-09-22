@@ -60,11 +60,12 @@ We are told that $1 \le \text{target.length} \le 100$, that $1 \le n \le 100$, t
 
 The important thing to note is that we are not asked to implement a **stack data structure**, but to simulate the stack operations as **"Push"** and **"Pop"**. The idea is to start from value 1 and go up to n. For every value we find that matches with the input stream, we need a **"Push"** operation. For every value that we find that does not match, we instead need a **"Push"** followed by a **"Pop"** operation. 
 
-Since we know that `target` contains numbers from 1 to n, we can use a temporary variable `ind` to act as an index tracker for the input stream `target`. Initially, we set `ind` to 0. We then loop through the **integer stream** for `i` going from 1 to n (*inclusive*), pushing the needed **stack operations** into a vector `vector<string> stackOperations` based off of the current value `i` being evaluated. At each iteration: 
-
- - If $\text{ind = target.size()}$, then we *break* as we have finished matching all target numbers.
- - If $i < \text{target[ind]}$, we push the operations **"Push"** and **"Pop"** in `stackOperations`.
- - If $i = \text{target[ind]}$, we then increment `ind` by 1 and push the operation **"Push"** in `stackOperations`.
+ - Since we know that `target` contains numbers from 1 to n, we can use a temporary variable `ind` to act as an index tracker for the input stream `target`. Initially, we set `ind` to 0.
+ - We then loop through the **integer stream** for `i` going from 1 to n (*inclusive*), pushing the needed **stack operations** into a vector `vector<string> stackOperations` based on the current value `i` being evaluated. At each iteration:
+  
+   - If $\text{ind = target.size()}$, then we *break* as we have finished matching all target numbers.
+   - If $i < \text{target[ind]}$, we push the operations **"Push"** and **"Pop"** in `stackOperations`.
+   - If $i = \text{target[ind]}$, we then increment `ind` by 1 and push the operation **"Push"** in `stackOperations`.
 
 
 #### Pseudocode

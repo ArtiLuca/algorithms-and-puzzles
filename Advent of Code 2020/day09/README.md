@@ -22,7 +22,12 @@ To not overcomplicate things, I decided to read the input data line by line and 
 
 After reading in each number I decided to implement a private helper `hasValidSum(long long target, int start)` in the class `Cypher`. This helper returns `true` if the list of numbers going from index $\text{start}$ to $\text{start + 25}$ contain a pair different numbers that sum up to `target`. 
 
-I can then implement this helper in the main algorithm for solving Part 1. I start *after* the initial *preamble*, meaning from the 26th number `numbers[25]`. I then iterate through the list `numbers` from $i=25 \to n$. For each number $i$ I check if the helper `hasValidSum` returns `false` when called on the number `target[i]` using `i - 25` as the starting index (since we need to consider the previous 25 numbers to verify the sum). The first time this helper returns `false`, I can return `target` as it is the first number in the list for which there was no valid sum using its previous 25 numbers.
+I can then implement this helper in the main algorithm for solving Part 1: 
+
+ - I start *after* the initial *preamble*, meaning from the 26th number `numbers[25]`.
+ - I then iterate through the list `numbers` from $i=25 \to n$.
+ - For each number $i$ I check if the helper `hasValidSum` returns `false` when called on the number `target[i]` using `i - 25` as the starting index (since we need to consider the previous 25 numbers to verify the sum).
+ - The first time this helper returns `false`, I can return `target` as it is the first number in the list for which there was no valid sum using its previous 25 numbers.
 
 #### Pseudocode
 
@@ -107,15 +112,20 @@ Once we find the set of numbers, the solution to Part 2 is given by adding the *
 ### Idea
 Again, I cannot rely on a *sorting-based* solution since I must to preserve the order of the original list. Since I don't know how the numbers are sorted within the list I cannot use the standard **two-pointer** algorithm which requires the vector to be sorted.  
 
-However, I can use a **sliding window** approach, using two *index trackers* `right` and `left` to keep track of the sliding window, and a variable `runningSum` to keep an updated sum of the contiguous set $numbers[left \dots right]$ being considered. 
+However, I can use a **sliding window** approach, using two *index trackers* `right` and `left` to keep track of the sliding window, and a variable `runningSum` to keep an updated sum of the contiguous set $\text{numbers}[left \dots right]$ being considered. 
 
-In particular, my initial instinct on the potential **integer overflow** turned out to be true, as the value of `runningSum` becomes too large to be represented using `int`. Therefore, I used the type `long long` to deal with this. All three of these are initially set to 0. 
+ - In particular, my initial instinct on the potential **integer overflow** turned out to be true, as the value of `runningSum` becomes too large to be represented using `int`. Therefore, I used the type `long long` to deal with this. All three of these are initially set to 0. 
 
- - The algorithm `solvePart2(long long target)` takes Part 1's answer as input (to avoid unnecessary recomputations) and iterates over the list `numbers`. It does so as long as the index `right` reaches the end of the list: $\text{right} < \text{numbers.size()}$. At each step I update the `runningSum` by adding `numbers[right]` and and then incrementing the `right` index by 1.  If this addition results in a value for `runningSum` that surpasses the `target`, and $\text{left } < \text{right } - 1$, then I must subtract the value `numbers[left]` from it and also increment the `left` index by 1. 
+     - The algorithm `solvePart2(long long target)` takes Part 1's answer as input (to avoid unnecessary recomputations) and iterates over the list `numbers`. It does so as long as the index `right` reaches the end of the list: $\text{right} < \text{numbers.size}$.
+     - At each step I update the `runningSum` by adding `numbers[right]` and then incrementing the `right` index by 1.
+     - If this addition results in a value for `runningSum` that surpasses the `target`, and $\text{left } < \text{right } - 1$, then I must subtract the value `numbers[left]` from it and also increment the `left` index by 1. 
  
- - After each *addition* and/or *subtraction* I then check if $\text{runningSum = target}$. If this happens **and** the condition $\text{right} - \text{left} \ge 2$ is also true we then found the solution. (**Note**: the second condition is needed to enforce the requirement of a **contiguous set* of *at least* two numbers).  
- 
- - When both of the conditions above are met, I can then quickly loop `numbers` within the solution set $\text{numbers[left \dots right]}$ in order to find the *smallest* and *largest* numbers in it,  to then return their sum as the solution for Part 2. If the target was never reached, I indicate this by returning $-1$. 
+ - After each *addition* and/or *subtraction* I then check if $\text{runningSum = target}$.
+     - If this happens **and** the condition $\text{right} - \text{left} \ge 2$ is also true we then found the solution. 
+     (**Note**: the second condition is needed to enforce the requirement of a **contiguous set* of *at least* two numbers).
+     - When both of the conditions above are met, I can then quickly loop `numbers` within the solution set $\text{numbers}[left \dots right]$ in order to find the *smallest* and *largest* numbers in it,  to then return their sum as the solution for Part 2.
+
+If the target was never reached, I indicate this by returning $-1$. 
 
 #### Pseudocode
 

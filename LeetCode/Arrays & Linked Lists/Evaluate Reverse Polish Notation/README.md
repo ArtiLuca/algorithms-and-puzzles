@@ -18,18 +18,18 @@ Note that:
 
 Example 1:  
 Input: `tokens = ["2","1","+","3","*"]`  
-Output: 9  
+Output: `9`  
 Explanation: $((2+1) \times 3) = 9$  
 
 Example 2:  
 Input: `tokens = ["4","13","5","/","+"]`  
-Output: 6  
+Output: `6`  
 Explanation: $(4 + (13 \div 5)) = 6$  
 
 Example 3:  
 Input: `tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]`  
-Output: 22  
-Explanation: 
+Output: `22`  
+Explanation:
 
 $$
 \begin{aligned}

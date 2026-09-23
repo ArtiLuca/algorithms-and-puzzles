@@ -104,7 +104,7 @@ long long solvePart1() const {
 ## Part 2
 In Part 2, we are asked to take the **invalid number** found from Part 1 and find a *contiguous set* of *at least* two numbers in the list that sum to the **invalid number**.
 
-Once we find the set of numbers, the solution to Part 2 is given by adding the *smallest* and *largest* in the set.
+Once we find the set of numbers, the solution to Part 2 is given by adding the *smallest* and *largest* numbers in the contiguous set found.
 
 
 ### Idea

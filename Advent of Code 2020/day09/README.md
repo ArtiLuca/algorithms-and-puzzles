@@ -6,8 +6,6 @@ With your neighbor happily enjoying their video game, you turn your attention to
 
 Though the port is non-standard, you manage to connect it to your computer through the clever use of several paperclips. Upon connection, the port outputs a series of numbers (your puzzle input).
 
-The data appears to be encrypted with the *eXchange-Masking Addition System* (**XMAS**) which, conveniently for you, is an old cypher with an important weakness.
-
 ## Part 1
 In Part 1, we are given as input a series of numbers encrypted with the *eXchange-Masking Addition System* (**XMAS**).
 

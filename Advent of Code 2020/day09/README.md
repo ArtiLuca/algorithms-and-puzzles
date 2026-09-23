@@ -104,8 +104,7 @@ long long solvePart1() const {
 ## Part 2
 In Part 2, we are asked to take the **invalid number** found from Part 1 and find a *contiguous set* of *at least* two numbers in the list that sum to the **invalid number**.
 
-Once we find the set of numbers, the solution to Part 2 is given by adding the *smallest* and *largest* numbers in the contiguous set found.
-
+Once we find the contiguous set, the sum of the *smallest* and *largest* numbers in the set gives us the solution to Part 2. 
 
 ### Idea
 Again, I cannot rely on a *sorting-based* solution since I must preserve the order of the original list. Since I don't know how the numbers are sorted within the list, I cannot use the standard **two-pointer** algorithm, which requires the vector to be sorted.  

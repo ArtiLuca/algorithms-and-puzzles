@@ -43,12 +43,11 @@ $$
 $$
 
 ## Solution
-We are told that $1 \le \text{tokens.length} \le 10^{4}$ and that `tokens[i]` is either an operator: `"+"`, `"-"`, `"*"`, or `"/"`, or an integer in the range $[-200, 200]$.
+We are told that $1 \le \text{tokens.length} \le 10^{4}$ and that `tokens[i]` is either an operator: `"+"`, `"-"`, `"*"`, or `"/"`, or an integer in the range $[-200, 200]$. I read up on **Reverse Polish Notation** (or **RPN**) online. It is also known as *postfix notation*, since *operators* follow their *operands*. 
 
-I read up on **Reverse Polish Notation** (or **RPN**) online. It is also known as *postfix notation*, since *operators* follow their *operand*.  
 For example, when adding the numbers 3 and 4: 
 
-- Using the "conventional notation" this would be: $3 \text{ + } 4$. 
+- Using the "conventional notation", this would be: $3 \text{ + } 4$. 
 - Using **Reverse Polish Notation** it would instead be: $34 \text{ +}$.
 
 I initially had trouble picturing this in my head, but then found the following example: $3 - 4 + 5$ (which is in the "conventional notation"). In **RPN** this would instead be: $34 \text{ - } 5 \text{+}$ and would be evaluated like this:
@@ -62,11 +61,12 @@ The idea for the algorithm is to:
  - Allocate a **stack structure** to hold each token and then iterate through `tokens` to evaluate the expression.
  - Each time we find an *operand*, we **push** it onto the stack after converting it to its corresponding numerical value. 
  - Each time we find an *operator* we **pop** the two *operands* at the **top** of the stack and perform the arithmetic operation.
+   
     - In particular, when performing an arithmetic operation $num1 \ op \ num2$, the *first* operand we pop from the stack is $num2$, while the second one is $num1$. 
 
  - We then **push** the result of the given arithmetic operation back onto the stack.
 
-At the end of the algorithm we return the **top** of the **stack**, which contains the solution to the evaluated expression.
+At the end of the algorithm, we return the **top** of the **stack**, which contains the solution to the evaluated expression.
 
 ### Pseudocode
 
@@ -109,7 +109,7 @@ int evalRPN(vector<string>& tokens) {
 
 #### Complexity
 
- * Assuming there are $n$ tokens in the vector `tokens`, and that the operations performed on the **stack** structure (*push*, *pop*,*top*) cost $\mathcal{O}(1)$ on average. The algorithm performs a linear scan, therefore the total **time complexity** is $\mathcal{O}(n)$.
+ * Assuming there are $n$ tokens in the vector `tokens`, and that the operations performed on the **stack** structure (*push*, *pop*,*top*) cost $\mathcal{O}(1)$ on average. The algorithm performs a linear scan; therefore, the total **time complexity** is $\mathcal{O}(n)$.
  
  * The algorithm uses $\mathcal{O}(n)$ *auxiliary space* due to the **stack** structure. Therefore, the total **space complexity** is $\mathcal{O}(n)$ (in the worst case).
  

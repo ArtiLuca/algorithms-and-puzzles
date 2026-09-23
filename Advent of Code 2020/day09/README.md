@@ -23,7 +23,7 @@ After reading in each number, I decided to implement a private helper `hasValidS
 I can then implement this helper in the main algorithm for solving Part 1: 
 
  - I start *after* the initial *preamble*, meaning from the 26th number `numbers[25]`.
- - I then iterate through the list `numbers` from $i=25 \to n$.
+ - I then iterate through the list `numbers` from $i=25 \dots n$.
  - For each number $i$, I check if the helper `hasValidSum` returns `false` when called on the number `target[i]` using `i - 25` as the starting index (since we need to consider the previous 25 numbers to verify the sum).
  - The first time this helper returns `false`, I can return `target` as it is the first number in the list for which there was no valid sum using its previous 25 numbers.
 

@@ -31,12 +31,14 @@ Input: `tokens = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"]`
 Output: 22  
 Explanation: 
 
-$((10 \times (6 \div ((9+3) \times -11))) + 17) + 5 \\ 
+$$
+((10 \times (6 \div ((9+3) \times -11))) + 17) + 5 \\ 
 = ((10 \times (6 \div (12 * -11))) + 17) + 5 \\ 
 = ((10 \times (6 \div -132)) + 17) + 5 \\ 
 = ((10 \times 0) + 17) + 5 \\ 
 = (0 + 17) + 5 \\ 
-= 17 + 5 = 22$
+= 17 + 5 = 22
+$$
 
 ## Solution
 We are told that $1 \le \text{tokens.length} \le 10^{4}$ and that `tokens[i]` is either an operator: `"+"`, `"-"`, `"*"`, or `"/"`, or an integer in the range $[-200, 200]$.

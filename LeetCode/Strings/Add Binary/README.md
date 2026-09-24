@@ -24,10 +24,10 @@ I used two index trackers `indA` and `indB` to keep track of the current digit i
 Then, at every iteration:
 
  - Set the current `sum` to any leftover `carry` from the previous iteration.
- - If `a` has any digits remaining, I convert the current digit to its corresponding numerical value using the *ASCII trick* of subtracting `0`.  
- I then update `sum` by adding the value and then decrement `indA` by 1.
- - If `b` has any digits remaining, I do the same process as above for the current digit of string `b`. 
- - Update the `carry` value using integer division and then the *modulo operator* to get the correct digit to append to the string `result`. 
+   
+ - If `a` has any digits remaining, I convert the current digit to its corresponding numerical value using the *ASCII trick* of subtracting `'0'` to convert the character into its corresponding integer value. I update `sum` by adding the value and then decrement `indA` by 1. If `b` has any digits remaining, I apply the same process.
+     
+ - Update the `carry` value using integer division and then use the *modulo operator* to get the correct digit. This is *appended* to the `result` string before moving to the next iteration. 
 
 When both strings have exhausted their digits, and there is no leftover carry, I must **reverse** the string `result` before returning it, since I *appended* each digit onto the string `result` in **reverse order**. Thankfully, the library *<algorithm>* provides a useful function `reverse`, which does exactly this *in-place*.
 

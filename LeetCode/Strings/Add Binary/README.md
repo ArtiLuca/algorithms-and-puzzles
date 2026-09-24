@@ -15,7 +15,7 @@ Output: `"10101"`
 ## Solution 
 We are told that $1 \le \text{a.length, b.length} \le 10^{4}$, that `a` and `b` consist only of `'0'` or `'1'` characters, and that each string does not contain leading zeros except for the zero itself.
 
-Since the length of both strings can go up to $10^{4}$, I cannot convert the strings into their corresponding numerical values as this would potentially cause **overflow**, using `int` or even `long long`. 
+Since the length of both strings can go up to $10^{4}$, I cannot convert the strings into their corresponding numerical values, as this would potentially cause **overflow** when using `int` or even `long long`. 
 
 To avoid this, I implemented a solution using a method I recently learned is called the **schoolbook addition method**. I perform the addition by iterating over both strings from *right-to-left*: from their *least significant* to *most significant* digit. As I do this, I also keep track of any potential *carryover* from the previous operation. 
 
@@ -25,8 +25,8 @@ Then, at every iteration:
 
  - Set the current `sum` to any leftover `carry` from the previous iteration.
    
- - If `a` has any digits remaining, I convert the current digit to its corresponding numerical value using the *ASCII trick* of subtracting `'0'`. I update `sum` by adding the value and then decrement `indA` by 1.
-If `b` has any digits remaining, I apply the same process.
+ - If `a` has any digits remaining, I convert the current digit to its corresponding numerical value using the *ASCII trick* of subtracting `'0'`.
+   I update `sum` by adding the value and then decrement `indA` by 1. If `b` has any digits remaining, I apply the same process.
      
  - Update the `carry` value using integer division and then use the *modulo operator* to get the correct digit. This is *appended* to the `result` string before moving to the next iteration. 
 

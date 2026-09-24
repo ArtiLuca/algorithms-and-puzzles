@@ -17,18 +17,17 @@ We are told that $1 \le \text{a.length, b.length} \le 10^{4}$, that `a` and `b` 
 
 Since the length of both strings can go up to $10^{4}$, I cannot convert the strings into their corresponding numerical values as this would potentially cause **overflow**, using `int` or even `long long`. 
 
-To avoid this, I implemented a solution using a method I recently found out is called **schoolbook addition method**. I perform the addition iterating over both strings from *right-to-left*: from their *least significant* to *most significant* digit. 
-As I do this, I also keep track of any potential *carryover* from the previous operation. 
+To avoid this, I implemented a solution using a method I recently learned is called the **schoolbook addition method**. I perform the addition by iterating over both strings from *right-to-left*: from their *least significant* to *most significant* digit. As I do this, I also keep track of any potential *carryover* from the previous operation. 
 
-I used two index trackers `indA` and `indB` to keep track of the current digit in each string being evaluated. These start at the right-most digit of each string, and the `carry` value is initially set to 0. After allocating the string `result`, I loop as long as *either* string has any digits remaining or there is any leftover *carry* to deal with. At each iteration:
+I used two index trackers `indA` and `indB` to keep track of the current digit in each string being evaluated. These start at the *rightmost digit* of each string, and the `carry` value is initially set to 0. After allocating the string `result`, I loop as long as *either* string has any digits remaining or there is any leftover *carry* to deal with. At each iteration:
 
  - Set the current `sum` to any leftover `carry` from the previous iteration.
  - If `a` has any digits remaining, I convert the current digit to its corresponding numerical value using the *ASCII trick* of subtracting `0`.  
  I then update `sum` by adding the value and then decrement `indA` by 1.
  - If `b` has any digits remaining, I do the same process as above for the current digit of string `b`. 
- - Update `carry` value using integer division and use *modulo operator* to get the correct digit to append to the string `result`. 
+ - Update the `carry` value using integer division and then the *modulo operator* to get the correct digit to append to the string `result`. 
 
-When both strings have exhausted their digits and there is no leftover carry, I must **reverse** the string `result` before returning it, since I *appended* each digit onto the string `result` in **reverse order**. Thankfully, the library *<algorithm>* provides a useful function `reverse`, which does exactly this *in-place*.
+When both strings have exhausted their digits, and there is no leftover carry, I must **reverse** the string `result` before returning it, since I *appended* each digit onto the string `result` in **reverse order**. Thankfully, the library *<algorithm>* provides a useful function `reverse`, which does exactly this *in-place*.
 
 ### Pseudocode
 

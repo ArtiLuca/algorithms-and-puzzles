@@ -56,7 +56,7 @@ So function 0 spends 2 + 4 + 1 = 7 units of total time executing, and function 1
 ```
 
 ## Solution 
-We are told that $1 \le n \le 100$, that $2 \le \text{logs.length} \le 500$, that $0 \le \text{function\_id} < n$, and that $0 \le \text{timestamp} \le 10^{9}$. 
+We are told that $1 \le n \le 100$, that $2 \le \text{logs.length} \le 500$, that $0 \le \text{functionID} < n$, and that $0 \le \text{timestamp} \le 10^{9}$. 
 
 We are also told that no two start events will happen at the same timestamp, that no two end events will happen at the same timestamp, and that each function has an `"end"` log for each `"start"` log.
 

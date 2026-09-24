@@ -31,7 +31,9 @@ Then, at every iteration:
      
  - Update the `carry` value using integer division and then use the *modulo operator* to get the correct digit. This is *appended* to the `result` string before moving to the next iteration. 
 
-When both strings have exhausted their digits, and there is no leftover carry, I must **reverse** the string `result` before returning it, since I *appended* each digit onto the string `result` in **reverse order**. Thankfully, the library *<algorithm>* provides a useful function `reverse`, which does exactly this *in-place*.
+When both strings have exhausted their digits, and there is no leftover carry, I must **reverse** the string `result` before returning it, since I *appended* each digit onto the string `result` in **reverse order**. 
+
+Thankfully, the library *algorithm* provides a useful function `reverse`, which does exactly this *in-place*.
 
 ### Pseudocode
 

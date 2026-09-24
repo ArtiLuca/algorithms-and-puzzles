@@ -109,9 +109,9 @@ Once we find the contiguous set, the sum of the *smallest* and *largest* numbers
 ### Idea
 Again, I cannot rely on a *sorting-based* solution since I must preserve the order of the original list. Since I don't know how the numbers are sorted within the list, I cannot use the standard **two-pointer** algorithm, which requires the vector to be sorted.  
 
-However, I can use a **sliding window** approach, using two *index trackers* `right` and `left` to keep track of the sliding window, and a variable `runningSum` to keep an updated sum of the contiguous set $\text{numbers}[left \dots right]$ being considered. 
+However, I can use a **sliding window** approach, using two *index trackers* `right` and `left` to keep track of the sliding window, and a variable `runningSum` to keep an updated sum of the contiguous set $\text{numbers}[left \dots right]$ being considered. All three of these are initially set to 0. 
 
-In particular, my initial instinct about the potential **integer overflow** turned out to be true, as the value of `runningSum` becomes too large to be represented using `int`. Therefore, I used the type `long long` to deal with this. All three of these are initially set to 0. 
+In particular, my initial instinct about the potential **integer overflow** turned out to be true, as the value of `runningSum` becomes too large to be represented using `int`. Therefore, I used the type `long long` to deal with this.
 
  - The algorithm `solvePart2(long long target)` takes Part 1's answer as input (to avoid unnecessary recomputations) and iterates over the list `numbers`. It does so as long as the index `right` is less than the end of the list, meaning $\text{right} < \text{numbers.size}$.  
 

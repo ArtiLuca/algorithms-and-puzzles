@@ -58,35 +58,29 @@ So function 0 spends 2 + 4 + 1 = 7 units of total time executing, and function 1
 ## Solution 
 We are told that $1 \le n \le 100$, that $2 \le \text{logs.length} \le 500$, that $0 \le \text{functionID} < n$, and that $0 \le \text{timestamp} \le 10^{9}$. 
 
-We are also told that no two start events will happen at the same timestamp, that no two end events will happen at the same timestamp, and that each function has an `"end"` log for each `"start"` log.
+We are also told that no two start events will happen at the same timestamp, that no two end events will happen at the same timestamp, and that each function has an `"end"` log for each `"start"` log. Since the CPU is *single-threaded*, the functions **preempt** (see Note below) one another using a *call stack*.
 
-Since the CPU is *single-threaded*, the functions **preempt** (see Note below) one another using a *call stack*.
+> **Note** - *preemption*: the act of temporarily pausing a currently running task or process without its cooperation so that a more important or higher-priority task can use the CPU.
 
-**Note**
-> **preemption**: the act of temporarily pausing a currently running task or process without its cooperation so that a more important or higher-priority task can use the CPU.
+I decided to implement a solution by simulating the CPU's execution stack using a **stack structure** to store the function IDs *currently executing*:  
+I **push** the function IDs when they `"start"`, and **pop** them when they `"end"`.
 
-I decided to implement a solution by simulating the CPU's execution stack by using a **stack structure** to store the functions IDs *currently executing*: I **push** the function IDs when they `"start"`, and **pop** them when they `"end"`.
-
-To track *how much time passed* between any two given logs and *which log is associated* for the currently elapsed time, I decided to implement a solution using a vector `exclusiveTimes` to track the **exclusive times** of each function, a **stack** `currentIDs` to store the IDs of the functions currently executing, two integer variables `currentTime` and `prevTime` for calculating the time calculations. Also, since each log in `logs` is in the format $\text{"id:status:timestamp"}$, I used other variables such as `strID`, `status`, `strTimestamp`, and `functionID` to correctly help with the parsing and processing. 
+To track *how much time passed* between any two given logs and *which log is associated* with the currently elapsed time, I decided to implement a solution using a vector `exclusiveTimes` to track the **exclusive times** of each function, a **stack** `currentIDs` to store the IDs of the functions currently executing, and two integer variables `currentTime` and `prevTime` for calculating the elapsed time. Also, since each log in `logs` is in the format $\text{"id:status:timestamp"}$, I used other variables such as `strID`, `status`, `strTimestamp`, and `functionID` to help with the parsing and processing. 
 
 I had to keep in mind the *inclusivity* of the intervals, since: 
 
  - A `"start`" log means the given function begins at the **start** of that timestamp.
  - An `"end"` log means the function finishes at the **end** of that timestamp.
 
-Therefore, to handle this *inclusivity*, I decided to treat each `"end"` log as $timestamp + 1$ so that the time difference calculation automatically includes the final unit of time.
+Therefore, to handle this *inclusivity*, I treat each `"end"` log as $timestamp + 1$ so that the time difference calculation automatically includes the final unit of time. The algorithm operates like this: 
 
-The algorithm operates like this: 
+ - I initialize the vector `exclusiveTimes` to hold $n$ integer variables, initially all set to 0, the stack `currentIDs`, and the integer `prevTime` initially set to 0.
 
- - I initialize the vector `exclusiveTimes` to hold $n$ integer variables initially all set to 0, the stack `currentIDs`, and the integer `prevTime` initially set to 0.
-
-     - I then iterate through each log in `logs` and parse them using `strID`, `status` and `strTimestamp` to seperate the three fields in the log and converting the log's ID and timestamp into the integers `functionID` and `currentTime`.
-     
-     - For every new log that arrives at `currentTime`, the function currently at the **top** of the stack `currentIDs` has already been running *exclusively* since the `prevTime`. Therefore, I credit the elapsed time to the top function and then update `prevTime` so that it matches the `currentTime`.
-     
+     - I then iterate through each log in `logs` and parse it using `strID`, `status`, and `strTimestamp` to separate the three fields in the log and convert the log's ID and timestamp into the integers `functionID` and `currentTime`.
+     - For every new log that arrives at `currentTime`, the function currently at the **top** of the stack `currentIDs` has already been running *exclusively* since the `prevTime`. I credit the elapsed time to the top function and update `prevTime` to match `currentTime`.
      - In particular, if the new log has `status` $\text{"end"}$, I add $+1$ to deal with the *interval inclusivity* mentioned above.
  
- - After processing each log in `logs`, I return the vector `exclusiveTimes`, which contains the **exclusive time** for each function ID. 
+After processing each log in `logs`, I return the vector `exclusiveTimes`, which contains the **exclusive time** for each function ID. 
 
 ### Pseudocode
 
@@ -97,7 +91,7 @@ vector<int> exclusiveTime(int n, vector<string>& logs) {
     vector<int> exclusiveTimes(n, 0);
     // allocate stack structure for storing IDs of functions currently executing
     stack<int> currentIDs;
-    // intial previous time is 0
+    // initial previous time is 0
     int prevTime = 0;
 
     // iterate through the log stream

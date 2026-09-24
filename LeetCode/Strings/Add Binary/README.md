@@ -19,7 +19,9 @@ Since the length of both strings can go up to $10^{4}$, I cannot convert the str
 
 To avoid this, I implemented a solution using a method I recently learned is called the **schoolbook addition method**. I perform the addition by iterating over both strings from *right-to-left*: from their *least significant* to *most significant* digit. As I do this, I also keep track of any potential *carryover* from the previous operation. 
 
-I used two index trackers `indA` and `indB` to keep track of the current digit in each string being evaluated. These start at the *rightmost digit* of each string, and the `carry` value is initially set to 0. After allocating the string `result`, I loop as long as *either* string has any digits remaining or there is any leftover *carry* to deal with. At each iteration:
+I used two index trackers `indA` and `indB` to keep track of the current digit in each string being evaluated. These start at the *rightmost digit* of each string, and the `carry` value is initially set to 0. After allocating the string `result`, I loop as long as *either* string has any digits remaining or there is any leftover *carry* to deal with. 
+
+Then, at every iteration:
 
  - Set the current `sum` to any leftover `carry` from the previous iteration.
  - If `a` has any digits remaining, I convert the current digit to its corresponding numerical value using the *ASCII trick* of subtracting `0`.  

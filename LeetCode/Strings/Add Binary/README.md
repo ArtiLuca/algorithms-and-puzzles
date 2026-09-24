@@ -40,7 +40,7 @@ Thankfully, the library *algorithm* provides a useful function `reverse`, which 
 ```cpp
 string addBinary(string a, string b) {
 
-    string result = "";    // result string
+    string result = "";         // result string
     int indA = a.length() - 1;  // string a index tracker
     int indB = b.length() - 1;  // string b index tracker
     int carry = 0;              // carry value

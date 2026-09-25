@@ -41,7 +41,7 @@ The algorithm uses a **stack** `parentheses` to keep track of the parentheses en
  - I first handle the *opening parentheses* by *pushing* them onto the stack.
  - If the stack is *empty*, this means that there is a *missing opening parenthesis*, so I return `false` as the input is not valid. 
  - Otherwise, I handle the *closing parentheses* by checking if the current closing parenthesis matches the type used that is at the *top* of the stack. If they do not match, I return `false` as the input is not valid. Otherwise, I move to the next iteration.
- - Once I process the entire input string `s` I can return the boolean value depending on whether the stack is empty or not.
+ - Once I process the entire input string `s`, I can return the boolean value depending on whether the stack is empty or not.
  
     - If the stack is *empty*, this means that *every opening parenthesis* found a matching *closing parenthesis* in the correct order. Therefore, I return `true` as the input is valid.
     - If the stack is **not** *empty*, then there was some *parenthesis* left unaccounted for, so I return `false`.

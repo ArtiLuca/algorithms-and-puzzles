@@ -93,6 +93,8 @@ bool isValid(string s) {
 
 ### Terminal Output
 
+Tests from *ValidParentheses.cpp* in `main.()`:
+
 ```text
 Input string: ()
 Output: valid

@@ -23,7 +23,7 @@ Output: `4`
 ## Solution
 We are told that  $1 \le \text{nums.length} \le 10^{4}$, that $-10^{4} \le \text{nums[i]} \le 10^{4}$, that  `nums` contains **distinct** values sorted in **ascending** order, and that $-10^{4} \le \text{target} \le 10^{4}$.
 
-Since the vector `nums` is sorted in *increasing* order, and contains *distinct* values, I can use a **binary search** approach to implement a solution. In particular, I chose to use an *iterative* version rather than *recursive* as to not allocate any extra *auxiliary space*.
+Since the vector `nums` is sorted in *increasing* order and contains *distinct* values, I can use a **binary search** approach to implement a solution. In particular, I chose to use an *iterative* version rather than a *recursive* one so as not to allocate any extra *auxiliary space*.
 
 As in the standard **binary search** approach, I use two *index trackers* `low` and `high`, initially set to the first and last element of `nums`, respectively. I then loop as long as the condition $\text{low} \le \text{high}$ holds, and at each iteration: 
 
@@ -49,7 +49,7 @@ int searchInsert(vector<int>& nums, int target) {
     // loop as long as search areas don't "cross"
     while (low <= high) {
 
-        // compute search areas's middle index
+        // compute search area's middle index
         int mid = low + (high - low) / 2;
 
         // if we found our target, we return it
@@ -66,14 +66,14 @@ int searchInsert(vector<int>& nums, int target) {
         }
     }
 
-    // once out of the loop, 'low' contains ordered insert position of target 
+    // once out of the loop, 'low' contains the ordered insertion position of target 
     return low;
 }
 ```
 
 #### Complexity
 
- * Assuming `nums` contains $n$ numbers. The algorithm cuts the search area in half at each iteration, therefore the *cost* can be given by the recurrence $T(n) = T(n/2) + \Theta(1)$, where $\Theta(1)$ represents the constant cost performed at each step. Therefore, the total **time complexity** is $\mathcal{O}(\log n)$, which can be proven by either *substitution* or using the *master theorem*.
+ * Assuming `nums` contains $n$ numbers. The algorithm cuts the search area in half at each iteration; therefore, the *cost* can be given by the recurrence $T(n) = T(n/2) + \Theta(1)$, where $\Theta(1)$ represents the constant cost performed at each step. Therefore, the total **time complexity** is $\mathcal{O}(\log n)$, which can be proven by either *substitution* or by using the *master theorem*.
 
  * The algorithm performs the search operation *in-place*. Therefore, the total **space complexity** is $\mathcal{O}(1)$.
 

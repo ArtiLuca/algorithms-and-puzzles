@@ -52,9 +52,8 @@ int lengthOfLastWord(string s) {
 
 This first solution was the most "intuitive", and works as expected. However, in real-world scenarios, it would be sub-optimal in terms of **space complexity**, since having to copy the entire input string `s` can be quite memory-costly when dealing with very large strings.
 
-To implement a solution that still takes *linear time* but uses no extra *auxiliary space*, I thought of simply counting the length of the last word by processing each character from *right-to-left*. 
+To implement a solution that still takes *linear time* but uses no extra *auxiliary space*, I thought of simply counting the length of the last word by processing each character from *right-to-left*. I use an index tracker `ind` that starts from the very last character of the string.
 
- - I use an index tracker `ind` that starts from the very last character of the string.
  - I loop backwards, decrementing `ind` as long as I encounter trailing whitespace characters. Once I break out of this loop, it means I found the first non-whitespace character of the last word.
  - I then continue looping backwards by incrementing a variable `lengthLast` and decrementing `ind` until I either reach a whitespace character or I reach the very first character in the string.
 

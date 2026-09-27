@@ -40,11 +40,12 @@ I implemented a *recursive* solution using a *helper* `isSymmetricRec(TreeNode* 
  - If both nodes are `nullptr`, they are *trivially symmetric*, so I return `true`.
  - If only one of them is `nullptr` (and the other is not), they are **not** *symmetric*, so I return `false`.
  - If their values do not match (`t1->val != t2->val`), then they are **not** *symmetric*, so I return `false`.
- - Both *subtrees* are *symmetric* if the *outer paths* and *inner paths* are *symmetric*. I check this by  returning the result of: `isSymmetricRec(t1->left, t2->right) && isSymmetricRec(t1->right, t2->left)`.
+ - Both *subtrees* are *symmetric* if the *outer paths* and *inner paths* are *symmetric*. I check this by  returning the result of:  
+ `isSymmetricRec(t1->left, t2->right) && isSymmetricRec(t1->right, t2->left)`.
 
 I can use this *recursive* helper in the main algorithm: 
  - If the tree is **empty** (`root == nullptr`), then it is *symmetric*, so I return `true`.
- - Otherwise, I return the result returned by the helper above, by passing it the *left and right subtrees*.
+ - Otherwise, I return the result returned by the helper above by passing it the *left and right subtrees*.
  
 ### Pseudocode 
 
@@ -86,7 +87,7 @@ bool isSymmetricRec(TreeNode* t1, TreeNode* t2) {
 
 #### Complexity
 
- * Assuming the tree has $n$ nodes. The algorithm visits each every node once. Therefore, the total **time complexity** is $\mathcal{O}(n)$.
+ * Assuming the tree has $n$ nodes. The algorithm visits each node once. Therefore, the total **time complexity** is $\mathcal{O}(n)$.
 
  * Assuming the tree has height $h$. The recursive call stack leads to a total **space complexity** of $\mathcal{O}(h)$.
  
@@ -101,7 +102,7 @@ To implement an *iterative* approach, I can use a **queue** structure to impleme
  - Otherwise, I create a **queue** structure to store the nodes of the tree. Initially, I *push* the *left* and *right* subtrees into the queue. Then, as long as the queue has nodes: 
 
    - I extract a *pair* of nodes from the queue using a **front** and **pop** operation. If they are both `nullptr`, they are *symmetric*, so I continue.
-   - If *only one* of them is `nullptr` (and the other is not), or if they do *not* match in value, then they are **not** *symmetric*. In both of these cases I return `false`.
+   - If *only one* of them is `nullptr` (and the other is not), or if they do *not* match in value, then they are **not** *symmetric*. In both of these cases, I return `false`.
    - Otherwise, I continue by **pushing** into the queue the *pair* of nodes representing the *outer path* and the ones representing *inner path* (as in the two recursive calls in the first approach)
 
 If the algorithm runs until the queue is empty, I can return `true`.

@@ -19,13 +19,13 @@ Explanation: One possible longest palindromic subsequence is "bb".
 ## Solution 
 We are told that $1 \le \text{s.length} \le 1000$ and that `s` consists only of lowercase English letters.
 
-I decided to use a **Dynamic Programming** approach for implementing a solution to this problem.
+I decided to use a **Dynamic Programming** approach to implement a solution to this problem.
 
 I defined the problem more generally by defining a *recursive characterization* for computing the value $\ell_{i,j}$, which represents the length of the *longest palindromic subsequence* in the interval $s_i \dots s_j$. In particular, the length of the interval $s_i \dots s_j$ is given by $len = j - i + 1$.
 
  - If $i > j$, then this means the subsequence $s_i \dots s_j$ is an *empty subsequence*, which is palindromic by definition. In this case,  $\ell_{i,j} = 0$.
 
- - If $i=j$, then the subsequence $s_i \dots s_j$ is made up by only one character, which is also palindromic by definition. In this case, $\ell_{i,j} = 1$.
+ - If $i=j$, then the subsequence $s_i \dots s_j$ is made up of only one character, which is also palindromic by definition. In this case, $\ell_{i,j} = 1$.
 
  - If $i < j$, then the subsequence $s_i \dots s_j$ is made up of at least two characters. Therefore, I compare the character at the start $s_i$ with the character at the end $s_j$.
 

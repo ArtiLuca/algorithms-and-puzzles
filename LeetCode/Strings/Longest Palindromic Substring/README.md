@@ -43,7 +43,7 @@ $$
 \end{cases}
 $$
 
-I decided to implement a *bottom-up* solution in which I consider each interval $s_i \dots s_j$ of increasing length $len = 2 \dots n$. I use a vector `lengths` to store the lengths $\ell_{i,j}$ found as the algorithm progresses as well as two variables `startInd` and `maxLen` to keep track of the starting index and maximum length of the *longest palindromic substring* found so far. I can then use these two variables to easily *slice* the final string at the end of the algorithm.
+I decided to implement a *bottom-up* solution in which I consider each interval $s_i \dots s_j$ of increasing length $len = 2 \dots n$. I use a vector `lengths` to store the lengths $\ell_{i,j}$ found as the algorithm progresses, as well as two variables `startInd` and `maxLen` to keep track of the starting index and maximum length of the *longest palindromic substring* found so far. I can then use these two variables to easily *slice* the final string at the end of the algorithm.
 
 
 ### Pseudocode

@@ -24,7 +24,7 @@ I defined the problem more generally by defining a *recursive characterization* 
 
  - If $i = j \implies len = 1$, then the substring $s_i \dots s_j$ is made up of a single character, which is *palindromic* by definition. In this case, $\ell_{i,j} = 1$.
 
- - If $i < j \implies len >= 2$, then the substring $s_i \dots s_j$ is made up of at least two characters. I can split this case into two subcases:
+ - If $i < j \implies len \ge 2$, then the substring $s_i \dots s_j$ is made up of at least two characters. I can split this case into two subcases:
 
     - If $s_i = s_j$ **and** the *internal substring* $s_{i+1} \dots s_{j-1}$ is a *palindromic substring*, then I can safely say that the substring $s_i \dots s_j$ is also a *palindromic substring*. Because $\ell_{i+1,j-1}$ tracks the max palindrome length within the inner window, it will equal the inner window's full length ($j - i - 1$) **if and only if** the entire inner window is a palindrome. In this case, $\ell_{i,j} = 2 + \ell_{i+1,j-1}$.
 

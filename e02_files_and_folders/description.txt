@@ -1,0 +1,5 @@
+I'm getting old and I start to forget things.... Where did I put the flags?
+
+Unzip first, then use the shell (anything else is cheating)
+
+Note: This exercise contains multiple flags, can you find all of them?

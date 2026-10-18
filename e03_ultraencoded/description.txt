@@ -1,0 +1,6 @@
+Fady didn't understand well the difference between encryption and encoding,
+so instead of encrypting some secret message to pass to his friend, he
+encoded it!
+
+Note: The flag is in a different format: ALEXCTF
+Note: You also need: dash dash space dash dash dash space dot dash dot space dot dot dot space dot space dash dot dash dot space dash dash dash space dash dot dot space dot

@@ -1,3 +1,0 @@
-Sherlock has a mystery in front of him. Help him to find the flag.
-
-Note: The flag is in a different format: BITSCTF
